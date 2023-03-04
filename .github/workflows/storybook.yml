@@ -23,7 +23,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [18.x]
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
