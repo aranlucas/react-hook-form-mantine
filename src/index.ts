@@ -14,6 +14,7 @@ export * from "./MultiSelect/MultiSelect";
 export * from "./NativeSelect/NativeSelect";
 export * from "./NumberInput/NumberInput";
 export * from "./PasswordInput/PasswordInput";
+export * from "./PinInput/PinInput";
 export * from "./Radio/Radio";
 export * from "./Rating/Rating";
 export * from "./SegmentedControl/SegmentedControl";
