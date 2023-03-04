@@ -1,0 +1,7 @@
+{
+  "directory": "./src",
+  "exclude": [
+    "src/stories",
+    "stories.tsx"
+  ]
+}
