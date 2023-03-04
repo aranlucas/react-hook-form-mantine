@@ -12,6 +12,8 @@ type Story = StoryObj<typeof Select>;
 export const Primary: Story = {
   args: {
     name: "test",
+    label: "Your favorite framework/library",
+    placeholder: "Pick one",
     data: [
       { label: "React", value: "react" },
       { label: "Angular", value: "ng" },
@@ -22,7 +24,7 @@ export const Primary: Story = {
   parameters: {
     form: {
       defaultValues: {
-        test: false,
+        test: null,
       },
       onSubmit: (data: any) => {
         console.log(data);

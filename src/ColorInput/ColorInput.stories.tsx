@@ -12,12 +12,12 @@ type Story = StoryObj<typeof ColorInput>;
 export const Primary: Story = {
   args: {
     name: "test",
-    placeholder: "Test",
+    placeholder: "Pick color",
   },
   parameters: {
     form: {
       defaultValues: {
-        test: false,
+        test: "#C5D899",
       },
       onSubmit: (data: any) => {
         console.log(data);

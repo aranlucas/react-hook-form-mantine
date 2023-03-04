@@ -1,23 +1,22 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { withReactHookForm } from "../stories/decorator";
-import { ColorPicker } from "./ColorPicker";
+import { PinInput } from "./PinInput";
 
 export default {
-  component: ColorPicker,
+  component: PinInput,
   decorators: [withReactHookForm],
-} satisfies Meta<typeof ColorPicker>;
+} satisfies Meta<typeof PinInput>;
 
-type Story = StoryObj<typeof ColorPicker>;
+type Story = StoryObj<typeof PinInput>;
 
 export const Primary: Story = {
   args: {
     name: "test",
-    placeholder: "Test",
   },
   parameters: {
     form: {
       defaultValues: {
-        test: "rgba(47, 119, 150, 0.7)",
+        test: "",
       },
       onSubmit: (data: any) => {
         console.log(data);

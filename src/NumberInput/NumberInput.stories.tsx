@@ -12,11 +12,13 @@ type Story = StoryObj<typeof NumberInput>;
 export const Primary: Story = {
   args: {
     name: "test",
+    placeholder: "Your age",
+    label: "Your age",
   },
   parameters: {
     form: {
       defaultValues: {
-        test: false,
+        test: 18,
       },
       onSubmit: (data: any) => {
         console.log(data);

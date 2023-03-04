@@ -12,12 +12,13 @@ type Story = StoryObj<typeof FileInput>;
 export const Primary: Story = {
   args: {
     name: "test",
-    children: "Test",
+    label: "Your Resume",
+    placeholder: "Pick file",
   },
   parameters: {
     form: {
       defaultValues: {
-        test: false,
+        test: undefined,
       },
       onSubmit: (data: any) => {
         console.log(data);

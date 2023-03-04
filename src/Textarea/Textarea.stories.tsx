@@ -12,11 +12,13 @@ type Story = StoryObj<typeof Textarea>;
 export const Primary: Story = {
   args: {
     name: "test",
+    placeholder: "Your comment",
+    label: "Your comment",
   },
   parameters: {
     form: {
       defaultValues: {
-        test: false,
+        test: "",
       },
       onSubmit: (data: any) => {
         console.log(data);

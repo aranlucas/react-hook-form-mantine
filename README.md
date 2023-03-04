@@ -11,7 +11,7 @@ The library provides bindings for several Mantine components and does not affect
 
 ## Getting Started
 
-```
+```javascript
 npm install rhf-mantine
 ```
 

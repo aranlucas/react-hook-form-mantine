@@ -12,29 +12,31 @@ type Story = StoryObj<typeof TransferList>;
 export const Primary: Story = {
   args: {
     name: "test",
-    value: [
-      [
-        { value: "react", label: "React" },
-        { value: "ng", label: "Angular" },
-        { value: "next", label: "Next.js" },
-        { value: "blitz", label: "Blitz.js" },
-        { value: "gatsby", label: "Gatsby.js" },
-        { value: "vue", label: "Vue" },
-        { value: "jq", label: "jQuery" },
-      ],
-      [
-        { value: "sv", label: "Svelte" },
-        { value: "rw", label: "Redwood" },
-        { value: "np", label: "NumPy" },
-        { value: "dj", label: "Django" },
-        { value: "fl", label: "Flask" },
-      ],
-    ],
+    searchPlaceholder: "Search...",
+    nothingFound: "Nothing here",
+    titles: ["Frameworks", "Libraries"],
   },
   parameters: {
     form: {
       defaultValues: {
-        test: false,
+        test: [
+          [
+            { value: "react", label: "React" },
+            { value: "ng", label: "Angular" },
+            { value: "next", label: "Next.js" },
+            { value: "blitz", label: "Blitz.js" },
+            { value: "gatsby", label: "Gatsby.js" },
+            { value: "vue", label: "Vue" },
+            { value: "jq", label: "jQuery" },
+          ],
+          [
+            { value: "sv", label: "Svelte" },
+            { value: "rw", label: "Redwood" },
+            { value: "np", label: "NumPy" },
+            { value: "dj", label: "Django" },
+            { value: "fl", label: "Flask" },
+          ],
+        ],
       },
       onSubmit: (data: any) => {
         console.log(data);

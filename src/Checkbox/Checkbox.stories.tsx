@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Checkbox } from "./Checkbox";
 import { withReactHookForm } from "../stories/decorator";
+import { Group } from "@mantine/core";
 
 export default {
   component: Checkbox,
@@ -33,11 +34,13 @@ export const Primary: Story = {
   },
 };
 
-export const Group: StoryGroup = {
+export const CheckboxGroup: StoryGroup = {
   render: (args) => (
     <Checkbox.Group {...args}>
-      <Checkbox.Item value="react" label="React" />
-      <Checkbox.Item value="svelte" label="Svelte" />
+      <Group mt="xs">
+        <Checkbox.Item value="react" label="React" />
+        <Checkbox.Item value="svelte" label="Svelte" />
+      </Group>
     </Checkbox.Group>
   ),
   args: {

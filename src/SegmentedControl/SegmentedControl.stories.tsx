@@ -22,7 +22,7 @@ export const Primary: Story = {
   parameters: {
     form: {
       defaultValues: {
-        test: false,
+        test: "react",
       },
       onSubmit: (data: any) => {
         console.log(data);

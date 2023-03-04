@@ -12,11 +12,13 @@ type Story = StoryObj<typeof JsonInput>;
 export const Primary: Story = {
   args: {
     name: "test",
+    label: "Your package.json",
+    placeholder: "Textarea will autosize to fit the content",
   },
   parameters: {
     form: {
       defaultValues: {
-        test: false,
+        test: "",
       },
       onSubmit: (data: any) => {
         console.log(data);

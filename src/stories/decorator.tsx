@@ -7,12 +7,10 @@ export const withReactHookForm = (StoryComponent: StoryFn, context: any) => {
   // Parameters are used for addons
   const { parameters, args } = context;
 
-  const defaultValues =
-    parameters?.form?.defaultValues == null
-      ? parameters?.form?.defaultValues
-      : {
-          [args.name]: args[args.name],
-        };
+  const defaultValues = {
+    [args.name]: args[args.name],
+    ...parameters?.form?.defaultValues,
+  };
 
   const methods = useForm({
     defaultValues,
@@ -22,7 +20,7 @@ export const withReactHookForm = (StoryComponent: StoryFn, context: any) => {
   return (
     <Box sx={{ maxWidth: 300 }} mx="auto">
       <FormProvider {...methods}>
-        <form onSubmit={() => methods.handleSubmit(parameters.form.onSubmit)}>
+        <form onSubmit={methods.handleSubmit(parameters.form.onSubmit)}>
           <StoryComponent />
           <Group position="right" mt="md">
             <Button type="submit">Submit</Button>

@@ -1,7 +1,7 @@
 import { type UseControllerProps, useController } from "react-hook-form";
 import { Input as $Input, type InputProps as $InputProps } from "@mantine/core";
 
-type InputProps = UseControllerProps & $InputProps;
+export type InputProps = UseControllerProps & $InputProps;
 
 export function Input({
   name,

@@ -12,12 +12,14 @@ type Story = StoryObj<typeof NativeSelect>;
 export const Primary: Story = {
   args: {
     name: "test",
-    data: [],
+    label: "Select your favorite framework/library",
+    description: "This is anonymous",
+    data: ["React", "Vue", "Angular", "Svelte"],
   },
   parameters: {
     form: {
       defaultValues: {
-        test: false,
+        test: [],
       },
       onSubmit: (data: any) => {
         console.log(data);
