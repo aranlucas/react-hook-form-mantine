@@ -10,7 +10,7 @@
     "build-storybook": "storybook build",
     "build": "parcel build",
     "generate-barrels": "barrelsby --delete -c .barrelsby",
-    "lint": "eslint src/** --fix",
+    "lint": "eslint src/**/*.tsx --fix",
     "storybook": "storybook dev -p 6006",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "parcel watch"
@@ -44,7 +44,7 @@
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "barrelsby": "^2.5.1",
     "eslint": "^8.35.0",
-    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-prettier": "^8.7.0",
     "eslint-config-standard-with-typescript": "^34.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.6.1",
@@ -56,7 +56,7 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "7.43.4",
+    "react-hook-form": "7.43.5",
     "storybook": "^7.0.0-beta.59",
     "typescript": "^4.9.5"
   }

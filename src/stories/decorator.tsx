@@ -1,6 +1,10 @@
-import { Box, Button, Group } from "@mantine/core";
+import { Box } from "@mantine/core";
 import { type StoryFn } from "@storybook/react";
 import { FormProvider, useForm } from "react-hook-form";
+import { useChannel } from "@storybook/addons";
+import { EVENTS } from "./constants";
+import { useEffect } from "react";
+import { STORY_RENDERED } from "@storybook/core-events";
 
 // Borrowed from https://github.com/bbbtech/storybook-formik/blob/master/src/index.tsx
 export const withReactHookForm = (StoryComponent: StoryFn, context: any) => {
@@ -17,14 +21,42 @@ export const withReactHookForm = (StoryComponent: StoryFn, context: any) => {
     resolver: parameters?.resolver,
   });
 
+  useEffect(() => {
+    console.log("Re-Render");
+    console.log(methods.formState.dirtyFields);
+  }, [methods.formState.dirtyFields]);
+
+  const emit = useChannel({
+    [EVENTS.REQUEST]: () => {
+      console.log("REQUEST");
+
+      void methods.handleSubmit(
+        (data, e) => {
+          console.log(data, e);
+          emit(EVENTS.RESULT, { values: data });
+        },
+        (errors, e) => {
+          console.log(errors, e);
+          emit(EVENTS.RESULT, { errors });
+        }
+      )();
+    },
+    [STORY_RENDERED]: () => {
+      console.log("STORY_RENDERED");
+
+      emit(EVENTS.RESULT, methods.formState);
+    },
+    [EVENTS.CLEAR]: () => {
+      console.log("CLEAR");
+      emit(EVENTS.RESULT, methods.formState);
+    },
+  });
+
   return (
     <Box sx={{ maxWidth: 300 }} mx="auto">
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(parameters.form.onSubmit)}>
+        <form id="hook-form">
           <StoryComponent />
-          <Group position="right" mt="md">
-            <Button type="submit">Submit</Button>
-          </Group>
         </form>
       </FormProvider>
     </Box>
