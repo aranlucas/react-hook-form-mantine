@@ -2,3 +2,5 @@ dist/*
 node_modules
 .parcel-cache/
 storybook-static/
+.npmrc
+.env
