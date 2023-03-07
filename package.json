@@ -1,6 +1,6 @@
 {
   "name": "react-hook-form-mantine",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "",
   "source": "src/index.ts",
   "main": "dist/main.js",
