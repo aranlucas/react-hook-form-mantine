@@ -1,5 +1,5 @@
 {
-  "name": "rhf-mantine",
+  "name": "react-hook-form-mantine",
   "version": "0.0.0-development",
   "description": "",
   "source": "src/index.ts",
@@ -65,6 +65,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/aranlucas/rhf-mantine.git"
+    "url": "https://github.com/aranlucas/react-hook-form-mantine.git"
   }
 }
