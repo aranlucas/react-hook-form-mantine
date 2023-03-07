@@ -1,4 +1,9 @@
 module.exports = {
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
   env: {
     browser: true,
     es2021: true,
@@ -8,6 +13,7 @@ module.exports = {
     "standard-with-typescript",
     "plugin:react/jsx-runtime",
     "plugin:prettier/recommended",
+    "plugin:storybook/recommended",
   ],
   overrides: [],
   parserOptions: {

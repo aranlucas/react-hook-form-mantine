@@ -4,7 +4,9 @@ export const PARAM_KEY = "form";
 
 export const EVENTS = {
   RESULT: `${ADDON_ID}/result`,
-  RESULT2: `${ADDON_ID}/result2`,
+  ERROR: `${ADDON_ID}/error`,
+  DIRTY: `${ADDON_ID}/dirty`,
+  FORM_STATE: `${ADDON_ID}/formState`,
 
   REQUEST: `${ADDON_ID}/request`,
   CLEAR: `${ADDON_ID}/clear`,
