@@ -1,6 +1,6 @@
 {
   "name": "rhf-mantine",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "",
   "source": "src/index.ts",
   "main": "dist/main.js",
@@ -13,7 +13,8 @@
     "lint": "eslint src/**/*.tsx --fix",
     "storybook": "storybook dev -p 6006",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "parcel watch"
+    "watch": "parcel watch",
+    "semantic-release": "semantic-release"
   },
   "author": "",
   "license": "MIT",
@@ -59,6 +60,11 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "7.43.5",
     "storybook": "^7.0.0-beta.62",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "semantic-release": "^20.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aranlucas/rhf-mantine.git"
   }
 }
