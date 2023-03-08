@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 
 export type ColorPickerProps<T extends FieldValues> = UseControllerProps<T> &
-  $ColorPickerProps;
+  Omit<$ColorPickerProps, "value" | "defaultValue">;
 
 export function ColorPicker<T extends FieldValues>({
   name,
@@ -17,14 +17,28 @@ export function ColorPicker<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: ColorPickerProps<T>) {
-  const { field } = useController<T>({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
-  return <$ColorPicker {...field} {...props} />;
+
+  return (
+    <$ColorPicker
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      {...field}
+      {...props}
+    />
+  );
 }

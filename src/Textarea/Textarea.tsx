@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 
 export type TextareaProps<T extends FieldValues> = UseControllerProps<T> &
-  $TextareaProps;
+  Omit<$TextareaProps, "value" | "defaultValue">;
 
 export function Textarea<T extends FieldValues>({
   name,
@@ -17,14 +17,30 @@ export function Textarea<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: TextareaProps<T>) {
-  const { field, fieldState } = useController<T>({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+    fieldState,
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
-  return <$Textarea error={fieldState.error?.message} {...field} {...props} />;
+
+  return (
+    <$Textarea
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      error={fieldState.error?.message}
+      {...field}
+      {...props}
+    />
+  );
 }

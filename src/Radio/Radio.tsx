@@ -10,9 +10,9 @@ import {
 } from "@mantine/core";
 
 export type RadioProps<T extends FieldValues> = UseControllerProps<T> &
-  $RadioProps;
+  Omit<$RadioProps, "value" | "defaultValue">;
 export type RadioGroupProps<T extends FieldValues> = UseControllerProps<T> &
-  $RadioGroupProps;
+  Omit<$RadioGroupProps, "value" | "defaultValue">;
 
 export function Radio<T extends FieldValues>({
   name,
@@ -20,16 +20,30 @@ export function Radio<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: RadioProps<T>) {
-  const { field } = useController<T>({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
-  return <$Radio {...field} {...props} />;
+
+  return (
+    <$Radio
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      {...field}
+      {...props}
+    />
+  );
 }
 
 Radio.Group = <T extends FieldValues>({
@@ -38,17 +52,31 @@ Radio.Group = <T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: RadioGroupProps<T>) => {
-  const { field, fieldState } = useController<T>({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+    fieldState,
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
+
   return (
-    <$Radio.Group error={fieldState.error?.message} {...field} {...props} />
+    <$Radio.Group
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      error={fieldState.error?.message}
+      {...field}
+      {...props}
+    />
   );
 };
 

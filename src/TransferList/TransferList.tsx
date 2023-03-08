@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 
 export type TransferListProps<T extends FieldValues> = UseControllerProps<T> &
-  Omit<$TransferListProps, "value" | "onChange">;
+  Omit<$TransferListProps, "value">;
 
 export function TransferList<T extends FieldValues>({
   name,
@@ -17,14 +17,28 @@ export function TransferList<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: TransferListProps<T>) {
-  const { field } = useController<T>({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
-  return <$TransferList {...field} {...props} />;
+
+  return (
+    <$TransferList
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      {...field}
+      {...props}
+    />
+  );
 }

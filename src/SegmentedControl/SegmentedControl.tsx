@@ -9,7 +9,8 @@ import {
 } from "@mantine/core";
 
 export type SegmentedControlProps<T extends FieldValues> =
-  UseControllerProps<T> & $SegmentedControlProps;
+  UseControllerProps<T> &
+    Omit<$SegmentedControlProps, "values" | "defaultValues">;
 
 export function SegmentedControl<T extends FieldValues>({
   name,
@@ -17,14 +18,28 @@ export function SegmentedControl<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: SegmentedControlProps<T>) {
-  const { field } = useController<T>({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
-  return <$SegmentedControl {...field} {...props} />;
+
+  return (
+    <$SegmentedControl
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      {...field}
+      {...props}
+    />
+  );
 }

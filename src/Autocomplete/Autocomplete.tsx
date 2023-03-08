@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 
 export type AutocompleteProps<T extends FieldValues> = UseControllerProps<T> &
-  $AutocompleteProps;
+  Omit<$AutocompleteProps, "value" | "defaultValue">;
 
 export function Autocomplete<T extends FieldValues>({
   name,
@@ -17,9 +17,13 @@ export function Autocomplete<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: AutocompleteProps<T>) {
-  const { field, fieldState } = useController<T>({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+    fieldState,
+  } = useController<T>({
     name,
     control,
     defaultValue,
@@ -28,6 +32,15 @@ export function Autocomplete<T extends FieldValues>({
   });
 
   return (
-    <$Autocomplete error={fieldState.error?.message} {...field} {...props} />
+    <$Autocomplete
+      error={fieldState.error?.message}
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      {...field}
+      {...props}
+    />
   );
 }

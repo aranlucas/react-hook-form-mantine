@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 
 export type MultiSelectProps<T extends FieldValues> = UseControllerProps<T> &
-  $MultiSelectProps;
+  Omit<$MultiSelectProps, "value" | "defaultValue">;
 
 export function MultiSelect<T extends FieldValues>({
   name,
@@ -17,16 +17,30 @@ export function MultiSelect<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: MultiSelectProps<T>) {
-  const { field, fieldState } = useController<T>({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+    fieldState,
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
+
   return (
-    <$MultiSelect error={fieldState.error?.message} {...field} {...props} />
+    <$MultiSelect
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      error={fieldState.error?.message}
+      {...field}
+      {...props}
+    />
   );
 }

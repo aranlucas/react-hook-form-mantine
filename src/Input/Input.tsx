@@ -16,12 +16,23 @@ export function Input<T extends FieldValues>({
   shouldUnregister,
   ...props
 }: InputProps<T>) {
-  const { field, fieldState } = useController<T>({
+  const {
+    field: { value, ...field },
+    fieldState,
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
-  return <$Input error={fieldState.error?.message} {...field} {...props} />;
+
+  return (
+    <$Input
+      value={value}
+      error={fieldState.error?.message}
+      {...field}
+      {...props}
+    />
+  );
 }

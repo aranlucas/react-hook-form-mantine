@@ -10,9 +10,9 @@ import {
 } from "@mantine/core";
 
 export type CheckboxProps<T extends FieldValues> = UseControllerProps<T> &
-  $CheckboxProps;
+  Omit<$CheckboxProps, "checked" | "defaultValue">;
 export type CheckboxGroupProps<T extends FieldValues> = UseControllerProps<T> &
-  $CheckboxGroupProps;
+  Omit<$CheckboxGroupProps, "checked" | "defaultValue">;
 
 export function Checkbox<T extends FieldValues>({
   name,
@@ -20,10 +20,11 @@ export function Checkbox<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
-  ...mantineProps
+  onChange,
+  ...props
 }: CheckboxProps<T>) {
   const {
-    field: { value, ...field },
+    field: { value, onChange: fieldOnChange, ...field },
     fieldState,
   } = useController<T>({
     name,
@@ -38,8 +39,12 @@ export function Checkbox<T extends FieldValues>({
       error={fieldState.error?.message}
       value={value}
       checked={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
       {...field}
-      {...mantineProps}
+      {...props}
     />
   );
 }
@@ -50,9 +55,13 @@ Checkbox.Group = <T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: CheckboxGroupProps<T>) => {
-  const { field, fieldState } = useController<T>({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+    fieldState,
+  } = useController<T>({
     name,
     control,
     defaultValue,
@@ -61,7 +70,16 @@ Checkbox.Group = <T extends FieldValues>({
   });
 
   return (
-    <$Checkbox.Group error={fieldState.error?.message} {...field} {...props} />
+    <$Checkbox.Group
+      error={fieldState.error?.message}
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      {...field}
+      {...props}
+    />
   );
 };
 

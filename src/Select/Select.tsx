@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 
 export type SelectProps<T extends FieldValues> = UseControllerProps<T> &
-  $SelectProps;
+  Omit<$SelectProps, "value" | "defaultValue">;
 
 export function Select<T extends FieldValues>({
   name,
@@ -17,14 +17,30 @@ export function Select<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: SelectProps<T>) {
-  const { field, fieldState } = useController<T>({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+    fieldState,
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
-  return <$Select error={fieldState.error?.message} {...field} {...props} />;
+
+  return (
+    <$Select
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      error={fieldState.error?.message}
+      {...field}
+      {...props}
+    />
+  );
 }

@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 
 export type NumberInputProps<T extends FieldValues> = UseControllerProps<T> &
-  $NumberInputProps;
+  Omit<$NumberInputProps, "value" | "defaultValue">;
 
 export function NumberInput<T extends FieldValues>({
   name,
@@ -17,16 +17,30 @@ export function NumberInput<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: NumberInputProps<T>) {
-  const { field, fieldState } = useController<T>({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+    fieldState,
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
+
   return (
-    <$NumberInput error={fieldState.error?.message} {...field} {...props} />
+    <$NumberInput
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      error={fieldState.error?.message}
+      {...field}
+      {...props}
+    />
   );
 }

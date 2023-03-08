@@ -10,9 +10,9 @@ import {
 } from "@mantine/core";
 
 export type SwitchProps<T extends FieldValues> = UseControllerProps<T> &
-  $SwitchProps;
+  Omit<$SwitchProps, "value" | "checked" | "defaultValue">;
 export type SwitchGroupProps<T extends FieldValues> = UseControllerProps<T> &
-  $SwitchGroupProps;
+  Omit<$SwitchGroupProps, "value" | "checked" | "defaultValue">;
 
 export function Switch<T extends FieldValues>({
   name,
@@ -20,10 +20,11 @@ export function Switch<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: SwitchProps<T>) {
   const {
-    field: { value, ...field },
+    field: { value, onChange: fieldOnChange, ...field },
     fieldState,
   } = useController<T>({
     name,
@@ -32,10 +33,15 @@ export function Switch<T extends FieldValues>({
     rules,
     shouldUnregister,
   });
+
   return (
     <$Switch
       value={value}
       checked={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
       error={fieldState.error?.message}
       {...field}
       {...props}
@@ -49,17 +55,31 @@ Switch.Group = <T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: SwitchGroupProps<T>) => {
-  const { field, fieldState } = useController<T>({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+    fieldState,
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
+
   return (
-    <$Switch.Group error={fieldState.error?.message} {...field} {...props} />
+    <$Switch.Group
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      error={fieldState.error?.message}
+      {...field}
+      {...props}
+    />
   );
 };
 

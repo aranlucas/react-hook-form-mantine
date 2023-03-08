@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 
 export type JsonInputProps<T extends FieldValues> = UseControllerProps<T> &
-  $JsonInputProps;
+  Omit<$JsonInputProps, "value" | "defaultValue">;
 
 export function JsonInput<T extends FieldValues>({
   name,
@@ -17,14 +17,30 @@ export function JsonInput<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: JsonInputProps<T>) {
-  const { field, fieldState } = useController<T>({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+    fieldState,
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
-  return <$JsonInput error={fieldState.error?.message} {...field} {...props} />;
+
+  return (
+    <$JsonInput
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      error={fieldState.error?.message}
+      {...field}
+      {...props}
+    />
+  );
 }

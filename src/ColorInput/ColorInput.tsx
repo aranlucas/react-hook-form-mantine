@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 
 export type ColorInputProps<T extends FieldValues> = UseControllerProps<T> &
-  $ColorInputProps;
+  Omit<$ColorInputProps, "value" | "defaultValue">;
 
 export function ColorInput<T extends FieldValues>({
   name,
@@ -17,9 +17,13 @@ export function ColorInput<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: ColorInputProps<T>) {
-  const { field, fieldState } = useController<T>({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+    fieldState,
+  } = useController<T>({
     name,
     control,
     defaultValue,
@@ -28,6 +32,15 @@ export function ColorInput<T extends FieldValues>({
   });
 
   return (
-    <$ColorInput error={fieldState.error?.message} {...field} {...props} />
+    <$ColorInput
+      error={fieldState.error?.message}
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      {...field}
+      {...props}
+    />
   );
 }

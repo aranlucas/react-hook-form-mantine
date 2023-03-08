@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 
 export type TextInputProps<T extends FieldValues> = UseControllerProps<T> &
-  $TextInputProps;
+  Omit<$TextInputProps, "value" | "defaultValue">;
 
 export function TextInput<T extends FieldValues>({
   name,
@@ -17,14 +17,30 @@ export function TextInput<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: TextInputProps<T>) {
-  const { field, fieldState } = useController<T>({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+    fieldState,
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
-  return <$TextInput error={fieldState.error?.message} {...field} {...props} />;
+
+  return (
+    <$TextInput
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      error={fieldState.error?.message}
+      {...field}
+      {...props}
+    />
+  );
 }

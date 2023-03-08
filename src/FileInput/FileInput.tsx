@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 
 export type FileInputProps<T extends FieldValues> = UseControllerProps<T> &
-  $FileInputProps;
+  Omit<$FileInputProps, "value" | "defaultValue">;
 
 export function FileInput<T extends FieldValues>({
   name,
@@ -17,14 +17,26 @@ export function FileInput<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  multiple,
   ...props
 }: FileInputProps<T>) {
-  const { field, fieldState } = useController<T>({
+  const {
+    field: { value, ...field },
+    fieldState,
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
-  return <$FileInput error={fieldState.error?.message} {...field} {...props} />;
+
+  return (
+    <$FileInput
+      value={value}
+      error={fieldState.error?.message}
+      {...field}
+      {...props}
+    />
+  );
 }

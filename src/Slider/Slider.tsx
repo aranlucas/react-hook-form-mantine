@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 
 export type SliderProps<T extends FieldValues> = UseControllerProps<T> &
-  $SliderProps;
+  Omit<$SliderProps, "value" | "defaultValue">;
 
 export function Slider<T extends FieldValues>({
   name,
@@ -17,14 +17,28 @@ export function Slider<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: SliderProps<T>) {
-  const { field } = useController<T>({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
-  return <$Slider {...field} {...props} />;
+
+  return (
+    <$Slider
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      {...field}
+      {...props}
+    />
+  );
 }

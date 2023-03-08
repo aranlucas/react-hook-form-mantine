@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 
 export type NativeSelectProps<T extends FieldValues> = UseControllerProps<T> &
-  $NativeSelectProps;
+  Omit<$NativeSelectProps, "value" | "defaultValue">;
 
 export function NativeSelect<T extends FieldValues>({
   name,
@@ -17,16 +17,30 @@ export function NativeSelect<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: NativeSelectProps<T>) {
-  const { field, fieldState } = useController<T>({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+    fieldState,
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
+
   return (
-    <$NativeSelect error={fieldState.error?.message} {...field} {...props} />
+    <$NativeSelect
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      error={fieldState.error?.message}
+      {...field}
+      {...props}
+    />
   );
 }

@@ -10,9 +10,9 @@ import {
 } from "@mantine/core";
 
 export type ChipProps<T extends FieldValues> = UseControllerProps<T> &
-  $ChipProps;
+  Omit<$ChipProps, "value" | "defaultValue">;
 export type ChipGroupProps<T extends FieldValues> = UseControllerProps<T> &
-  $ChipGroupProps;
+  Omit<$ChipGroupProps, "value" | "defaultValue">;
 
 export function Chip<T extends FieldValues>({
   name,
@@ -20,10 +20,11 @@ export function Chip<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: ChipProps<T>) {
   const {
-    field: { value, ...field },
+    field: { value, onChange: fieldOnChange, ...field },
   } = useController<T>({
     name,
     control,
@@ -31,7 +32,19 @@ export function Chip<T extends FieldValues>({
     rules,
     shouldUnregister,
   });
-  return <$Chip value={value} checked={value} {...field} {...props} />;
+
+  return (
+    <$Chip
+      value={value}
+      checked={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      {...field}
+      {...props}
+    />
+  );
 }
 
 Chip.Group = <T extends FieldValues>({
@@ -40,9 +53,12 @@ Chip.Group = <T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
+  onChange,
   ...props
 }: ChipGroupProps<T>) => {
-  const { field } = useController({
+  const {
+    field: { value, onChange: fieldOnChange, ...field },
+  } = useController({
     name,
     control,
     defaultValue,
@@ -50,7 +66,17 @@ Chip.Group = <T extends FieldValues>({
     shouldUnregister,
   });
 
-  return <$Chip.Group {...field} {...props} />;
+  return (
+    <$Chip.Group
+      value={value}
+      onChange={(e) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
+      {...field}
+      {...props}
+    />
+  );
 };
 
 Chip.Item = $Chip;
