@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 
 export type TransferListProps<T extends FieldValues> = UseControllerProps<T> &
-  $TransferListProps;
+  Omit<$TransferListProps, "value" | "onChange">;
 
 export function TransferList<T extends FieldValues>({
   name,
