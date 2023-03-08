@@ -11,12 +11,13 @@
     "build": "parcel build",
     "generate-barrels": "barrelsby --delete -c .barrelsby",
     "lint": "eslint src/**/*.tsx --fix",
+    "prepublishOnly": "npm run build",
+    "semantic-release": "semantic-release",
     "storybook": "storybook dev -p 6006",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "parcel watch",
-    "semantic-release": "semantic-release"
+    "watch": "parcel watch"
   },
-  "author": "",
+  "author": "Lucas Arango",
   "license": "MIT",
   "isLibrary": true,
   "peerDependencies": {
