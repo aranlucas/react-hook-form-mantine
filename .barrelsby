@@ -2,6 +2,8 @@
   "directory": "./src",
   "exclude": [
     "src/stories",
-    "stories.tsx"
+    "stories.tsx",
+    "test.tsx",
+    "src/test"
   ]
 }
