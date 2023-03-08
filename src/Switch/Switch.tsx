@@ -22,14 +22,25 @@ export function Switch<T extends FieldValues>({
   shouldUnregister,
   ...props
 }: SwitchProps<T>) {
-  const { field, fieldState } = useController<T>({
+  const {
+    field: { value, ...field },
+    fieldState,
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
-  return <$Switch error={fieldState.error?.message} {...field} {...props} />;
+  return (
+    <$Switch
+      value={value}
+      checked={value}
+      error={fieldState.error?.message}
+      {...field}
+      {...props}
+    />
+  );
 }
 
 Switch.Group = <T extends FieldValues>({

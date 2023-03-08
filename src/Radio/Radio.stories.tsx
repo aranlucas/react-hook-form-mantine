@@ -21,9 +21,6 @@ export const Primary: Story = {
       defaultValues: {
         test: false,
       },
-      onSubmit: (data: any) => {
-        console.log(data);
-      },
     },
   },
 };
@@ -48,9 +45,6 @@ export const RadioGroup: StoryGroup = {
     form: {
       defaultValues: {
         test: ["react"],
-      },
-      onSubmit: (data: any) => {
-        console.log(data);
       },
     },
   },

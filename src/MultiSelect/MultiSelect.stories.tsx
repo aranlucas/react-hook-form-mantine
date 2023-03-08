@@ -29,9 +29,6 @@ export const Primary: Story = {
       defaultValues: {
         test: [],
       },
-      onSubmit: (data: any) => {
-        console.log(data);
-      },
     },
   },
 };

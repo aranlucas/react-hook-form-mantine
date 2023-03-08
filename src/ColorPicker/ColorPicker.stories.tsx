@@ -19,9 +19,6 @@ export const Primary: Story = {
       defaultValues: {
         test: "rgba(47, 119, 150, 0.7)",
       },
-      onSubmit: (data: any) => {
-        console.log(data);
-      },
     },
   },
 };

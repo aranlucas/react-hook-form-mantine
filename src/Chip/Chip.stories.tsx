@@ -20,9 +20,6 @@ export const Primary: Story = {
       defaultValues: {
         test: false,
       },
-      onSubmit: (data: any) => {
-        console.log(data);
-      },
     },
   },
 };
@@ -43,9 +40,6 @@ export const ChipGroup: StoryGroup = {
     form: {
       defaultValues: {
         test: ["react"],
-      },
-      onSubmit: (data: any) => {
-        console.log(data);
       },
     },
   },

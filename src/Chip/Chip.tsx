@@ -22,14 +22,16 @@ export function Chip<T extends FieldValues>({
   shouldUnregister,
   ...props
 }: ChipProps<T>) {
-  const { field } = useController<T>({
+  const {
+    field: { value, ...field },
+  } = useController<T>({
     name,
     control,
     defaultValue,
     rules,
     shouldUnregister,
   });
-  return <$Chip {...field} {...props} />;
+  return <$Chip value={value} checked={value} {...field} {...props} />;
 }
 
 Chip.Group = <T extends FieldValues>({

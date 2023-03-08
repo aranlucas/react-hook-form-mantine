@@ -38,9 +38,6 @@ export const Primary: Story = {
           ],
         ],
       },
-      onSubmit: (data: any) => {
-        console.log(data);
-      },
     },
   },
 };

@@ -22,7 +22,10 @@ export function Checkbox<T extends FieldValues>({
   shouldUnregister,
   ...mantineProps
 }: CheckboxProps<T>) {
-  const { field, fieldState } = useController<T>({
+  const {
+    field: { value, ...field },
+    fieldState,
+  } = useController<T>({
     name,
     control,
     defaultValue,
@@ -31,7 +34,13 @@ export function Checkbox<T extends FieldValues>({
   });
 
   return (
-    <$Checkbox error={fieldState.error?.message} {...field} {...mantineProps} />
+    <$Checkbox
+      error={fieldState.error?.message}
+      value={value}
+      checked={value}
+      {...field}
+      {...mantineProps}
+    />
   );
 }
 

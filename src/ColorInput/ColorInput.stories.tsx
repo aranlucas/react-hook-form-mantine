@@ -19,9 +19,6 @@ export const Primary: Story = {
       defaultValues: {
         test: "#C5D899",
       },
-      onSubmit: (data: any) => {
-        console.log(data);
-      },
     },
   },
 };
