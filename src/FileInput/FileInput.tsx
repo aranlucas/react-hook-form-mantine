@@ -1,20 +1,25 @@
-import { type UseControllerProps, useController } from "react-hook-form";
+import {
+  type UseControllerProps,
+  useController,
+  type FieldValues,
+} from "react-hook-form";
 import {
   FileInput as $FileInput,
   type FileInputProps as $FileInputProps,
 } from "@mantine/core";
 
-export type FileInputProps = UseControllerProps & $FileInputProps;
+export type FileInputProps<T extends FieldValues> = UseControllerProps<T> &
+  $FileInputProps;
 
-export function FileInput({
+export function FileInput<T extends FieldValues>({
   name,
   control,
   defaultValue,
   rules,
   shouldUnregister,
   ...props
-}: FileInputProps) {
-  const { field, fieldState } = useController({
+}: FileInputProps<T>) {
+  const { field, fieldState } = useController<T>({
     name,
     control,
     defaultValue,

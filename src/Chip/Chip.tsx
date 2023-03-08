@@ -1,22 +1,28 @@
-import { type UseControllerProps, useController } from "react-hook-form";
+import {
+  type UseControllerProps,
+  useController,
+  type FieldValues,
+} from "react-hook-form";
 import {
   Chip as $Chip,
   type ChipProps as $ChipProps,
   type ChipGroupProps as $ChipGroupProps,
 } from "@mantine/core";
 
-export type ChipProps = UseControllerProps & $ChipProps;
-export type ChipGroupProps = UseControllerProps & $ChipGroupProps;
+export type ChipProps<T extends FieldValues> = UseControllerProps<T> &
+  $ChipProps;
+export type ChipGroupProps<T extends FieldValues> = UseControllerProps<T> &
+  $ChipGroupProps;
 
-export function Chip({
+export function Chip<T extends FieldValues>({
   name,
   control,
   defaultValue,
   rules,
   shouldUnregister,
   ...props
-}: ChipProps) {
-  const { field } = useController({
+}: ChipProps<T>) {
+  const { field } = useController<T>({
     name,
     control,
     defaultValue,
@@ -26,14 +32,14 @@ export function Chip({
   return <$Chip {...field} {...props} />;
 }
 
-Chip.Group = ({
+Chip.Group = <T extends FieldValues>({
   name,
   control,
   defaultValue,
   rules,
   shouldUnregister,
   ...props
-}: ChipGroupProps) => {
+}: ChipGroupProps<T>) => {
   const { field } = useController({
     name,
     control,

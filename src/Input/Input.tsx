@@ -1,17 +1,22 @@
-import { type UseControllerProps, useController } from "react-hook-form";
+import {
+  type UseControllerProps,
+  useController,
+  type FieldValues,
+} from "react-hook-form";
 import { Input as $Input, type InputProps as $InputProps } from "@mantine/core";
 
-export type InputProps = UseControllerProps & $InputProps;
+export type InputProps<T extends FieldValues> = UseControllerProps<T> &
+  $InputProps;
 
-export function Input({
+export function Input<T extends FieldValues>({
   name,
   control,
   defaultValue,
   rules,
   shouldUnregister,
   ...props
-}: InputProps) {
-  const { field, fieldState } = useController({
+}: InputProps<T>) {
+  const { field, fieldState } = useController<T>({
     name,
     control,
     defaultValue,

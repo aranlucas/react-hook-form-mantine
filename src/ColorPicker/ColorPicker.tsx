@@ -1,20 +1,25 @@
-import { type UseControllerProps, useController } from "react-hook-form";
+import {
+  type UseControllerProps,
+  useController,
+  type FieldValues,
+} from "react-hook-form";
 import {
   ColorPicker as $ColorPicker,
   type ColorPickerProps as $ColorPickerProps,
 } from "@mantine/core";
 
-export type ColorPickerProps = UseControllerProps & $ColorPickerProps;
+export type ColorPickerProps<T extends FieldValues> = UseControllerProps<T> &
+  $ColorPickerProps;
 
-export function ColorPicker({
+export function ColorPicker<T extends FieldValues>({
   name,
   control,
   defaultValue,
   rules,
   shouldUnregister,
   ...props
-}: ColorPickerProps) {
-  const { field } = useController({
+}: ColorPickerProps<T>) {
+  const { field } = useController<T>({
     name,
     control,
     defaultValue,

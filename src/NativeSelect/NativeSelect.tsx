@@ -1,20 +1,25 @@
-import { type UseControllerProps, useController } from "react-hook-form";
+import {
+  type UseControllerProps,
+  useController,
+  type FieldValues,
+} from "react-hook-form";
 import {
   NativeSelect as $NativeSelect,
   type NativeSelectProps as $NativeSelectProps,
 } from "@mantine/core";
 
-export type NativeSelectProps = UseControllerProps & $NativeSelectProps;
+export type NativeSelectProps<T extends FieldValues> = UseControllerProps<T> &
+  $NativeSelectProps;
 
-export function NativeSelect({
+export function NativeSelect<T extends FieldValues>({
   name,
   control,
   defaultValue,
   rules,
   shouldUnregister,
   ...props
-}: NativeSelectProps) {
-  const { field, fieldState } = useController({
+}: NativeSelectProps<T>) {
+  const { field, fieldState } = useController<T>({
     name,
     control,
     defaultValue,

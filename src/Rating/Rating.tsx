@@ -1,20 +1,25 @@
-import { type UseControllerProps, useController } from "react-hook-form";
+import {
+  type UseControllerProps,
+  useController,
+  type FieldValues,
+} from "react-hook-form";
 import {
   Rating as $Rating,
   type RatingProps as $RatingProps,
 } from "@mantine/core";
 
-export type RatingProps = UseControllerProps & $RatingProps;
+export type RatingProps<T extends FieldValues> = UseControllerProps<T> &
+  $RatingProps;
 
-export function Rating({
+export function Rating<T extends FieldValues>({
   name,
   control,
   defaultValue,
   rules,
   shouldUnregister,
   ...props
-}: RatingProps) {
-  const { field } = useController({
+}: RatingProps<T>) {
+  const { field } = useController<T>({
     name,
     control,
     defaultValue,

@@ -1,22 +1,28 @@
-import { useController, type UseControllerProps } from "react-hook-form";
+import {
+  type FieldValues,
+  useController,
+  type UseControllerProps,
+} from "react-hook-form";
 import {
   Checkbox as $Checkbox,
   type CheckboxProps as $CheckboxProps,
   type CheckboxGroupProps as $CheckboxGroupProps,
 } from "@mantine/core";
 
-export type CheckboxProps = UseControllerProps & $CheckboxProps;
-export type CheckboxGroupProps = UseControllerProps & $CheckboxGroupProps;
+export type CheckboxProps<T extends FieldValues> = UseControllerProps<T> &
+  $CheckboxProps;
+export type CheckboxGroupProps<T extends FieldValues> = UseControllerProps<T> &
+  $CheckboxGroupProps;
 
-export const Checkbox = ({
+export function Checkbox<T extends FieldValues>({
   name,
   control,
   defaultValue,
   rules,
   shouldUnregister,
   ...mantineProps
-}: CheckboxProps) => {
-  const { field, fieldState } = useController({
+}: CheckboxProps<T>) {
+  const { field, fieldState } = useController<T>({
     name,
     control,
     defaultValue,
@@ -27,17 +33,17 @@ export const Checkbox = ({
   return (
     <$Checkbox error={fieldState.error?.message} {...field} {...mantineProps} />
   );
-};
+}
 
-Checkbox.Group = ({
+Checkbox.Group = <T extends FieldValues>({
   name,
   control,
   defaultValue,
   rules,
   shouldUnregister,
   ...props
-}: CheckboxGroupProps) => {
-  const { field, fieldState } = useController({
+}: CheckboxGroupProps<T>) => {
+  const { field, fieldState } = useController<T>({
     name,
     control,
     defaultValue,

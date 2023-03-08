@@ -1,22 +1,28 @@
-import { type UseControllerProps, useController } from "react-hook-form";
+import {
+  type UseControllerProps,
+  useController,
+  type FieldValues,
+} from "react-hook-form";
 import {
   Radio as $Radio,
   type RadioGroupProps as $RadioGroupProps,
   type RadioProps as $RadioProps,
 } from "@mantine/core";
 
-export type RadioProps = UseControllerProps & $RadioProps;
-export type RadioGroupProps = UseControllerProps & $RadioGroupProps;
+export type RadioProps<T extends FieldValues> = UseControllerProps<T> &
+  $RadioProps;
+export type RadioGroupProps<T extends FieldValues> = UseControllerProps<T> &
+  $RadioGroupProps;
 
-export function Radio({
+export function Radio<T extends FieldValues>({
   name,
   control,
   defaultValue,
   rules,
   shouldUnregister,
   ...props
-}: RadioProps) {
-  const { field } = useController({
+}: RadioProps<T>) {
+  const { field } = useController<T>({
     name,
     control,
     defaultValue,
@@ -26,15 +32,15 @@ export function Radio({
   return <$Radio {...field} {...props} />;
 }
 
-Radio.Group = ({
+Radio.Group = <T extends FieldValues>({
   name,
   control,
   defaultValue,
   rules,
   shouldUnregister,
   ...props
-}: RadioGroupProps) => {
-  const { field, fieldState } = useController({
+}: RadioGroupProps<T>) => {
+  const { field, fieldState } = useController<T>({
     name,
     control,
     defaultValue,

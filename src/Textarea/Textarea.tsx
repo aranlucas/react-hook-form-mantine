@@ -1,20 +1,25 @@
-import { type UseControllerProps, useController } from "react-hook-form";
+import {
+  type UseControllerProps,
+  useController,
+  type FieldValues,
+} from "react-hook-form";
 import {
   Textarea as $Textarea,
   type TextareaProps as $TextareaProps,
 } from "@mantine/core";
 
-export type TextareaProps = UseControllerProps & $TextareaProps;
+export type TextareaProps<T extends FieldValues> = UseControllerProps<T> &
+  $TextareaProps;
 
-export function Textarea({
+export function Textarea<T extends FieldValues>({
   name,
   control,
   defaultValue,
   rules,
   shouldUnregister,
   ...props
-}: TextareaProps) {
-  const { field, fieldState } = useController({
+}: TextareaProps<T>) {
+  const { field, fieldState } = useController<T>({
     name,
     control,
     defaultValue,

@@ -1,20 +1,25 @@
-import { type UseControllerProps, useController } from "react-hook-form";
+import {
+  type UseControllerProps,
+  useController,
+  type FieldValues,
+} from "react-hook-form";
 import {
   PasswordInput as $PasswordInput,
   type PasswordInputProps as $PasswordInputProps,
 } from "@mantine/core";
 
-export type PasswordInputProps = UseControllerProps & $PasswordInputProps;
+export type PasswordInputProps<T extends FieldValues> = UseControllerProps<T> &
+  $PasswordInputProps;
 
-export function PasswordInput({
+export function PasswordInput<T extends FieldValues>({
   name,
   control,
   defaultValue,
   rules,
   shouldUnregister,
   ...props
-}: PasswordInputProps) {
-  const { field, fieldState } = useController({
+}: PasswordInputProps<T>) {
+  const { field, fieldState } = useController<T>({
     name,
     control,
     defaultValue,

@@ -1,20 +1,25 @@
-import { type UseControllerProps, useController } from "react-hook-form";
+import {
+  type UseControllerProps,
+  useController,
+  type FieldValues,
+} from "react-hook-form";
 import {
   TransferList as $TransferList,
   type TransferListProps as $TransferListProps,
 } from "@mantine/core";
 
-export type TransferListProps = UseControllerProps & $TransferListProps;
+export type TransferListProps<T extends FieldValues> = UseControllerProps<T> &
+  $TransferListProps;
 
-export function TransferList({
+export function TransferList<T extends FieldValues>({
   name,
   control,
   defaultValue,
   rules,
   shouldUnregister,
   ...props
-}: TransferListProps) {
-  const { field } = useController({
+}: TransferListProps<T>) {
+  const { field } = useController<T>({
     name,
     control,
     defaultValue,
