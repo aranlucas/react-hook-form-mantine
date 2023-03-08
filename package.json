@@ -67,5 +67,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/aranlucas/react-hook-form-mantine.git"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
