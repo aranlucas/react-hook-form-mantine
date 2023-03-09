@@ -4,6 +4,7 @@ import { Radio } from "./Radio";
 import { Group } from "@mantine/core";
 
 export default {
+  title: "Components/Radio",
   component: Radio,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof Radio>;

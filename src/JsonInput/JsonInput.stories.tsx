@@ -3,6 +3,7 @@ import { withReactHookForm } from "../stories/decorator";
 import { JsonInput } from "./JsonInput";
 
 export default {
+  title: "Components/JsonInput",
   component: JsonInput,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof JsonInput>;

@@ -4,6 +4,7 @@ import { Switch } from "./Switch";
 import { Group } from "@mantine/core";
 
 export default {
+  title: "Components/Switch",
   component: Switch,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof Switch>;

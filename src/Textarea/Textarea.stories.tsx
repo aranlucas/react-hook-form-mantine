@@ -3,6 +3,7 @@ import { withReactHookForm } from "../stories/decorator";
 import { Textarea } from "./Textarea";
 
 export default {
+  title: "Components/Textarea",
   component: Textarea,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof Textarea>;

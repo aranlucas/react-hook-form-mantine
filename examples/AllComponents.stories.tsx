@@ -1,24 +1,3 @@
-
-# React-Hook-Form-Mantine
-
-React-Hook-Form-Mantine is a library that simplifies the integration of Mantine components with React Hook Form. By adding a "name" prop to Mantine components, the library seamlessly connects them to the corresponding form field.
-
-## Demo
-
-* <https://aranlucas.github.io/react-hook-form-mantine>
-* <https://codesandbox.io/s/react-hook-mantine-krflqj?file=/src/App.tsx>
-
-## Getting Started
-
-```bash
-npm install react-hook-form-mantine
-```
-
-Requires `react-hook-form` and `@mantine/core` as peer dependencies.
-
-## Usage/Examples
-
-```javascript
 import { useForm } from "react-hook-form";
 import {
   Autocomplete,
@@ -41,42 +20,17 @@ import {
   Switch,
   Textarea,
   TextInput,
-  TransferList
-} from "react-hook-form-mantine";
+  TransferList,
+} from "../src/index";
 import { Button, Group, Paper, Container, Stack } from "@mantine/core";
-import { DevTool } from "@hookform/devtools";
-import z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { type Meta } from "@storybook/react";
 
-const schema = z.object({
-  autocomplete: z.string().min(1, { message: "Required" }),
-  checkbox: z.boolean(),
-  chip: z.boolean(),
-  colorInput: z.string(),
-  colorPicker: z.string(),
-  fileInput: z.any(),
-  jsonInput: z.string(),
-  multiSelect: z.any(),
-  nativeSelect: z.string(),
-  numberInput: z.number(),
-  passwordInput: z.string(),
-  pinInput: z.string(),
-  radio: z.string(),
-  rating: z.number(),
-  segmentedControl: z.string(),
-  select: z.string(),
-  slider: z.number(),
-  switch: z.string(),
-  textarea: z.string(),
-  textInput: z.string(),
-  transferList: z.any()
-});
+export default {
+  title: "Examples/AllComponents",
+} satisfies Meta;
 
-type FormSchemaType = z.infer<typeof schema>;
-
-export default function App() {
-  const { control, handleSubmit } = useForm<FormSchemaType>({
-    resolver: zodResolver(schema),
+export const AllComponents = () => {
+  const { control, handleSubmit } = useForm({
     defaultValues: {
       autocomplete: "",
       checkbox: true,
@@ -106,17 +60,17 @@ export default function App() {
           { value: "blitz", label: "Blitz.js" },
           { value: "gatsby", label: "Gatsby.js" },
           { value: "vue", label: "Vue" },
-          { value: "jq", label: "jQuery" }
+          { value: "jq", label: "jQuery" },
         ],
         [
           { value: "sv", label: "Svelte" },
           { value: "rw", label: "Redwood" },
           { value: "np", label: "NumPy" },
           { value: "dj", label: "Django" },
-          { value: "fl", label: "Flask" }
-        ]
-      ]
-    }
+          { value: "fl", label: "Flask" },
+        ],
+      ],
+    },
   });
 
   return (
@@ -181,7 +135,7 @@ export default function App() {
                   { value: "vue", label: "Vue" },
                   { value: "riot", label: "Riot" },
                   { value: "next", label: "Next.js" },
-                  { value: "blitz", label: "Blitz.js" }
+                  { value: "blitz", label: "Blitz.js" },
                 ]}
                 label="Your favorite frameworks/libraries"
                 placeholder="Pick all that you like"
@@ -234,7 +188,7 @@ export default function App() {
                   { label: "React", value: "react" },
                   { label: "Angular", value: "ng" },
                   { label: "Vue", value: "vue" },
-                  { label: "Svelte", value: "svelte" }
+                  { label: "Svelte", value: "svelte" },
                 ]}
               />
               <Select
@@ -246,7 +200,7 @@ export default function App() {
                   { value: "react", label: "React" },
                   { value: "ng", label: "Angular" },
                   { value: "svelte", label: "Svelte" },
-                  { value: "vue", label: "Vue" }
+                  { value: "vue", label: "Vue" },
                 ]}
               />
               <Slider
@@ -255,7 +209,7 @@ export default function App() {
                 marks={[
                   { value: 20, label: "20%" },
                   { value: 50, label: "50%" },
-                  { value: 80, label: "80%" }
+                  { value: 80, label: "80%" },
                 ]}
               />
               <Switch
@@ -290,15 +244,8 @@ export default function App() {
               </Group>
             </Stack>
           </form>
-          <DevTool control={control} /> {/* set up the dev tool */}
         </Paper>
       </Container>
     </div>
   );
-}
-
-```
-
-## License
-
-MIT
+};

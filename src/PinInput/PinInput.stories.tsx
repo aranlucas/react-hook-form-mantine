@@ -3,6 +3,7 @@ import { withReactHookForm } from "../stories/decorator";
 import { PinInput } from "./PinInput";
 
 export default {
+  title: "Components/PinInput",
   component: PinInput,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof PinInput>;

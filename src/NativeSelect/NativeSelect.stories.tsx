@@ -3,6 +3,7 @@ import { withReactHookForm } from "../stories/decorator";
 import { NativeSelect } from "./NativeSelect";
 
 export default {
+  title: "Components/NativeSelect",
   component: NativeSelect,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof NativeSelect>;

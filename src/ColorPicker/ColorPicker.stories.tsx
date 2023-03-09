@@ -3,6 +3,7 @@ import { withReactHookForm } from "../stories/decorator";
 import { ColorPicker } from "./ColorPicker";
 
 export default {
+  title: "Components/ColorPicker",
   component: ColorPicker,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof ColorPicker>;

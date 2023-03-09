@@ -1,7 +1,11 @@
-import type { StorybookConfig } from "@storybook/react-webpack5";
+import type { StorybookViteConfig } from "@storybook/builder-vite";
 
-const config: StorybookConfig = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
+const config: StorybookViteConfig = {
+  stories: [
+    "../src/**/*.mdx",
+    "../src/**/*.stories.@(js|jsx|ts|tsx)",
+    "../examples/*.stories.@(js|jsx|ts|tsx)",
+  ],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -9,7 +13,7 @@ const config: StorybookConfig = {
     "../src/stories/preset.js",
   ],
   framework: {
-    name: "@storybook/react-webpack5",
+    name: "@storybook/react-vite",
     options: {},
   },
   docs: {

@@ -4,6 +4,7 @@ import { withReactHookForm } from "../stories/decorator";
 import { Group } from "@mantine/core";
 
 export default {
+  title: "Components/Checkbox",
   component: Checkbox,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof Checkbox>;

@@ -3,6 +3,7 @@ import { withReactHookForm } from "../stories/decorator";
 import { Slider } from "./Slider";
 
 export default {
+  title: "Components/Slider",
   component: Slider,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof Slider>;

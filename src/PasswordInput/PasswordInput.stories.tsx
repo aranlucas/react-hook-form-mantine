@@ -3,6 +3,7 @@ import { withReactHookForm } from "../stories/decorator";
 import { PasswordInput } from "./PasswordInput";
 
 export default {
+  title: "Components/PasswordInput",
   component: PasswordInput,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof PasswordInput>;

@@ -3,6 +3,7 @@ import { Autocomplete } from "./Autocomplete";
 import { withReactHookForm } from "../stories/decorator";
 
 export default {
+  title: "Components/Autocomplete",
   component: Autocomplete,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof Autocomplete>;

@@ -3,6 +3,7 @@ import { withReactHookForm } from "../stories/decorator";
 import { Rating } from "./Rating";
 
 export default {
+  title: "Components/Rating",
   component: Rating,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof Rating>;

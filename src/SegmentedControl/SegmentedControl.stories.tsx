@@ -3,6 +3,7 @@ import { withReactHookForm } from "../stories/decorator";
 import { SegmentedControl } from "./SegmentedControl";
 
 export default {
+  title: "Components/SegmentedControl",
   component: SegmentedControl,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof SegmentedControl>;

@@ -3,6 +3,7 @@ import { withReactHookForm } from "../stories/decorator";
 import { NumberInput } from "./NumberInput";
 
 export default {
+  title: "Components/NumberInput",
   component: NumberInput,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof NumberInput>;

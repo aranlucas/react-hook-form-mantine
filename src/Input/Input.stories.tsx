@@ -3,6 +3,7 @@ import { withReactHookForm } from "../stories/decorator";
 import { Input } from "./Input";
 
 export default {
+  title: "Components/Input",
   component: Input,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof Input>;

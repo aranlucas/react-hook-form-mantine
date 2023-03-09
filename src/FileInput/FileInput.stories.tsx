@@ -3,6 +3,7 @@ import { withReactHookForm } from "../stories/decorator";
 import { FileInput } from "./FileInput";
 
 export default {
+  title: "Components/FileInput",
   component: FileInput,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof FileInput>;

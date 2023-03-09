@@ -3,6 +3,7 @@ import { withReactHookForm } from "../stories/decorator";
 import { MultiSelect } from "./MultiSelect";
 
 export default {
+  title: "Components/MultiSelect",
   component: MultiSelect,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof MultiSelect>;

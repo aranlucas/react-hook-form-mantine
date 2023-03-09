@@ -3,6 +3,7 @@ import { withReactHookForm } from "../stories/decorator";
 import { ColorInput } from "./ColorInput";
 
 export default {
+  title: "Components/ColorInput",
   component: ColorInput,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof ColorInput>;

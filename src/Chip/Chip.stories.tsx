@@ -3,6 +3,7 @@ import { Chip } from "./Chip";
 import { withReactHookForm } from "../stories/decorator";
 
 export default {
+  title: "Components/Chip",
   component: Chip,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof Chip>;

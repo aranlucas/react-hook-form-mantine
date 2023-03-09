@@ -3,6 +3,7 @@ import { withReactHookForm } from "../stories/decorator";
 import { TransferList } from "./TransferList";
 
 export default {
+  title: "Components/TransferList",
   component: TransferList,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof TransferList>;

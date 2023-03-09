@@ -3,6 +3,7 @@ import { withReactHookForm } from "../stories/decorator";
 import { Select } from "./Select";
 
 export default {
+  title: "Components/Select",
   component: Select,
   decorators: [withReactHookForm],
 } satisfies Meta<typeof Select>;
