@@ -25,9 +25,9 @@ export const Primary: Story = {
   },
 };
 
-export const ChipGroup: StoryGroup = {
+export const ChipGroupSingle: StoryGroup = {
   render: (args) => (
-    <Chip.Group multiple {...args}>
+    <Chip.Group {...args}>
       <Chip.Item value="react">React</Chip.Item>
       <Chip.Item value="ng">Angular</Chip.Item>
       <Chip.Item value="svelte">Svelte</Chip.Item>
@@ -36,6 +36,28 @@ export const ChipGroup: StoryGroup = {
   ),
   args: {
     name: "test",
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: "react",
+      },
+    },
+  },
+};
+
+export const ChipGroupMultiple: StoryGroup = {
+  render: (args) => (
+    <Chip.Group {...args}>
+      <Chip.Item value="react">React</Chip.Item>
+      <Chip.Item value="ng">Angular</Chip.Item>
+      <Chip.Item value="svelte">Svelte</Chip.Item>
+      <Chip.Item value="vue">Vue</Chip.Item>
+    </Chip.Group>
+  ),
+  args: {
+    name: "test",
+    multiple: true,
   },
   parameters: {
     form: {

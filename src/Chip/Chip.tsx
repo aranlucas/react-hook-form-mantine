@@ -11,8 +11,10 @@ import {
 
 export type ChipProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$ChipProps, "value" | "defaultValue">;
-export type ChipGroupProps<T extends FieldValues> = UseControllerProps<T> &
-  Omit<$ChipGroupProps, "value" | "defaultValue">;
+export type ChipGroupProps<
+  T extends FieldValues,
+  V extends boolean
+> = UseControllerProps<T> & Omit<$ChipGroupProps<V>, "value" | "defaultValue">;
 
 export function Chip<T extends FieldValues>({
   name,
@@ -47,7 +49,7 @@ export function Chip<T extends FieldValues>({
   );
 }
 
-Chip.Group = <T extends FieldValues>({
+Chip.Group = <T extends FieldValues, V extends boolean>({
   name,
   control,
   defaultValue,
@@ -55,10 +57,10 @@ Chip.Group = <T extends FieldValues>({
   shouldUnregister,
   onChange,
   ...props
-}: ChipGroupProps<T>) => {
+}: ChipGroupProps<T, V>) => {
   const {
-    field: { value, onChange: fieldOnChange, ...field },
-  } = useController({
+    field: { value, onChange: fieldOnChange, ref, ...field },
+  } = useController<T>({
     name,
     control,
     defaultValue,
@@ -67,7 +69,7 @@ Chip.Group = <T extends FieldValues>({
   });
 
   return (
-    <$Chip.Group
+    <$Chip.Group<V>
       value={value}
       onChange={(e) => {
         fieldOnChange(e);
