@@ -27,7 +27,7 @@ export const Primary: Story = {
 
 export const ChipGroup: StoryGroup = {
   render: (args) => (
-    <Chip.Group {...args}>
+    <Chip.Group multiple {...args}>
       <Chip.Item value="react">React</Chip.Item>
       <Chip.Item value="ng">Angular</Chip.Item>
       <Chip.Item value="svelte">Svelte</Chip.Item>

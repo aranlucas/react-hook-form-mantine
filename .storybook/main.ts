@@ -2,7 +2,6 @@ import type { StorybookViteConfig } from "@storybook/builder-vite";
 
 const config: StorybookViteConfig = {
   stories: [
-    "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|ts|tsx)",
     "../examples/*.stories.@(js|jsx|ts|tsx)",
   ],
