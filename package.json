@@ -1,96 +1,19 @@
 {
-  "name": "react-hook-form-mantine",
-  "version": "1.0.0",
-  "description": "React hook form wrapper for Mantine components",
-  "source": "src/index.ts",
-  "main": "dist/main.js",
-  "module": "dist/module.js",
-  "homepage": "https://aranlucas.github.io/react-hook-form-mantine",
-  "types": "dist/types.d.ts",
-  "scripts": {
-    "build-storybook": "storybook build",
-    "build": "parcel build",
-    "coverage": "vitest run --coverage",
-    "generate-barrels": "barrelsby --delete -c .barrelsby",
-    "lint": "eslint src/**/*.tsx --fix",
-    "prepare": "husky install",
-    "prepublishOnly": "npm run build",
-    "semantic-release": "semantic-release",
-    "storybook": "storybook dev -p 6006",
-    "test": "vitest",
-    "watch": "parcel watch"
-  },
-  "author": "Lucas Arango",
-  "license": "MIT",
-  "isLibrary": true,
-  "peerDependencies": {
-    "@mantine/core": "^6.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43"
-  },
-  "keywords": [
-    "react-hook-form",
-    "form-validation",
-    "mantine"
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
+  "scripts": {
+    "prepare": "husky install"
+  },
   "devDependencies": {
-    "@babel/preset-env": "^7.21.5",
-    "@babel/preset-react": "^7.18.6",
-    "@babel/preset-typescript": "^7.21.5",
-    "@commitlint/cli": "^17.6.3",
-    "@commitlint/config-conventional": "^17.6.3",
-    "@hookform/resolvers": "^3.1.0",
-    "@mantine/core": "6.0.10",
-    "@mantine/ds": "^6.0.10",
-    "@parcel/packager-ts": "^2.8.3",
-    "@parcel/transformer-typescript-types": "^2.8.3",
-    "@storybook/addon-actions": "^7.0.11",
-    "@storybook/addon-essentials": "^7.0.11",
-    "@storybook/addon-interactions": "^7.0.11",
-    "@storybook/addon-links": "^7.0.11",
-    "@storybook/blocks": "^7.0.11",
-    "@storybook/react": "^7.0.11",
-    "@storybook/react-vite": "^7.0.11",
-    "@storybook/testing-library": "^0.1.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.4.3",
-    "@types/react": "^18.2.6",
-    "@types/react-dom": "^18.2.4",
-    "@typescript-eslint/eslint-plugin": "^5.59.5",
-    "@vitejs/plugin-react": "^4.0.0",
-    "@vitest/ui": "latest",
-    "barrelsby": "^2.7.0",
-    "eslint": "^8.40.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-config-standard-with-typescript": "^34.0.1",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-n": "^15.7.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-storybook": "^0.6.12",
+    "@commitlint/cli": "^17.6.5",
+    "@commitlint/config-conventional": "^17.6.5",
     "husky": "^8.0.3",
-    "jsdom": "latest",
-    "npm-run-all": "^4.1.5",
-    "parcel": "^2.8.3",
+    "lerna": "^6.6.2",
     "prettier": "^2.8.8",
-    "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "7.43.9",
     "semantic-release": "^21.0.2",
-    "storybook": "^7.0.11",
-    "typescript": "^5.0.4",
-    "vitest": "^0.31.0",
-    "zod": "^3.21.4"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/aranlucas/react-hook-form-mantine.git"
-  },
-  "files": [
-    "dist"
-  ]
+    "semantic-release-monorepo": "^7.0.5"
+  }
 }

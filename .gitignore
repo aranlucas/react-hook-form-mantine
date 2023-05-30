@@ -1,6 +1,7 @@
-dist/*
-node_modules
+dist/
+node_modules/
 .parcel-cache/
 storybook-static/
 .npmrc
 .env
+lerna-debug.log
