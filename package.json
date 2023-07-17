@@ -3,10 +3,18 @@
   "version": "1.0.0",
   "description": "React hook form wrapper for Mantine components",
   "source": "src/index.ts",
-  "main": "dist/main.js",
-  "module": "dist/module.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.mjs",
   "homepage": "https://aranlucas.github.io/react-hook-form-mantine",
-  "types": "dist/types.d.ts",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.mjs",
+      "require": "./dist/index.cjs.js"
+    }
+  },
   "scripts": {
     "build-storybook": "storybook build",
     "build": "parcel build",
