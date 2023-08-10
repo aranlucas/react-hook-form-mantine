@@ -1,6 +1,6 @@
-import type { StorybookViteConfig } from "@storybook/builder-vite";
+import type { StorybookConfig } from "@storybook/react-vite";
 
-const config: StorybookViteConfig = {
+const config: StorybookConfig = {
   stories: [
     "../src/**/*.stories.@(js|jsx|ts|tsx)",
     "../examples/*.stories.@(js|jsx|ts|tsx)",
@@ -9,6 +9,7 @@ const config: StorybookViteConfig = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
+    "storybook=dark-mode",
     "../src/stories/preset.js",
   ],
   framework: {
