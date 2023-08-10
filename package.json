@@ -94,7 +94,6 @@
     "dist"
   ],
   "dependencies": {
-    "@mantine/dates": "^6.0.18",
-    "storybook-dark-mode": "^3.0.1"
+    "@mantine/dates": "^6.0.18"
   }
 }
