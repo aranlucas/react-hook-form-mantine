@@ -8,7 +8,7 @@ import {
   type DateTimePickerProps as $DateTimePickerProps,
 } from "@mantine/dates";
 
-export type DateInputProps<T extends FieldValues> = UseControllerProps<T> &
+export type DateTimePickerProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$DateTimePickerProps, "value" | "defaultValue">;
 
 export function DateTimePicker<T extends FieldValues>({
@@ -19,7 +19,7 @@ export function DateTimePicker<T extends FieldValues>({
   shouldUnregister,
   onChange,
   ...props
-}: DateInputProps<T>) {
+}: DateTimePickerProps<T>) {
   const {
     field: { value, onChange: fieldOnChange, ...field },
     fieldState,
