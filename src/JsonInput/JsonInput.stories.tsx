@@ -1,11 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { withReactHookForm } from "../stories/decorator";
+import { type Meta, type StoryObj } from "@storybook/react";
 import { JsonInput } from "./JsonInput";
 
 export default {
   title: "Components/JsonInput",
   component: JsonInput,
-  decorators: [withReactHookForm],
 } satisfies Meta<typeof JsonInput>;
 
 type Story = StoryObj<typeof JsonInput>;

@@ -1,11 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { withReactHookForm } from "../stories/decorator";
+import { type Meta, type StoryObj } from "@storybook/react";
 import { PasswordInput } from "./PasswordInput";
 
 export default {
   title: "Components/PasswordInput",
   component: PasswordInput,
-  decorators: [withReactHookForm],
 } satisfies Meta<typeof PasswordInput>;
 
 type Story = StoryObj<typeof PasswordInput>;

@@ -5,18 +5,20 @@ import {
 } from "react-hook-form";
 import {
   YearPickerInput as $YearPickerInput,
-  type DatesRangeValue as $DatesRangeValue,
+  type DatePickerType,
   type YearPickerInputProps as $YearPickerInputProps,
-  type DateValue as $DateValue,
 } from "@mantine/dates";
 
-export type YearPickerInputProps<T extends FieldValues> =
-  UseControllerProps<T> &
-    Omit<$YearPickerInputProps, "value" | "defaultValue" | "onChange"> & {
-      onChange?: (value: $DatesRangeValue | $DateValue | Date[]) => void;
-    };
+export type YearPickerInputProps<
+  T extends FieldValues,
+  V extends DatePickerType = "default",
+> = UseControllerProps<T> &
+  Omit<$YearPickerInputProps<V>, "value" | "defaultValue">;
 
-export function YearPickerInput<T extends FieldValues>({
+export function YearPickerInput<
+  T extends FieldValues,
+  V extends DatePickerType = "default",
+>({
   name,
   control,
   defaultValue,
@@ -24,7 +26,7 @@ export function YearPickerInput<T extends FieldValues>({
   shouldUnregister,
   onChange,
   ...props
-}: YearPickerInputProps<T>) {
+}: YearPickerInputProps<T, V>) {
   const {
     field: { value, onChange: fieldOnChange, ...field },
     fieldState,

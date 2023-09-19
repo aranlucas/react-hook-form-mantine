@@ -1,4 +1,5 @@
 module.exports = {
+  ignorePatterns: ["example", ".eslintrc.cjs"],
   settings: {
     react: {
       version: "detect",
@@ -24,15 +25,5 @@ module.exports = {
   plugins: ["react"],
   rules: {
     "@typescript-eslint/explicit-function-return-type": "off",
-    "react/display-name": "off",
-    "@typescript-eslint/no-misused-promises": [
-      "error",
-      {
-        checksVoidReturn: {
-          arguments: false,
-          attributes: false,
-        },
-      },
-    ],
   },
 };

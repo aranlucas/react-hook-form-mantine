@@ -1,11 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { withReactHookForm } from "../stories/decorator";
+import { type Meta, type StoryObj } from "@storybook/react";
 import { SegmentedControl } from "./SegmentedControl";
 
 export default {
   title: "Components/SegmentedControl",
   component: SegmentedControl,
-  decorators: [withReactHookForm],
 } satisfies Meta<typeof SegmentedControl>;
 
 type Story = StoryObj<typeof SegmentedControl>;

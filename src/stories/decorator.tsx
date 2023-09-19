@@ -29,7 +29,7 @@ export const withReactHookForm = (StoryComponent: StoryFn, context: any) => {
         },
         (errors) => {
           emit(EVENTS.ERROR, errors);
-        }
+        },
       )();
     },
   });
@@ -39,7 +39,7 @@ export const withReactHookForm = (StoryComponent: StoryFn, context: any) => {
   emit(EVENTS.DIRTY, control._formState.dirtyFields);
 
   return (
-    <Box sx={{ maxWidth: 300 }} mx="auto">
+    <Box mx="auto">
       <FormProvider {...methods}>
         <form id="hook-form">
           <StoryComponent />

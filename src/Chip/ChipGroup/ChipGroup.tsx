@@ -3,13 +3,17 @@ import {
   useController,
   type FieldValues,
 } from "react-hook-form";
-import { type ChipProps as $ChipProps, Chip as $Chip } from "@mantine/core";
-import { ChipGroup } from "./ChipGroup/ChipGroup";
+import {
+  type ChipGroupProps as $ChipGroupProps,
+  ChipGroup as $ChipGroup,
+} from "@mantine/core";
 
-export type ChipProps<T extends FieldValues> = UseControllerProps<T> &
-  Omit<$ChipProps, "value" | "defaultValue">;
+export type ChipGroupProps<
+  T extends FieldValues,
+  V extends boolean,
+> = UseControllerProps<T> & Omit<$ChipGroupProps<V>, "value" | "defaultValue">;
 
-export const Chip = <T extends FieldValues>({
+export const ChipGroup = <T extends FieldValues, V extends boolean>({
   name,
   control,
   defaultValue,
@@ -17,9 +21,9 @@ export const Chip = <T extends FieldValues>({
   shouldUnregister,
   onChange,
   ...props
-}: ChipProps<T>) => {
+}: ChipGroupProps<T, V>) => {
   const {
-    field: { value, onChange: fieldOnChange, ...field },
+    field: { value, onChange: fieldOnChange, ref, ...field },
   } = useController<T>({
     name,
     control,
@@ -29,9 +33,8 @@ export const Chip = <T extends FieldValues>({
   });
 
   return (
-    <$Chip
+    <$ChipGroup<V>
       value={value}
-      checked={value}
       onChange={(e) => {
         fieldOnChange(e);
         onChange?.(e);
@@ -41,6 +44,3 @@ export const Chip = <T extends FieldValues>({
     />
   );
 };
-
-Chip.Group = ChipGroup;
-Chip.Item = $Chip;

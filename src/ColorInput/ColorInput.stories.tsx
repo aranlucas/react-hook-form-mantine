@@ -1,11 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { withReactHookForm } from "../stories/decorator";
+import { type Meta, type StoryObj } from "@storybook/react";
 import { ColorInput } from "./ColorInput";
 
 export default {
   title: "Components/ColorInput",
   component: ColorInput,
-  decorators: [withReactHookForm],
 } satisfies Meta<typeof ColorInput>;
 
 type Story = StoryObj<typeof ColorInput>;

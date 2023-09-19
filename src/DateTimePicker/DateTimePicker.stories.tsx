@@ -1,11 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import { type Meta, type StoryObj } from "@storybook/react";
 import { DateTimePicker } from "./DateTimePicker";
-import { withReactHookForm } from "../stories/decorator";
 
 export default {
   title: "Components/DateTimePicker",
   component: DateTimePicker,
-  decorators: [withReactHookForm],
 } satisfies Meta<typeof DateTimePicker>;
 
 type Story = StoryObj<typeof DateTimePicker>;

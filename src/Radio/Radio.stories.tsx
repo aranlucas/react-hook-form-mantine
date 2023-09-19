@@ -1,16 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { withReactHookForm } from "../stories/decorator";
+import { type Meta, type StoryObj } from "@storybook/react";
 import { Radio } from "./Radio";
-import { Group } from "@mantine/core";
 
 export default {
   title: "Components/Radio",
   component: Radio,
-  decorators: [withReactHookForm],
 } satisfies Meta<typeof Radio>;
 
 type Story = StoryObj<typeof Radio>;
-type StoryGroup = StoryObj<typeof Radio.Group>;
 
 export const Primary: Story = {
   args: {
@@ -21,31 +17,6 @@ export const Primary: Story = {
     form: {
       defaultValues: {
         test: false,
-      },
-    },
-  },
-};
-
-export const RadioGroup: StoryGroup = {
-  render: (args) => (
-    <Radio.Group {...args}>
-      <Group mt="xs">
-        <Radio.Item value="react" label="React" />
-        <Radio.Item value="svelte" label="Svelte" />
-        <Radio.Item value="ng" label="Angular" />
-        <Radio.Item value="vue" label="Vue" />
-      </Group>
-    </Radio.Group>
-  ),
-  args: {
-    name: "test",
-    label: "Select your favorite framework/library",
-    description: "This is anonymous",
-  },
-  parameters: {
-    form: {
-      defaultValues: {
-        test: ["react"],
       },
     },
   },

@@ -1,11 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import { type Meta, type StoryObj } from "@storybook/react";
 import { TimeInput } from "./TimeInput";
-import { withReactHookForm } from "../stories/decorator";
 
 export default {
   title: "Components/TimeInput",
   component: TimeInput,
-  decorators: [withReactHookForm],
 } satisfies Meta<typeof TimeInput>;
 
 type Story = StoryObj<typeof TimeInput>;

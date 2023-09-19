@@ -5,18 +5,20 @@ import {
 } from "react-hook-form";
 import {
   DatePickerInput as $DatePickerInput,
-  type DatesRangeValue as $DatesRangeValue,
+  type DatePickerType,
   type DatePickerInputProps as $DatePickerInputProps,
-  type DateValue as $DateValue,
 } from "@mantine/dates";
 
-export type DatePickerInputProps<T extends FieldValues> =
-  UseControllerProps<T> &
-    Omit<$DatePickerInputProps, "value" | "defaultValue" | "onChange"> & {
-      onChange?: (value: $DatesRangeValue | $DateValue | Date[]) => void;
-    };
+export type DatePickerInputProps<
+  T extends FieldValues,
+  V extends DatePickerType = "default",
+> = UseControllerProps<T> &
+  Omit<$DatePickerInputProps<V>, "value" | "defaultValue">;
 
-export function DatePickerInput<T extends FieldValues>({
+export function DatePickerInput<
+  T extends FieldValues,
+  V extends DatePickerType = "default",
+>({
   name,
   control,
   defaultValue,
@@ -24,7 +26,7 @@ export function DatePickerInput<T extends FieldValues>({
   shouldUnregister,
   onChange,
   ...props
-}: DatePickerInputProps<T>) {
+}: DatePickerInputProps<T, V>) {
   const {
     field: { value, onChange: fieldOnChange, ...field },
     fieldState,

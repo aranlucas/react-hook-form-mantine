@@ -1,11 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { withReactHookForm } from "../stories/decorator";
+import { type Meta, type StoryObj } from "@storybook/react";
 import { ColorPicker } from "./ColorPicker";
 
 export default {
   title: "Components/ColorPicker",
   component: ColorPicker,
-  decorators: [withReactHookForm],
 } satisfies Meta<typeof ColorPicker>;
 
 type Story = StoryObj<typeof ColorPicker>;

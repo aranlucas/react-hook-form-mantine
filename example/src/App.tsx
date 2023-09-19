@@ -1,13 +1,11 @@
 import { useForm } from "react-hook-form";
 import {
-  Autocomplete,
   Checkbox,
   Chip,
   ColorInput,
   ColorPicker,
   FileInput,
   JsonInput,
-  MultiSelect,
   NativeSelect,
   NumberInput,
   PasswordInput,
@@ -20,21 +18,47 @@ import {
   Switch,
   Textarea,
   TextInput,
-  TransferList,
-} from "../src/index";
+} from "react-hook-form-mantine";
 import { Button, Group, Paper, Container, Stack } from "@mantine/core";
-import { type Meta } from "@storybook/react";
+import { DevTool } from "@hookform/devtools";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-export default {
-  title: "Examples/AllComponents",
-} satisfies Meta;
+const schema = z.object({
+  checkbox: z.boolean(),
+  chip: z.boolean(),
+  chipgroupSingle: z.string(),
+  chipgroupMultiple: z.array(z.string()),
+  colorInput: z.string(),
+  colorPicker: z.string(),
+  fileInput: z.any(),
+  jsonInput: z.string(),
+  multiSelect: z.any(),
+  nativeSelect: z.string(),
+  numberInput: z.number(),
+  passwordInput: z.string(),
+  pinInput: z.string(),
+  radio: z.string(),
+  rating: z.number(),
+  segmentedControl: z.string(),
+  select: z.string(),
+  slider: z.number(),
+  switch: z.boolean(),
+  textarea: z.string(),
+  textInput: z.string(),
+  transferList: z.any(),
+});
 
-export const AllComponents = () => {
-  const { control, handleSubmit } = useForm({
+type FormSchemaType = z.infer<typeof schema>;
+
+export default function App() {
+  const { control, handleSubmit } = useForm<FormSchemaType>({
+    resolver: zodResolver(schema),
     defaultValues: {
-      autocomplete: "",
       checkbox: true,
       chip: true,
+      chipgroupSingle: "react",
+      chipgroupMultiple: [],
       colorInput: "",
       colorPicker: "",
       fileInput: null,
@@ -49,27 +73,9 @@ export const AllComponents = () => {
       segmentedControl: "",
       select: "",
       slider: 40,
-      switch: "",
+      switch: false,
       textarea: "",
       textInput: "",
-      transferList: [
-        [
-          { value: "react", label: "React" },
-          { value: "ng", label: "Angular" },
-          { value: "next", label: "Next.js" },
-          { value: "blitz", label: "Blitz.js" },
-          { value: "gatsby", label: "Gatsby.js" },
-          { value: "vue", label: "Vue" },
-          { value: "jq", label: "jQuery" },
-        ],
-        [
-          { value: "sv", label: "Svelte" },
-          { value: "rw", label: "Redwood" },
-          { value: "np", label: "NumPy" },
-          { value: "dj", label: "Django" },
-          { value: "fl", label: "Flask" },
-        ],
-      ],
     },
   });
 
@@ -80,17 +86,10 @@ export const AllComponents = () => {
           <form
             onSubmit={handleSubmit(
               (data) => console.log(data),
-              (error) => console.log(error)
+              (error) => console.log(error),
             )}
           >
-            <Stack spacing="xl">
-              <Autocomplete
-                name="autocomplete"
-                control={control}
-                label="Your favorite framework/library"
-                placeholder="Pick one"
-                data={["React", "Angular", "Svelte", "Vue"]}
-              />
+            <Stack>
               <Checkbox
                 name="checkbox"
                 value="Test"
@@ -100,6 +99,16 @@ export const AllComponents = () => {
               <Chip name="chip" control={control}>
                 Awesome chip
               </Chip>
+              <Chip.Group name="chipgroupSingle" control={control}>
+                <Chip.Item value="1">1</Chip.Item>
+                <Chip.Item value="2">2</Chip.Item>
+                <Chip.Item value="3">3</Chip.Item>
+              </Chip.Group>
+              <Chip.Group multiple name="chipgroupMultiple" control={control}>
+                <Chip.Item value="react">React</Chip.Item>
+                <Chip.Item value="ng">Angular</Chip.Item>
+                <Chip.Item value="svelte">Svelte</Chip.Item>
+              </Chip.Group>
               <ColorInput
                 name="colorInput"
                 control={control}
@@ -125,21 +134,6 @@ export const AllComponents = () => {
                 minRows={4}
               />
               <TextInput name="textInput" control={control} label="TextBox" />
-              <MultiSelect
-                name="multiSelect"
-                control={control}
-                data={[
-                  { value: "react", label: "React" },
-                  { value: "ng", label: "Angular" },
-                  { value: "svelte", label: "Svelte" },
-                  { value: "vue", label: "Vue" },
-                  { value: "riot", label: "Riot" },
-                  { value: "next", label: "Next.js" },
-                  { value: "blitz", label: "Blitz.js" },
-                ]}
-                label="Your favorite frameworks/libraries"
-                placeholder="Pick all that you like"
-              />
               <NativeSelect
                 name="nativeSelect"
                 control={control}
@@ -163,7 +157,7 @@ export const AllComponents = () => {
                 description="Password must include at least one letter, number and special character"
                 withAsterisk
               />
-              <Group position="center">
+              <Group>
                 <PinInput name="pinInput" control={control} />
               </Group>
               <Radio.Group
@@ -231,21 +225,15 @@ export const AllComponents = () => {
                 label="Full name"
                 withAsterisk
               />
-              <TransferList
-                name="transferList"
-                control={control}
-                searchPlaceholder="Search..."
-                nothingFound="Nothing here"
-                titles={["Frameworks", "Libraries"]}
-                breakpoint="sm"
-              />
-              <Group position="left" mt="md">
+
+              <Group mt="md">
                 <Button type="submit">Submit</Button>
               </Group>
             </Stack>
           </form>
         </Paper>
       </Container>
+      <DevTool control={control} />
     </div>
   );
-};
+}
