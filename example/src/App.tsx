@@ -1,9 +1,10 @@
-import { useForm } from "react-hook-form";
+import { Form, useForm } from "react-hook-form";
 import {
   Checkbox,
   Chip,
   ColorInput,
   ColorPicker,
+  DatePickerInput,
   FileInput,
   JsonInput,
   NativeSelect,
@@ -27,10 +28,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 const schema = z.object({
   checkbox: z.boolean(),
   chip: z.boolean(),
-  chipgroupSingle: z.string(),
   chipgroupMultiple: z.array(z.string()),
+  chipgroupSingle: z.string(),
   colorInput: z.string(),
   colorPicker: z.string(),
+  datepicker: z.date().nullable(),
   fileInput: z.any(),
   jsonInput: z.string(),
   multiSelect: z.any(),
@@ -52,15 +54,16 @@ const schema = z.object({
 type FormSchemaType = z.infer<typeof schema>;
 
 export default function App() {
-  const { control, handleSubmit } = useForm<FormSchemaType>({
+  const { control } = useForm<FormSchemaType>({
     resolver: zodResolver(schema),
     defaultValues: {
       checkbox: true,
       chip: true,
-      chipgroupSingle: "react",
       chipgroupMultiple: [],
+      chipgroupSingle: "react",
       colorInput: "",
       colorPicker: "",
+      datepicker: null,
       fileInput: null,
       jsonInput: "",
       multiSelect: [],
@@ -83,11 +86,10 @@ export default function App() {
     <div className="App">
       <Container size={1000}>
         <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-          <form
-            onSubmit={handleSubmit(
-              (data) => console.log(data),
-              (error) => console.log(error),
-            )}
+          <Form
+            control={control}
+            onSubmit={(e) => console.log(e.data)}
+            onError={(e) => console.log(e)}
           >
             <Stack>
               <Checkbox
@@ -116,6 +118,12 @@ export default function App() {
                 label="Your favorite color"
               />
               <ColorPicker name="colorPicker" control={control} />
+              <DatePickerInput
+                label="Pick date"
+                placeholder="Pick date"
+                name="datepicker"
+                control={control}
+              />
               <FileInput
                 name="fileInput"
                 control={control}
@@ -230,7 +238,7 @@ export default function App() {
                 <Button type="submit">Submit</Button>
               </Group>
             </Stack>
-          </form>
+          </Form>
         </Paper>
       </Container>
       <DevTool control={control} />
