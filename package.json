@@ -38,7 +38,8 @@
     "prepublishOnly": "npm run build",
     "semantic-release": "semantic-release",
     "storybook": "storybook dev -p 6006",
-    "test": "vitest"
+    "test": "vitest",
+    "watch": "microbundle --watch"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",

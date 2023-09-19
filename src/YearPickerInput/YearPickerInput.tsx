@@ -9,16 +9,11 @@ import {
   type YearPickerInputProps as $YearPickerInputProps,
 } from "@mantine/dates";
 
-export type YearPickerInputProps<
-  T extends FieldValues,
-  V extends DatePickerType = "default",
-> = UseControllerProps<T> &
-  Omit<$YearPickerInputProps<V>, "value" | "defaultValue">;
+export type YearPickerInputProps<T extends FieldValues> =
+  UseControllerProps<T> &
+    Omit<$YearPickerInputProps<DatePickerType>, "value" | "defaultValue">;
 
-export function YearPickerInput<
-  T extends FieldValues,
-  V extends DatePickerType = "default",
->({
+export function YearPickerInput<T extends FieldValues>({
   name,
   control,
   defaultValue,
@@ -26,7 +21,7 @@ export function YearPickerInput<
   shouldUnregister,
   onChange,
   ...props
-}: YearPickerInputProps<T, V>) {
+}: YearPickerInputProps<T>) {
   const {
     field: { value, onChange: fieldOnChange, ...field },
     fieldState,

@@ -20,6 +20,7 @@ export const ChipGroupSingle: StoryGroup = {
   ),
   args: {
     name: "test",
+    multiple: false,
   },
   parameters: {
     form: {

@@ -8,12 +8,10 @@ import {
   ChipGroup as $ChipGroup,
 } from "@mantine/core";
 
-export type ChipGroupProps<
-  T extends FieldValues,
-  V extends boolean,
-> = UseControllerProps<T> & Omit<$ChipGroupProps<V>, "value" | "defaultValue">;
+export type ChipGroupProps<T extends FieldValues> = UseControllerProps<T> &
+  Omit<$ChipGroupProps<boolean>, "value" | "defaultValue">;
 
-export const ChipGroup = <T extends FieldValues, V extends boolean>({
+export const ChipGroup = <T extends FieldValues>({
   name,
   control,
   defaultValue,
@@ -21,7 +19,7 @@ export const ChipGroup = <T extends FieldValues, V extends boolean>({
   shouldUnregister,
   onChange,
   ...props
-}: ChipGroupProps<T, V>) => {
+}: ChipGroupProps<T>) => {
   const {
     field: { value, onChange: fieldOnChange, ref, ...field },
   } = useController<T>({
@@ -33,7 +31,7 @@ export const ChipGroup = <T extends FieldValues, V extends boolean>({
   });
 
   return (
-    <$ChipGroup<V>
+    <$ChipGroup
       value={value}
       onChange={(e) => {
         fieldOnChange(e);
