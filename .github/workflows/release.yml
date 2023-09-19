@@ -1,9 +1,21 @@
 name: Release
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read # for checkout
+
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for npm provenance
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -14,7 +26,9 @@ jobs:
         with:
           node-version: "lts/*"
       - name: Install dependencies
-        run: npm ci
+        run: npm clean-install
+      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
+        run: npm audit signatures
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
