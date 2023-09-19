@@ -1,11 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import { type Meta, type StoryObj } from "@storybook/react";
 import { YearPickerInput } from "./YearPickerInput";
-import { withReactHookForm } from "../stories/decorator";
 
 export default {
   title: "Components/YearPickerInput",
   component: YearPickerInput,
-  decorators: [withReactHookForm],
 } satisfies Meta<typeof YearPickerInput>;
 
 type Story = StoryObj<typeof YearPickerInput>;

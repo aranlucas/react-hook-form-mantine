@@ -4,17 +4,14 @@ import {
   type FieldValues,
 } from "react-hook-form";
 import {
-  TransferList as $TransferList,
-  type TransferListProps as $TransferListProps,
+  RadioGroup as $RadioGroup,
+  type RadioGroupProps as $RadioGroupProps,
 } from "@mantine/core";
 
-export type TransferListProps<T extends FieldValues> = UseControllerProps<T> &
-  // onChange needs to be overwritten to optional
-  Omit<$TransferListProps, "value" | "onChange"> & {
-    onChange?: $TransferListProps["onChange"];
-  };
+export type RadioGroupProps<T extends FieldValues> = UseControllerProps<T> &
+  Omit<$RadioGroupProps, "value" | "defaultValue">;
 
-export function TransferList<T extends FieldValues>({
+export function RadioGroup<T extends FieldValues>({
   name,
   control,
   defaultValue,
@@ -22,9 +19,10 @@ export function TransferList<T extends FieldValues>({
   shouldUnregister,
   onChange,
   ...props
-}: TransferListProps<T>) {
+}: RadioGroupProps<T>) {
   const {
     field: { value, onChange: fieldOnChange, ...field },
+    fieldState,
   } = useController<T>({
     name,
     control,
@@ -34,12 +32,13 @@ export function TransferList<T extends FieldValues>({
   });
 
   return (
-    <$TransferList
+    <$RadioGroup
       value={value}
       onChange={(e) => {
         fieldOnChange(e);
         onChange?.(e);
       }}
+      error={fieldState.error?.message}
       {...field}
       {...props}
     />

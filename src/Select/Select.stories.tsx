@@ -1,11 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { withReactHookForm } from "../stories/decorator";
+import { type Meta, type StoryObj } from "@storybook/react";
 import { Select } from "./Select";
 
 export default {
   title: "Components/Select",
   component: Select,
-  decorators: [withReactHookForm],
 } satisfies Meta<typeof Select>;
 
 type Story = StoryObj<typeof Select>;

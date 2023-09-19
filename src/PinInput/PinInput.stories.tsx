@@ -1,11 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { withReactHookForm } from "../stories/decorator";
+import { type Meta, type StoryObj } from "@storybook/react";
 import { PinInput } from "./PinInput";
 
 export default {
   title: "Components/PinInput",
   component: PinInput,
-  decorators: [withReactHookForm],
 } satisfies Meta<typeof PinInput>;
 
 type Story = StoryObj<typeof PinInput>;

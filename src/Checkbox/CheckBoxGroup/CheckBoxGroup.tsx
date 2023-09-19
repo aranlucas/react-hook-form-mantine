@@ -1,17 +1,17 @@
 import {
-  type UseControllerProps,
-  useController,
-  type FieldValues,
-} from "react-hook-form";
-import {
-  MultiSelect as $MultiSelect,
-  type MultiSelectProps as $MultiSelectProps,
+  type CheckboxGroupProps as $CheckboxGroupProps,
+  CheckboxGroup as $CheckboxGroup,
 } from "@mantine/core";
+import {
+  type FieldValues,
+  useController,
+  type UseControllerProps,
+} from "react-hook-form";
 
-export type MultiSelectProps<T extends FieldValues> = UseControllerProps<T> &
-  Omit<$MultiSelectProps, "value" | "defaultValue">;
+export type CheckboxGroupProps<T extends FieldValues> = UseControllerProps<T> &
+  Omit<$CheckboxGroupProps, "checked" | "defaultValue">;
 
-export function MultiSelect<T extends FieldValues>({
+export const CheckboxGroup = <T extends FieldValues>({
   name,
   control,
   defaultValue,
@@ -19,7 +19,7 @@ export function MultiSelect<T extends FieldValues>({
   shouldUnregister,
   onChange,
   ...props
-}: MultiSelectProps<T>) {
+}: CheckboxGroupProps<T>) => {
   const {
     field: { value, onChange: fieldOnChange, ...field },
     fieldState,
@@ -32,15 +32,15 @@ export function MultiSelect<T extends FieldValues>({
   });
 
   return (
-    <$MultiSelect
+    <$CheckboxGroup
+      error={fieldState.error?.message}
       value={value}
       onChange={(e) => {
         fieldOnChange(e);
         onChange?.(e);
       }}
-      error={fieldState.error?.message}
       {...field}
       {...props}
     />
   );
-}
+};

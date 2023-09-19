@@ -1,11 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { withReactHookForm } from "../stories/decorator";
+import { type Meta, type StoryObj } from "@storybook/react";
 import { Textarea } from "./Textarea";
 
 export default {
   title: "Components/Textarea",
   component: Textarea,
-  decorators: [withReactHookForm],
 } satisfies Meta<typeof Textarea>;
 
 type Story = StoryObj<typeof Textarea>;

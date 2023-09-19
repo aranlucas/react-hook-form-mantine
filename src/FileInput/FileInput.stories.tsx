@@ -1,11 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { withReactHookForm } from "../stories/decorator";
+import { type Meta, type StoryObj } from "@storybook/react";
 import { FileInput } from "./FileInput";
 
 export default {
   title: "Components/FileInput",
   component: FileInput,
-  decorators: [withReactHookForm],
 } satisfies Meta<typeof FileInput>;
 
 type Story = StoryObj<typeof FileInput>;

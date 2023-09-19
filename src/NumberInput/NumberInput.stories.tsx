@@ -1,11 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { withReactHookForm } from "../stories/decorator";
+import { type Meta, type StoryObj } from "@storybook/react";
 import { NumberInput } from "./NumberInput";
 
 export default {
   title: "Components/NumberInput",
   component: NumberInput,
-  decorators: [withReactHookForm],
 } satisfies Meta<typeof NumberInput>;
 
 type Story = StoryObj<typeof NumberInput>;

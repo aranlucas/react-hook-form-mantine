@@ -1,17 +1,17 @@
 import {
-  type FieldValues,
-  useController,
   type UseControllerProps,
+  useController,
+  type FieldValues,
 } from "react-hook-form";
 import {
-  Autocomplete as $Autocomplete,
-  type AutocompleteProps as $AutocompleteProps,
+  SwitchGroup as $SwitchGroup,
+  type SwitchGroupProps as $SwitchGroupProps,
 } from "@mantine/core";
 
-export type AutocompleteProps<T extends FieldValues> = UseControllerProps<T> &
-  Omit<$AutocompleteProps, "value" | "defaultValue">;
+export type SwitchGroupProps<T extends FieldValues> = UseControllerProps<T> &
+  Omit<$SwitchGroupProps, "value" | "checked" | "defaultValue">;
 
-export function Autocomplete<T extends FieldValues>({
+export function SwitchGroup<T extends FieldValues>({
   name,
   control,
   defaultValue,
@@ -19,7 +19,7 @@ export function Autocomplete<T extends FieldValues>({
   shouldUnregister,
   onChange,
   ...props
-}: AutocompleteProps<T>) {
+}: SwitchGroupProps<T>) {
   const {
     field: { value, onChange: fieldOnChange, ...field },
     fieldState,
@@ -32,13 +32,13 @@ export function Autocomplete<T extends FieldValues>({
   });
 
   return (
-    <$Autocomplete
-      error={fieldState.error?.message}
+    <$SwitchGroup
       value={value}
       onChange={(e) => {
         fieldOnChange(e);
         onChange?.(e);
       }}
+      error={fieldState.error?.message}
       {...field}
       {...props}
     />

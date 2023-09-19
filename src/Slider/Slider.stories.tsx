@@ -1,11 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { withReactHookForm } from "../stories/decorator";
+import { type Meta, type StoryObj } from "@storybook/react";
 import { Slider } from "./Slider";
 
 export default {
   title: "Components/Slider",
   component: Slider,
-  decorators: [withReactHookForm],
 } satisfies Meta<typeof Slider>;
 
 type Story = StoryObj<typeof Slider>;
