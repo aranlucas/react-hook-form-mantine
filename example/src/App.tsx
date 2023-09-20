@@ -20,7 +20,7 @@ import {
   Textarea,
   TextInput,
 } from "react-hook-form-mantine";
-import { Button, Group, Paper, Container, Stack } from "@mantine/core";
+import { Button, Group, Paper, Container, Stack, Tooltip } from "@mantine/core";
 import { DevTool } from "@hookform/devtools";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -88,7 +88,7 @@ export default function App() {
         <Paper withBorder shadow="md" p={30} mt={30} radius="md">
           <Form
             control={control}
-            onSubmit={(e) => console.log(e.data)}
+            onSubmit={({ data }) => alert(JSON.stringify(data, null, 2))}
             onError={(e) => console.log(e)}
           >
             <Stack>
@@ -150,13 +150,15 @@ export default function App() {
                 description="This is anonymous"
                 withAsterisk
               />
-              <NumberInput
-                name="numberInput"
-                control={control}
-                placeholder="Your age"
-                label="Your age"
-                withAsterisk
-              />
+              <Tooltip label="Hello World">
+                <NumberInput
+                  name="numberInput"
+                  control={control}
+                  placeholder="Your age"
+                  label="Your age"
+                  withAsterisk
+                />
+              </Tooltip>
               <PasswordInput
                 name="passwordInput"
                 control={control}
