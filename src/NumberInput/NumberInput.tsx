@@ -35,8 +35,9 @@ export function NumberInput<T extends FieldValues>({
     <$NumberInput
       value={value}
       onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
+        const newValue = e || e === 0 ? Number(e) : NaN;
+        fieldOnChange(newValue);
+        onChange?.(newValue);
       }}
       error={fieldState.error?.message}
       {...field}
