@@ -21,7 +21,6 @@ import {
   TextInput,
 } from "react-hook-form-mantine";
 import { Button, Group, Paper, Container, Stack } from "@mantine/core";
-import { DevTool } from "@hookform/devtools";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -237,7 +236,6 @@ export default function App() {
           </Form>
         </Paper>
       </Container>
-      <DevTool control={control} />
     </div>
   );
 }

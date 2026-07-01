@@ -3,6 +3,7 @@
  */
 
 export * from "./AlphaSlider/AlphaSlider";
+export * from "./AngleSlider/AngleSlider";
 export * from "./Autocomplete/Autocomplete";
 export * from "./Checkbox/Checkbox";
 export * from "./Checkbox/CheckBoxGroup/CheckBoxGroup";
@@ -11,6 +12,7 @@ export * from "./Chip/ChipGroup/ChipGroup";
 export * from "./ColorInput/ColorInput";
 export * from "./ColorPicker/ColorPicker";
 export * from "./DateInput/DateInput";
+export * from "./DatePicker/DatePicker";
 export * from "./DatePickerInput/DatePickerInput";
 export * from "./DateTimePicker/DateTimePicker";
 export * from "./FileInput/FileInput";
@@ -19,6 +21,7 @@ export * from "./InlineDateTimePicker/InlineDateTimePicker";
 export * from "./Input/Input";
 export * from "./JsonInput/JsonInput";
 export * from "./MaskInput/MaskInput";
+export * from "./MonthPicker/MonthPicker";
 export * from "./MonthPickerInput/MonthPickerInput";
 export * from "./MultiSelect/MultiSelect";
 export * from "./NativeSelect/NativeSelect";
@@ -41,3 +44,4 @@ export * from "./TimeInput/TimeInput";
 export * from "./TimePicker/TimePicker";
 export * from "./TreeSelect/TreeSelect";
 export * from "./YearPickerInput/YearPickerInput";
+export * from "./YearPicker/YearPicker";
