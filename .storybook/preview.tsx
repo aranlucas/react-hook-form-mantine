@@ -1,8 +1,9 @@
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
-import { MantineProvider } from "@mantine/core";
+import { Box, MantineProvider } from "@mantine/core";
 import { FormProvider, useForm } from "react-hook-form";
 import type { Preview } from "@storybook/react";
+import { FormStatePanel } from "./FormStatePanel";
 
 const preview: Preview = {
   decorators: [
@@ -15,17 +16,24 @@ const preview: Preview = {
       const methods = useForm({
         defaultValues,
         resolver: parameters?.resolver,
+        mode: parameters?.form?.mode ?? "onChange",
       });
       return (
         <MantineProvider>
           <FormProvider {...methods}>
-            <form
+            <Box
+              component="form"
               id="hook-form"
-              onSubmit={methods.handleSubmit(parameters?.form?.onSubmit)}
-              style={{ padding: 16 }}
+              onSubmit={methods.handleSubmit((data) => {
+                parameters?.form?.onSubmit?.(data);
+                console.log("[Storybook onSubmit]", data);
+              })}
+              p="md"
+              maw={500}
             >
               <Story />
-            </form>
+              <FormStatePanel />
+            </Box>
           </FormProvider>
         </MantineProvider>
       );
