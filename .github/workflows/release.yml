@@ -45,22 +45,5 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "=== Env diagnostic ==="
-          echo "NPM_TOKEN set: $([ -n "$NPM_TOKEN" ] && echo yes || echo no)"
-          echo "NODE_AUTH_TOKEN set: $([ -n "$NODE_AUTH_TOKEN" ] && echo yes || echo no)"
-          echo "GITHUB_ACTIONS: $GITHUB_ACTIONS"
-          echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
-          echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
-          echo "GITHUB_REF: $GITHUB_REF"
-          echo "GITHUB_SHA: $GITHUB_SHA"
-          echo "RUNNER_OS: $RUNNER_OS"
-          echo "NPM_CONFIG_USERCONFIG: $NPM_CONFIG_USERCONFIG"
-          echo "=== npm version ==="
-          npm --version
-          node --version
-          echo "=== Project .npmrc ==="
-          cat .npmrc
-          echo "=== Userconfig .npmrc (from setup-node) ==="
-          [ -n "$NPM_CONFIG_USERCONFIG" ] && [ -f "$NPM_CONFIG_USERCONFIG" ] && cat "$NPM_CONFIG_USERCONFIG" || echo "(none)"
-          pnpm semantic-release
+          NODE_AUTH_TOKEN: ""
+        run: pnpm semantic-release
