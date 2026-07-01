@@ -20,3 +20,5 @@ minimumReleaseAgeExclude:
   - "@commitlint/top-level@21.2.0"
   - "@commitlint/types@21.2.0"
   - vite@8.1.2
+overrides:
+  esbuild: ^0.28.1
