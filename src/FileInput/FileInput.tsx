@@ -1,12 +1,5 @@
-import {
-  type UseControllerProps,
-  useController,
-  type FieldValues,
-} from "react-hook-form";
-import {
-  FileInput as $FileInput,
-  type FileInputProps as $FileInputProps,
-} from "@mantine/core";
+import { type UseControllerProps, useController, type FieldValues } from "react-hook-form";
+import { FileInput as $FileInput, type FileInputProps as $FileInputProps } from "@mantine/core";
 
 export type FileInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$FileInputProps, "value" | "defaultValue">;
@@ -17,11 +10,11 @@ export function FileInput<T extends FieldValues>({
   defaultValue,
   rules,
   shouldUnregister,
-  multiple,
+  onChange,
   ...props
 }: FileInputProps<T>) {
   const {
-    field: { value, ...field },
+    field: { value, onChange: fieldOnChange, ...field },
     fieldState,
   } = useController<T>({
     name,
@@ -35,6 +28,10 @@ export function FileInput<T extends FieldValues>({
     <$FileInput
       value={value}
       error={fieldState.error?.message}
+      onChange={(e: any) => {
+        fieldOnChange(e);
+        onChange?.(e);
+      }}
       {...field}
       {...props}
     />

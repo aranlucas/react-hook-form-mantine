@@ -214,11 +214,7 @@ export default function App() {
                   { value: 80, label: "80%" },
                 ]}
               />
-              <Switch
-                name="switch"
-                control={control}
-                label="I agree to sell my privacy"
-              />
+              <Switch name="switch" control={control} label="I agree to sell my privacy" />
               <Textarea
                 name="textarea"
                 control={control}

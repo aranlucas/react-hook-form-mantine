@@ -1,12 +1,5 @@
-import {
-  type UseControllerProps,
-  useController,
-  type FieldValues,
-} from "react-hook-form";
-import {
-  Switch as $Switch,
-  type SwitchProps as $SwitchProps,
-} from "@mantine/core";
+import { type UseControllerProps, useController, type FieldValues } from "react-hook-form";
+import { Switch as $Switch, type SwitchProps as $SwitchProps } from "@mantine/core";
 import { SwitchGroup } from "./SwitchGroup/SwitchGroup";
 
 export type SwitchProps<T extends FieldValues> = UseControllerProps<T> &

@@ -1,12 +1,5 @@
-import {
-  type FieldValues,
-  useController,
-  type UseControllerProps,
-} from "react-hook-form";
-import {
-  Checkbox as $Checkbox,
-  type CheckboxProps as $CheckboxProps,
-} from "@mantine/core";
+import { type FieldValues, useController, type UseControllerProps } from "react-hook-form";
+import { Checkbox as $Checkbox, type CheckboxProps as $CheckboxProps } from "@mantine/core";
 import { CheckboxGroup } from "./CheckBoxGroup/CheckBoxGroup";
 
 export type CheckboxProps<T extends FieldValues> = UseControllerProps<T> &

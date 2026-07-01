@@ -2,11 +2,7 @@ import {
   type CheckboxGroupProps as $CheckboxGroupProps,
   CheckboxGroup as $CheckboxGroup,
 } from "@mantine/core";
-import {
-  type FieldValues,
-  useController,
-  type UseControllerProps,
-} from "react-hook-form";
+import { type FieldValues, useController, type UseControllerProps } from "react-hook-form";
 
 export type CheckboxGroupProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$CheckboxGroupProps, "checked" | "defaultValue">;

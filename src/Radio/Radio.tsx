@@ -1,8 +1,4 @@
-import {
-  type UseControllerProps,
-  useController,
-  type FieldValues,
-} from "react-hook-form";
+import { type UseControllerProps, useController, type FieldValues } from "react-hook-form";
 import { Radio as $Radio, type RadioProps as $RadioProps } from "@mantine/core";
 import { RadioGroup } from "./RadioGroup/RadioGroup";
 

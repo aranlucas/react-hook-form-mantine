@@ -1,17 +1,12 @@
-import {
-  type FieldValues,
-  useController,
-  type UseControllerProps,
-} from "react-hook-form";
+import { type FieldValues, useController, type UseControllerProps } from "react-hook-form";
 import {
   DatePickerInput as $DatePickerInput,
   type DatePickerType,
   type DatePickerInputProps as $DatePickerInputProps,
 } from "@mantine/dates";
 
-export type DatePickerInputProps<T extends FieldValues> =
-  UseControllerProps<T> &
-    Omit<$DatePickerInputProps<DatePickerType>, "value" | "defaultValue">;
+export type DatePickerInputProps<T extends FieldValues> = UseControllerProps<T> &
+  Omit<$DatePickerInputProps<DatePickerType>, "value" | "defaultValue">;
 
 export function DatePickerInput<T extends FieldValues>({
   name,
