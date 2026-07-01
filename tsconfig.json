@@ -19,5 +19,12 @@
     "jsxFragmentFactory": ""
   },
   "include": ["src"],
-  "exclude": ["src/**/*.spec.tsx", "src/setupTests.tsx", "dist", "example"]
+  "exclude": [
+    "src/**/*.spec.tsx",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/setupTests.tsx",
+    "dist",
+    "example"
+  ]
 }
