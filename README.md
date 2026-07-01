@@ -13,6 +13,18 @@ React-Hook-Form-Mantine is a library that simplifies the integration of Mantine 
 npm install react-hook-form-mantine react-hook-form @mantine/core @mantine/dates dayjs
 ```
 
+### Peer dependencies
+
+This package requires the following peer dependencies:
+
+| Package           | Version   |
+| ----------------- | --------- |
+| `@mantine/core`   | `^9.0.0`  |
+| `@mantine/dates`  | `^9.0.0`  |
+| `react`           | `^19.0.0` |
+| `react-dom`       | `^19.0.0` |
+| `react-hook-form` | `^7.43`   |
+
 ## Usage/Examples
 
 Check [example usage](/example/src/App.tsx)
