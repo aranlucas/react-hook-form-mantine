@@ -1,8 +1,4 @@
-import {
-  type UseControllerProps,
-  useController,
-  type FieldValues,
-} from "react-hook-form";
+import { type UseControllerProps, useController, type FieldValues } from "react-hook-form";
 import {
   PasswordInput as $PasswordInput,
   type PasswordInputProps as $PasswordInputProps,

@@ -1,12 +1,5 @@
-import {
-  type UseControllerProps,
-  useController,
-  type FieldValues,
-} from "react-hook-form";
-import {
-  JsonInput as $JsonInput,
-  type JsonInputProps as $JsonInputProps,
-} from "@mantine/core";
+import { type UseControllerProps, useController, type FieldValues } from "react-hook-form";
+import { JsonInput as $JsonInput, type JsonInputProps as $JsonInputProps } from "@mantine/core";
 
 export type JsonInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$JsonInputProps, "value" | "defaultValue">;

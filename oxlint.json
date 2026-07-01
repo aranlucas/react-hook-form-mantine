@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/refs/heads/main/crates/oxc_linter/schema/correctness.json",
+  "rules": {
+    "correctness": "warn",
+    "suspicious": "warn",
+    "style": "warn",
+    "react": "warn",
+    "typescript": "warn"
+  },
+  "ignorePatterns": ["example", "dist", "storybook-static"]
+}

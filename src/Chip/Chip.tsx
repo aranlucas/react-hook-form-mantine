@@ -1,8 +1,4 @@
-import {
-  type UseControllerProps,
-  useController,
-  type FieldValues,
-} from "react-hook-form";
+import { type UseControllerProps, useController, type FieldValues } from "react-hook-form";
 import { type ChipProps as $ChipProps, Chip as $Chip } from "@mantine/core";
 import { ChipGroup } from "./ChipGroup/ChipGroup";
 

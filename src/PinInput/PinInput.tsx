@@ -1,12 +1,5 @@
-import {
-  type UseControllerProps,
-  useController,
-  type FieldValues,
-} from "react-hook-form";
-import {
-  PinInput as $PinInput,
-  type PinInputProps as $PinInputProps,
-} from "@mantine/core";
+import { type UseControllerProps, useController, type FieldValues } from "react-hook-form";
+import { PinInput as $PinInput, type PinInputProps as $PinInputProps } from "@mantine/core";
 
 export type PinInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$PinInputProps, "value" | "defaultValue">;

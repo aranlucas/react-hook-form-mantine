@@ -1,12 +1,5 @@
-import {
-  type UseControllerProps,
-  useController,
-  type FieldValues,
-} from "react-hook-form";
-import {
-  Slider as $Slider,
-  type SliderProps as $SliderProps,
-} from "@mantine/core";
+import { type UseControllerProps, useController, type FieldValues } from "react-hook-form";
+import { Slider as $Slider, type SliderProps as $SliderProps } from "@mantine/core";
 
 export type SliderProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$SliderProps, "value" | "defaultValue">;

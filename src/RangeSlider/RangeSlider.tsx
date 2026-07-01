@@ -1,10 +1,13 @@
 import { type FieldValues, useController, type UseControllerProps } from "react-hook-form";
-import { TimeInput as $TimeInput, type TimeInputProps as $TimeInputProps } from "@mantine/dates";
+import {
+  RangeSlider as $RangeSlider,
+  type RangeSliderProps as $RangeSliderProps,
+} from "@mantine/core";
 
-export type TimeInputProps<T extends FieldValues> = UseControllerProps<T> &
-  Omit<$TimeInputProps, "value" | "defaultValue">;
+export type RangeSliderProps<T extends FieldValues> = UseControllerProps<T> &
+  Omit<$RangeSliderProps, "value" | "defaultValue">;
 
-export function TimeInput<T extends FieldValues>({
+export function RangeSlider<T extends FieldValues>({
   name,
   control,
   defaultValue,
@@ -12,10 +15,9 @@ export function TimeInput<T extends FieldValues>({
   shouldUnregister,
   onChange,
   ...props
-}: TimeInputProps<T>) {
+}: RangeSliderProps<T>) {
   const {
     field: { value, onChange: fieldOnChange, ...field },
-    fieldState,
   } = useController<T>({
     name,
     control,
@@ -25,8 +27,7 @@ export function TimeInput<T extends FieldValues>({
   });
 
   return (
-    <$TimeInput
-      error={fieldState.error?.message}
+    <$RangeSlider
       value={value}
       onChange={(e) => {
         fieldOnChange(e);

@@ -13,8 +13,7 @@ export const Primary: Story = {
     name: "test",
     placeholder: "Password",
     label: "Password",
-    description:
-      "Password must include at least one letter, number and special character",
+    description: "Password must include at least one letter, number and special character",
   },
   parameters: {
     form: {

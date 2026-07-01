@@ -1,12 +1,5 @@
-import {
-  type FieldValues,
-  useController,
-  type UseControllerProps,
-} from "react-hook-form";
-import {
-  DateInput as $DateInput,
-  type DateInputProps as $DateInputProps,
-} from "@mantine/dates";
+import { type FieldValues, useController, type UseControllerProps } from "react-hook-form";
+import { DateInput as $DateInput, type DateInputProps as $DateInputProps } from "@mantine/dates";
 
 export type DateInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$DateInputProps, "value" | "defaultValue">;

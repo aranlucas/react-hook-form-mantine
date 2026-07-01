@@ -1,8 +1,4 @@
-import {
-  type FieldValues,
-  useController,
-  type UseControllerProps,
-} from "react-hook-form";
+import { type FieldValues, useController, type UseControllerProps } from "react-hook-form";
 import {
   Autocomplete as $Autocomplete,
   type AutocompleteProps as $AutocompleteProps,

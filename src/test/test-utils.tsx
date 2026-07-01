@@ -1,4 +1,3 @@
-/* eslint-disable import/export */
 import { cleanup, render } from "@testing-library/react";
 import { FormProvider, useForm } from "react-hook-form";
 import { afterEach } from "vitest";
@@ -7,7 +6,9 @@ afterEach(() => {
   cleanup();
 });
 
-function customRender(ui: React.ReactElement, options = {}) {
+import { type RenderResult } from "@testing-library/react";
+
+function customRender(ui: React.ReactElement, options = {}): RenderResult {
   return render(ui, {
     // wrap provider(s) here if needed
     wrapper: ({ children }) => {

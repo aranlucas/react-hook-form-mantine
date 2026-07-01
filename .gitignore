@@ -2,5 +2,6 @@ dist/*
 node_modules
 .parcel-cache/
 storybook-static/
-.npmrc
 .env
+package-lock.json
+yarn.lock

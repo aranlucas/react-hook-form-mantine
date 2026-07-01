@@ -11,7 +11,7 @@ type Story = StoryObj<typeof ColorPicker>;
 export const Primary: Story = {
   args: {
     name: "test",
-    placeholder: "Test",
+    format: "rgba",
   },
   parameters: {
     form: {

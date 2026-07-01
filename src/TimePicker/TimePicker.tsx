@@ -1,10 +1,13 @@
 import { type FieldValues, useController, type UseControllerProps } from "react-hook-form";
-import { TimeInput as $TimeInput, type TimeInputProps as $TimeInputProps } from "@mantine/dates";
+import {
+  TimePicker as $TimePicker,
+  type TimePickerProps as $TimePickerProps,
+} from "@mantine/dates";
 
-export type TimeInputProps<T extends FieldValues> = UseControllerProps<T> &
-  Omit<$TimeInputProps, "value" | "defaultValue">;
+export type TimePickerProps<T extends FieldValues> = UseControllerProps<T> &
+  Omit<$TimePickerProps, "value" | "defaultValue">;
 
-export function TimeInput<T extends FieldValues>({
+export function TimePicker<T extends FieldValues>({
   name,
   control,
   defaultValue,
@@ -12,7 +15,7 @@ export function TimeInput<T extends FieldValues>({
   shouldUnregister,
   onChange,
   ...props
-}: TimeInputProps<T>) {
+}: TimePickerProps<T>) {
   const {
     field: { value, onChange: fieldOnChange, ...field },
     fieldState,
@@ -25,7 +28,7 @@ export function TimeInput<T extends FieldValues>({
   });
 
   return (
-    <$TimeInput
+    <$TimePicker
       error={fieldState.error?.message}
       value={value}
       onChange={(e) => {

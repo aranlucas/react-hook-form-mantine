@@ -1,10 +1,10 @@
 import { type FieldValues, useController, type UseControllerProps } from "react-hook-form";
-import { TimeInput as $TimeInput, type TimeInputProps as $TimeInputProps } from "@mantine/dates";
+import { TagsInput as $TagsInput, type TagsInputProps as $TagsInputProps } from "@mantine/core";
 
-export type TimeInputProps<T extends FieldValues> = UseControllerProps<T> &
-  Omit<$TimeInputProps, "value" | "defaultValue">;
+export type TagsInputProps<T extends FieldValues> = UseControllerProps<T> &
+  Omit<$TagsInputProps, "value" | "defaultValue">;
 
-export function TimeInput<T extends FieldValues>({
+export function TagsInput<T extends FieldValues>({
   name,
   control,
   defaultValue,
@@ -12,7 +12,7 @@ export function TimeInput<T extends FieldValues>({
   shouldUnregister,
   onChange,
   ...props
-}: TimeInputProps<T>) {
+}: TagsInputProps<T>) {
   const {
     field: { value, onChange: fieldOnChange, ...field },
     fieldState,
@@ -25,7 +25,7 @@ export function TimeInput<T extends FieldValues>({
   });
 
   return (
-    <$TimeInput
+    <$TagsInput
       error={fieldState.error?.message}
       value={value}
       onChange={(e) => {

@@ -1,10 +1,10 @@
 import { type FieldValues, useController, type UseControllerProps } from "react-hook-form";
-import { TimeInput as $TimeInput, type TimeInputProps as $TimeInputProps } from "@mantine/dates";
+import { TreeSelect as $TreeSelect, type TreeSelectProps as $TreeSelectProps } from "@mantine/core";
 
-export type TimeInputProps<T extends FieldValues> = UseControllerProps<T> &
-  Omit<$TimeInputProps, "value" | "defaultValue">;
+export type TreeSelectProps<T extends FieldValues> = UseControllerProps<T> &
+  Omit<$TreeSelectProps, "value" | "defaultValue">;
 
-export function TimeInput<T extends FieldValues>({
+export function TreeSelect<T extends FieldValues>({
   name,
   control,
   defaultValue,
@@ -12,7 +12,7 @@ export function TimeInput<T extends FieldValues>({
   shouldUnregister,
   onChange,
   ...props
-}: TimeInputProps<T>) {
+}: TreeSelectProps<T>) {
   const {
     field: { value, onChange: fieldOnChange, ...field },
     fieldState,
@@ -25,7 +25,7 @@ export function TimeInput<T extends FieldValues>({
   });
 
   return (
-    <$TimeInput
+    <$TreeSelect
       error={fieldState.error?.message}
       value={value}
       onChange={(e) => {
