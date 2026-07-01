@@ -1,18 +1,17 @@
 import { type Meta, type StoryObj } from "@storybook/react";
-import { TimeInput } from "./TimeInput";
+import { TimePicker } from "./TimePicker";
 
 export default {
-  title: "Components/TimeInput",
-  component: TimeInput,
-} satisfies Meta<typeof TimeInput>;
+  title: "Components/TimePicker",
+  component: TimePicker,
+} satisfies Meta<typeof TimePicker>;
 
-type Story = StoryObj<typeof TimeInput>;
+type Story = StoryObj<typeof TimePicker>;
 
 export const Primary: Story = {
   args: {
     name: "test",
     label: "Pick a time",
-    placeholder: "Pick a time",
     description: "Select a time",
   },
   parameters: {
@@ -27,8 +26,7 @@ export const Primary: Story = {
 export const WithValue: Story = {
   args: {
     name: "test",
-    label: "Time input",
-    placeholder: "Pick a time",
+    label: "Time picker",
   },
   parameters: {
     form: {

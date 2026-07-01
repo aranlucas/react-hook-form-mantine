@@ -27,3 +27,17 @@ export const Primary: Story = {
     },
   },
 };
+
+export const WithoutMarks: Story = {
+  args: {
+    name: "test",
+    size: 120,
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: 0,
+      },
+    },
+  },
+};

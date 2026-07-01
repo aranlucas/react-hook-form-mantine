@@ -11,8 +11,24 @@ type Story = StoryObj<typeof MonthPickerInput>;
 export const Primary: Story = {
   args: {
     name: "test",
-    label: "Pick date",
-    placeholder: "Pick date",
+    label: "Pick a month",
+    placeholder: "Pick a month",
+    description: "Select a month from the calendar",
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: null,
+      },
+    },
+  },
+};
+
+export const WithValue: Story = {
+  args: {
+    name: "test",
+    label: "Month input",
+    placeholder: "Pick a month",
   },
   parameters: {
     form: {

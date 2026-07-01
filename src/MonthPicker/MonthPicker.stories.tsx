@@ -15,7 +15,20 @@ export const Primary: Story = {
   parameters: {
     form: {
       defaultValues: {
-        test: "2026-07-01",
+        test: null,
+      },
+    },
+  },
+};
+
+export const WithValue: Story = {
+  args: {
+    name: "test",
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: new Date(),
       },
     },
   },

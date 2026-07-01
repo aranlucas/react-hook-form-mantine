@@ -11,6 +11,24 @@ type Story = StoryObj<typeof Switch>;
 export const Primary: Story = {
   args: {
     name: "test",
+    label: "Enable notifications",
+    description: "Receive email notifications",
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: true,
+      },
+    },
+  },
+};
+
+export const WithLabel: Story = {
+  args: {
+    name: "test",
+    label: "Dark mode",
+    description: "Use dark theme",
+    thumbIcon: "🌙",
   },
   parameters: {
     form: {

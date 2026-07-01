@@ -29,7 +29,37 @@ export const Primary: Story = {
   parameters: {
     form: {
       defaultValues: {
-        test: ["react"],
+        test: "react",
+      },
+    },
+  },
+};
+
+export const WithValidation: Story = {
+  render: (args) => (
+    <RadioGroup {...args}>
+      <Group mt="xs">
+        <Radio.Item value="react" label="React" />
+        <Radio.Item value="svelte" label="Svelte" />
+        <Radio.Item value="ng" label="Angular" />
+        <Radio.Item value="vue" label="Vue" />
+      </Group>
+    </RadioGroup>
+  ),
+  args: {
+    name: "test",
+    label: "Pick a framework",
+    rules: {
+      required: {
+        value: true,
+        message: "Please select a framework",
+      },
+    },
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: "",
       },
     },
   },

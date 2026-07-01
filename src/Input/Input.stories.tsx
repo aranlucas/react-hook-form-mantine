@@ -20,3 +20,22 @@ export const Primary: Story = {
     },
   },
 };
+
+export const WithError: Story = {
+  args: {
+    name: "test",
+    rules: {
+      required: {
+        value: true,
+        message: "Required",
+      },
+    },
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: "",
+      },
+    },
+  },
+};

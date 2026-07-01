@@ -26,3 +26,27 @@ export const Primary: Story = {
     },
   },
 };
+
+export const WithValidation: Story = {
+  args: {
+    name: "test",
+    data: [
+      { label: "React", value: "react" },
+      { label: "Angular", value: "ng" },
+      { label: "Vue", value: "vue" },
+    ],
+    rules: {
+      required: {
+        value: true,
+        message: "Please select an option",
+      },
+    },
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: "",
+      },
+    },
+  },
+};

@@ -13,11 +13,32 @@ export const Primary: Story = {
     name: "test",
     label: "Your package.json",
     placeholder: "Textarea will autosize to fit the content",
+    description: "Paste a valid JSON document",
+    formatOnBlur: true,
+    autosize: true,
+    minRows: 4,
   },
   parameters: {
     form: {
       defaultValues: {
         test: "",
+      },
+    },
+  },
+};
+
+export const WithValue: Story = {
+  args: {
+    name: "test",
+    label: "JSON input",
+    placeholder: "Enter JSON",
+    formatOnBlur: true,
+    validationError: "Invalid JSON",
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: '{"name": "test", "value": 42}',
       },
     },
   },

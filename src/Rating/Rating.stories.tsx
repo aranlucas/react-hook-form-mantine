@@ -20,3 +20,17 @@ export const Primary: Story = {
     },
   },
 };
+
+export const FiveStars: Story = {
+  args: {
+    name: "test",
+    count: 5,
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: 4,
+      },
+    },
+  },
+};

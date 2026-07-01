@@ -11,12 +11,13 @@ type Story = StoryObj<typeof Radio>;
 export const Primary: Story = {
   args: {
     name: "test",
-    label: "I cannot be unchecked",
+    label: "Select this option",
+    description: "Choose this option",
   },
   parameters: {
     form: {
       defaultValues: {
-        test: false,
+        test: true,
       },
     },
   },

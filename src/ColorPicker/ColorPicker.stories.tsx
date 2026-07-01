@@ -21,3 +21,17 @@ export const Primary: Story = {
     },
   },
 };
+
+export const HexFormat: Story = {
+  args: {
+    name: "test",
+    format: "hex",
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: "#2f7796",
+      },
+    },
+  },
+};

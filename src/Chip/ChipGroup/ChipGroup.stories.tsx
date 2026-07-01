@@ -9,7 +9,7 @@ export default {
 
 type StoryGroup = StoryObj<typeof ChipGroup>;
 
-export const ChipGroupSingle: StoryGroup = {
+export const Single: StoryGroup = {
   render: (args) => (
     <ChipGroup {...args}>
       <Chip.Item value="react">React</Chip.Item>
@@ -31,7 +31,7 @@ export const ChipGroupSingle: StoryGroup = {
   },
 };
 
-export const ChipGroupMultiple: StoryGroup = {
+export const Multiple: StoryGroup = {
   render: (args) => (
     <ChipGroup {...args}>
       <Chip.Item value="react">React</Chip.Item>
@@ -47,7 +47,7 @@ export const ChipGroupMultiple: StoryGroup = {
   parameters: {
     form: {
       defaultValues: {
-        test: ["react"],
+        test: ["react", "vue"],
       },
     },
   },

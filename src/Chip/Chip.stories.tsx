@@ -11,7 +11,21 @@ type Story = StoryObj<typeof Chip>;
 export const Primary: Story = {
   args: {
     name: "test",
-    children: "Test",
+    children: "React",
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: true,
+      },
+    },
+  },
+};
+
+export const Unchecked: Story = {
+  args: {
+    name: "test",
+    children: "Vue",
   },
   parameters: {
     form: {

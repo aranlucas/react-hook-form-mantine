@@ -11,13 +11,31 @@ type Story = StoryObj<typeof DateInput>;
 export const Primary: Story = {
   args: {
     name: "test",
-    label: "Date input",
-    placeholder: "Date input",
+    label: "Pick a date",
+    placeholder: "Pick a date",
+    description: "Select any date",
+    valueFormat: "YYYY-MM-DD",
   },
   parameters: {
     form: {
       defaultValues: {
-        test: "",
+        test: null,
+      },
+    },
+  },
+};
+
+export const WithValue: Story = {
+  args: {
+    name: "test",
+    label: "Date input",
+    placeholder: "Pick a date",
+    valueFormat: "MMMM DD, YYYY",
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: new Date(),
       },
     },
   },

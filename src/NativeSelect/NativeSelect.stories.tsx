@@ -18,7 +18,28 @@ export const Primary: Story = {
   parameters: {
     form: {
       defaultValues: {
-        test: [],
+        test: "React",
+      },
+    },
+  },
+};
+
+export const WithValidation: Story = {
+  args: {
+    name: "test",
+    label: "Required selection",
+    data: ["React", "Vue", "Angular", "Svelte"],
+    rules: {
+      required: {
+        value: true,
+        message: "Please select a framework",
+      },
+    },
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: "",
       },
     },
   },

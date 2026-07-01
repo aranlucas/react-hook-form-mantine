@@ -13,11 +13,37 @@ export const Primary: Story = {
     name: "test",
     placeholder: "Your age",
     label: "Your age",
+    description: "Must be 18 or older",
+    min: 0,
+    max: 120,
   },
   parameters: {
     form: {
       defaultValues: {
         test: 18,
+      },
+    },
+  },
+};
+
+export const WithValidation: Story = {
+  args: {
+    name: "test",
+    placeholder: "Quantity",
+    label: "Quantity",
+    min: 1,
+    max: 10,
+    rules: {
+      required: {
+        value: true,
+        message: "Quantity is required",
+      },
+    },
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: 1,
       },
     },
   },

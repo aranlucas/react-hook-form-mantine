@@ -16,26 +16,50 @@ export const Primary: StoryGroup = {
       <Group mt="xs">
         <Checkbox.Item value="react" label="React" />
         <Checkbox.Item value="svelte" label="Svelte" />
+        <Checkbox.Item value="ng" label="Angular" />
+        <Checkbox.Item value="vue" label="Vue" />
       </Group>
     </CheckboxGroup>
   ),
   args: {
     name: "test",
     label: "Select your favorite frameworks/libraries",
-    rules: {
-      required: {
-        value: true,
-        message: "Need to be true",
-      },
-    },
+    description: "Choose all that apply",
   },
   parameters: {
     form: {
       defaultValues: {
         test: ["react"],
       },
-      onSubmit: (data: any) => {
-        console.log(data);
+    },
+  },
+};
+
+export const WithValidation: StoryGroup = {
+  render: (args) => (
+    <CheckboxGroup {...args}>
+      <Group mt="xs">
+        <Checkbox.Item value="react" label="React" />
+        <Checkbox.Item value="svelte" label="Svelte" />
+        <Checkbox.Item value="ng" label="Angular" />
+        <Checkbox.Item value="vue" label="Vue" />
+      </Group>
+    </CheckboxGroup>
+  ),
+  args: {
+    name: "test",
+    label: "Required selection",
+    rules: {
+      required: {
+        value: true,
+        message: "Please select at least one option",
+      },
+    },
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: [],
       },
     },
   },

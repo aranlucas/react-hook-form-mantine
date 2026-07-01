@@ -13,6 +13,24 @@ export const Primary: Story = {
     name: "test",
     label: "Pick date",
     placeholder: "Pick date",
+    description: "Select a date from the calendar",
+    valueFormat: "YYYY-MM-DD",
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: null,
+      },
+    },
+  },
+};
+
+export const WithValue: Story = {
+  args: {
+    name: "test",
+    label: "Date input",
+    placeholder: "Pick date",
+    valueFormat: "MMMM DD, YYYY",
   },
   parameters: {
     form: {

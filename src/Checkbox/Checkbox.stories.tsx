@@ -12,17 +12,32 @@ export const Primary: Story = {
   args: {
     name: "test",
     label: "I agree to sell my privacy",
+    description: "You can unsubscribe at any time",
+  },
+  parameters: {
+    form: {
+      defaultValues: {
+        test: true,
+      },
+    },
+  },
+};
+
+export const Required: Story = {
+  args: {
+    name: "test",
+    label: "I accept the terms and conditions",
     rules: {
       required: {
         value: true,
-        message: "Need to be true",
+        message: "You must accept the terms",
       },
     },
   },
   parameters: {
     form: {
       defaultValues: {
-        test: true,
+        test: false,
       },
     },
   },
