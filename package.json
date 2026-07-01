@@ -19,17 +19,23 @@
     "dist"
   ],
   "type": "module",
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    "types": "./dist/index.d.ts",
-    "import": "./dist/index.mjs",
-    "require": "./dist/index.cjs"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "build": "vite build",
     "build-storybook": "storybook build",
+    "commitlint": "node scripts/commitlint.mjs",
     "compile": "tsc --noEmit",
     "coverage": "vitest run --coverage",
     "format": "oxfmt --check",
@@ -41,19 +47,20 @@
     "semantic-release": "semantic-release",
     "storybook": "storybook dev -p 6006",
     "test": "vitest",
-    "watch": "tsup src/index.ts --format esm,cjs --dts --watch"
+    "watch": "vite build --watch"
   },
   "devDependencies": {
-    "@commitlint/cli": "^21.2.0",
     "@commitlint/config-conventional": "^21.2.0",
+    "@commitlint/format": "^21.2.0",
+    "@commitlint/lint": "^21.2.0",
+    "@commitlint/load": "^21.2.0",
     "@hookform/resolvers": "^5.4.0",
     "@mantine/core": "^9.4.1",
     "@mantine/dates": "^9.4.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@storybook/react": "^9.1.20",
-    "@storybook/react-vite": "^9.1.20",
-    "@storybook/test": "^8.6.15",
+    "@storybook/react": "^10.4.6",
+    "@storybook/react-vite": "^10.4.6",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
@@ -71,10 +78,9 @@
     "react-dom": "^19.2.7",
     "react-hook-form": "^7.80.0",
     "semantic-release": "^25.0.5",
-    "storybook": "^9.1.20",
-    "storybook-dark-mode": "^5.0.0",
-    "tsup": "^8.5.1",
+    "storybook": "^10.4.6",
     "typescript": "^6.0.3",
+    "unplugin-dts": "^1.0.3",
     "vite": "^8.1.2",
     "vitest": "^4.1.9",
     "zod": "^4.4.3"
