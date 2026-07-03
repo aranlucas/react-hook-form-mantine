@@ -5,6 +5,7 @@ import { ChipGroup } from "./ChipGroup/ChipGroup";
 export type ChipProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$ChipProps, "value" | "defaultValue">;
 
+/** Standalone chip input with react-hook-form controller. For use inside `ChipGroup`, use `Chip.Item` to avoid double controller registration. */
 export const Chip = <T extends FieldValues>({
   name,
   control,

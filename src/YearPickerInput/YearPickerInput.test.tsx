@@ -1,4 +1,4 @@
-import { render, screen, renderWithForm, act, waitFor, userEvent } from "../test/test-utils";
+import { render, screen, renderWithForm, waitFor, userEvent } from "../test/test-utils";
 import { YearPickerInput } from "./YearPickerInput";
 
 describe("YearPickerInput", () => {
@@ -11,10 +11,8 @@ describe("YearPickerInput", () => {
     const { form } = renderWithForm(<YearPickerInput name="test" label="Year" />, {
       defaultValues: { test: null },
     });
-    await act(() => {
-      form.setError("test", { message: "Required" });
-    });
     await waitFor(() => {
+      form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

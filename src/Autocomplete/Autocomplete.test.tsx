@@ -1,4 +1,4 @@
-import { render, screen, renderWithForm, act, waitFor } from "../test/test-utils";
+import { render, screen, renderWithForm, waitFor } from "../test/test-utils";
 import { Autocomplete } from "./Autocomplete";
 
 describe("Autocomplete", () => {
@@ -11,10 +11,8 @@ describe("Autocomplete", () => {
     const { form } = renderWithForm(<Autocomplete name="test" label="Country" data={[]} />, {
       defaultValues: { test: "" },
     });
-    await act(() => {
-      form.setError("test", { message: "Required" });
-    });
     await waitFor(() => {
+      form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

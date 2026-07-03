@@ -5,6 +5,7 @@ import { RadioGroup } from "./RadioGroup/RadioGroup";
 export type RadioProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$RadioProps, "value" | "defaultValue">;
 
+/** Standalone radio input with react-hook-form controller. For use inside `RadioGroup`, use `Radio.Item` to avoid double controller registration. */
 export function Radio<T extends FieldValues>({
   name,
   control,

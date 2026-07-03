@@ -1,4 +1,4 @@
-import { render, screen, renderWithForm, act, waitFor } from "../test/test-utils";
+import { render, screen, renderWithForm, waitFor } from "../test/test-utils";
 import { FileInput } from "./FileInput";
 
 describe("FileInput", () => {
@@ -11,10 +11,8 @@ describe("FileInput", () => {
     const { form } = renderWithForm(<FileInput name="test" label="File" />, {
       defaultValues: { test: null },
     });
-    await act(() => {
-      form.setError("test", { message: "Required" });
-    });
     await waitFor(() => {
+      form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

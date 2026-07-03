@@ -5,6 +5,7 @@ import { CheckboxGroup } from "./CheckBoxGroup/CheckBoxGroup";
 export type CheckboxProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$CheckboxProps, "checked" | "defaultValue">;
 
+/** Standalone checkbox input with react-hook-form controller. For use inside `CheckboxGroup`, use `Checkbox.Item` to avoid double controller registration. */
 export const Checkbox = <T extends FieldValues>({
   name,
   control,

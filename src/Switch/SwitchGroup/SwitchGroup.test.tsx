@@ -1,4 +1,4 @@
-import { render, screen, renderWithForm, act, waitFor, userEvent } from "../../test/test-utils";
+import { render, screen, renderWithForm, waitFor, userEvent } from "../../test/test-utils";
 import { SwitchGroup } from "./SwitchGroup";
 import { Switch } from "../Switch";
 
@@ -12,10 +12,8 @@ describe("SwitchGroup", () => {
     const { form } = renderWithForm(<SwitchGroup name="test" label="Options" />, {
       defaultValues: { test: [] },
     });
-    await act(() => {
-      form.setError("test", { message: "Required" });
-    });
     await waitFor(() => {
+      form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

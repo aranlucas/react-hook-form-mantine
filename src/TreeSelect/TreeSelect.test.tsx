@@ -1,4 +1,4 @@
-import { render, screen, renderWithForm, act, waitFor } from "../test/test-utils";
+import { render, screen, renderWithForm, waitFor } from "../test/test-utils";
 import { TreeSelect } from "./TreeSelect";
 
 describe("TreeSelect", () => {
@@ -11,10 +11,8 @@ describe("TreeSelect", () => {
     const { form } = renderWithForm(<TreeSelect name="test" label="Category" data={[]} />, {
       defaultValues: { test: "" },
     });
-    await act(() => {
-      form.setError("test", { message: "Required" });
-    });
     await waitFor(() => {
+      form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

@@ -1,9 +1,9 @@
-import { render } from "../test/test-utils";
+import { render, screen } from "../test/test-utils";
 import { HueSlider } from "./HueSlider";
 
 describe("HueSlider", () => {
   it("renders with a name", () => {
-    const { container } = render(<HueSlider name="test" />);
-    expect(container.firstChild).toBeTruthy();
+    render(<HueSlider name="test" />);
+    expect(screen.getByRole("slider")).toBeInTheDocument();
   });
 });

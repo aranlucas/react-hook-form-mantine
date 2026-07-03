@@ -1,9 +1,9 @@
-import { render } from "../test/test-utils";
+import { render, screen } from "../test/test-utils";
 import { RangeSlider } from "./RangeSlider";
 
 describe("RangeSlider", () => {
   it("renders with a name", () => {
-    const { container } = render(<RangeSlider name="test" />);
-    expect(container.firstChild).toBeTruthy();
+    render(<RangeSlider name="test" />);
+    expect(screen.getAllByRole("slider")).toHaveLength(2);
   });
 });

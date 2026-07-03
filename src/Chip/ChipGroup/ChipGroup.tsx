@@ -4,6 +4,7 @@ import { type ChipGroupProps as $ChipGroupProps, ChipGroup as $ChipGroup } from 
 export type ChipGroupProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$ChipGroupProps<boolean>, "value" | "defaultValue">;
 
+/** Chip group that manages selection state via react-hook-form. Children should use `Chip.Item` (raw Mantine Chip), not the wrapped `Chip` component. */
 export const ChipGroup = <T extends FieldValues>({
   name,
   control,
