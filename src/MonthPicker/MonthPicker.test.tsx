@@ -1,9 +1,9 @@
-import { render } from "../test/test-utils";
+import { render, screen } from "../test/test-utils";
 import { MonthPicker } from "./MonthPicker";
 
 describe("MonthPicker", () => {
   it("renders with a name", () => {
-    const { container } = render(<MonthPicker name="test" />);
-    expect(container.firstChild).toBeInTheDocument();
+    render(<MonthPicker name="test" />);
+    expect(screen.getByText(`${new Date().getFullYear()}`)).toBeInTheDocument();
   });
 });
