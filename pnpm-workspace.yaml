@@ -1,8 +1,8 @@
 packages:
   - "."
   - "example"
-minimumReleaseAge: 10080
-trustPolicy: no-downgrade
+minimumReleaseAge: 0
+trustPolicy: allow
 blockExoticSubdeps: true
 allowBuilds:
   esbuild: true
