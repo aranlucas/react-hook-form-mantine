@@ -1,4 +1,4 @@
-import { render, screen, renderWithForm, act, waitFor, userEvent } from "../test/test-utils";
+import { render, screen, renderWithForm, waitFor, userEvent } from "../test/test-utils";
 import { TimeInput } from "./TimeInput";
 
 describe("TimeInput", () => {
@@ -11,10 +11,8 @@ describe("TimeInput", () => {
     const { form } = renderWithForm(<TimeInput name="test" label="Time" />, {
       defaultValues: { test: "" },
     });
-    await act(() => {
-      form.setError("test", { message: "Required" });
-    });
     await waitFor(() => {
+      form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

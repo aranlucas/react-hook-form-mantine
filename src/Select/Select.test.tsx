@@ -1,4 +1,4 @@
-import { render, screen, renderWithForm, act, waitFor } from "../test/test-utils";
+import { render, screen, renderWithForm, waitFor } from "../test/test-utils";
 import { Select } from "./Select";
 
 describe("Select", () => {
@@ -11,10 +11,8 @@ describe("Select", () => {
     const { form } = renderWithForm(<Select name="test" label="Role" data={["A", "B"]} />, {
       defaultValues: { test: "" },
     });
-    await act(() => {
-      form.setError("test", { message: "Required" });
-    });
     await waitFor(() => {
+      form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

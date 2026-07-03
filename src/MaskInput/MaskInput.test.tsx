@@ -1,4 +1,4 @@
-import { render, screen, renderWithForm, act, waitFor, fireEvent } from "../test/test-utils";
+import { render, screen, renderWithForm, waitFor, fireEvent } from "../test/test-utils";
 import { MaskInput } from "./MaskInput";
 
 describe("MaskInput", () => {
@@ -11,10 +11,8 @@ describe("MaskInput", () => {
     const { form } = renderWithForm(<MaskInput name="test" label="Phone" mask="***-***-****" />, {
       defaultValues: { test: "" },
     });
-    await act(() => {
-      form.setError("test", { message: "Required" });
-    });
     await waitFor(() => {
+      form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

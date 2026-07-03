@@ -1,9 +1,9 @@
-import { render } from "../test/test-utils";
+import { render, screen } from "../test/test-utils";
 import { Input } from "./Input";
 
 describe("Input", () => {
   it("renders with a name", () => {
-    const { container } = render(<Input name="test" />);
-    expect(container.firstChild).toBeTruthy();
+    render(<Input name="test" />);
+    expect(screen.getByRole("textbox")).toBeInTheDocument();
   });
 });

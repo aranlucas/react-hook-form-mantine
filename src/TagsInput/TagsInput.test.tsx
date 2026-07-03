@@ -1,4 +1,4 @@
-import { render, screen, renderWithForm, act, waitFor } from "../test/test-utils";
+import { render, screen, renderWithForm, waitFor } from "../test/test-utils";
 import { TagsInput } from "./TagsInput";
 
 describe("TagsInput", () => {
@@ -11,10 +11,8 @@ describe("TagsInput", () => {
     const { form } = renderWithForm(<TagsInput name="test" label="Tags" data={[]} />, {
       defaultValues: { test: [] },
     });
-    await act(() => {
-      form.setError("test", { message: "Required" });
-    });
     await waitFor(() => {
+      form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

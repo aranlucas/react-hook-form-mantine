@@ -1,4 +1,4 @@
-import { render, screen, renderWithForm, act, waitFor, userEvent } from "../test/test-utils";
+import { render, screen, renderWithForm, waitFor, userEvent } from "../test/test-utils";
 import { DateTimePicker } from "./DateTimePicker";
 
 describe("DateTimePicker", () => {
@@ -11,10 +11,8 @@ describe("DateTimePicker", () => {
     const { form } = renderWithForm(<DateTimePicker name="test" label="DateTime" />, {
       defaultValues: { test: null },
     });
-    await act(() => {
-      form.setError("test", { message: "Required" });
-    });
     await waitFor(() => {
+      form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

@@ -92,5 +92,9 @@
     "react-hook-form": "^7.43"
   },
   "packageManager": "pnpm@11.9.0",
+  "pnpm": {
+    "shamefullyHoist": true,
+    "strictPeerDependencies": false
+  },
   "isLibrary": true
 }

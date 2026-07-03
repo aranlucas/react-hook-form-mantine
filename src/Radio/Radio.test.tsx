@@ -1,9 +1,9 @@
-import { render } from "../test/test-utils";
+import { render, screen } from "../test/test-utils";
 import { Radio } from "./Radio";
 
 describe("Radio", () => {
   it("renders with a name", () => {
-    const { container } = render(<Radio name="test" />);
-    expect(container.firstChild).toBeTruthy();
+    render(<Radio name="test" />);
+    expect(screen.getByRole("radio")).toBeInTheDocument();
   });
 });

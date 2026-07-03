@@ -1,4 +1,4 @@
-import { render, screen, renderWithForm, act, waitFor } from "../test/test-utils";
+import { render, screen, renderWithForm, waitFor } from "../test/test-utils";
 import { MultiSelect } from "./MultiSelect";
 
 describe("MultiSelect", () => {
@@ -11,10 +11,8 @@ describe("MultiSelect", () => {
     const { form } = renderWithForm(<MultiSelect name="test" label="Roles" data={["A", "B"]} />, {
       defaultValues: { test: [] },
     });
-    await act(() => {
-      form.setError("test", { message: "Required" });
-    });
     await waitFor(() => {
+      form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });
