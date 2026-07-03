@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/aranlucas/react-hook-form-mantine/compare/v4.0.0...v4.0.1) (2026-07-03)
+
+
+### Bug Fixes
+
+* regenerate lockfile and disable pnpm supply-chain checks for CI ([f59e788](https://github.com/aranlucas/react-hook-form-mantine/commit/f59e7883910c336063ab24cba80f60e8969c6fde))
+
 # [4.0.0](https://github.com/aranlucas/react-hook-form-mantine/compare/v3.1.3...v4.0.0) (2026-07-01)
 
 
