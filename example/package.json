@@ -17,7 +17,7 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-hook-form": "^7.85.0",
-    "react-hook-form-mantine": "file:..",
+    "react-hook-form-mantine": "workspace:*",
     "zod": "^4.4.3"
   },
   "devDependencies": {
