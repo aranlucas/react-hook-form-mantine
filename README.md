@@ -10,7 +10,7 @@ React-Hook-Form-Mantine is a library that simplifies the integration of Mantine 
 ## Getting Started
 
 ```bash
-npm install react-hook-form-mantine react-hook-form @mantine/core @mantine/dates dayjs
+pnpm add react-hook-form-mantine react-hook-form @mantine/core @mantine/dates dayjs
 ```
 
 ### Peer dependencies
