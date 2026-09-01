@@ -2,7 +2,7 @@ packages:
   - "."
   - "example"
 minimumReleaseAge: 0
-trustPolicy: allow
+trustPolicy: off
 blockExoticSubdeps: true
 allowBuilds:
   esbuild: true

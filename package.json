@@ -92,7 +92,7 @@
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.43"
   },
-  "packageManager": "pnpm@11.20.0",
+  "packageManager": "pnpm@12.2.1",
   "pnpm": {
     "shamefullyHoist": true,
     "strictPeerDependencies": false
