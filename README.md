@@ -1,5 +1,3 @@
-
-
 # React-Hook-Form-Mantine
 
 React-Hook-Form-Mantine is a library that simplifies the integration of Mantine components with React Hook Form. By adding a "name" prop to Mantine components, the library seamlessly connects them to the corresponding form field.
