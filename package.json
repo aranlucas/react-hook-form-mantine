@@ -36,7 +36,6 @@
     "build": "vite build",
     "build-storybook": "storybook build",
     "commitlint": "node scripts/commitlint.mjs",
-    "compile": "tsc --noEmit",
     "coverage": "vitest run --coverage",
     "format": "oxfmt --check",
     "format:fix": "oxfmt --write",
@@ -47,7 +46,8 @@
     "semantic-release": "semantic-release",
     "storybook": "storybook dev -p 6006",
     "test": "vitest",
-    "watch": "vite build --watch"
+    "watch": "vite build --watch",
+    "typecheck": "tsc --noEmit && pnpm --dir example typecheck"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^21.2.2",
