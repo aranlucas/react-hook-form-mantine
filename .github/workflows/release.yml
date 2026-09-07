@@ -41,7 +41,7 @@ jobs:
         run: |
           pnpm format
           pnpm lint
-          pnpm compile
+          pnpm typecheck
           pnpm test --run
           pnpm build
       - name: Release
