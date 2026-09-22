@@ -7,6 +7,13 @@ updates:
     open-pull-requests-limit: 5
   - package-ecosystem: npm
     directory: /
+    groups:
+      react-runtime:
+        patterns:
+          - react
+          - react-dom
+          - "@types/react"
+          - "@types/react-dom"
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
