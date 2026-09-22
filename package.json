@@ -75,7 +75,7 @@
     "oxlint": "^1.79.0",
     "prettier": "^3.9.6",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8",
+    "react-dom": "^19.3.0",
     "react-hook-form": "^7.85.0",
     "semantic-release": "^25.0.9",
     "storybook": "^10.5.10",

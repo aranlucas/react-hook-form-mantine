@@ -16,7 +16,7 @@
     "@mantine/hooks": "^9.5.1",
     "dayjs": "^1.11.23",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8",
+    "react-dom": "^19.3.0",
     "react-hook-form": "^7.85.0",
     "react-hook-form-mantine": "workspace:*",
     "zod": "^4.4.3"
