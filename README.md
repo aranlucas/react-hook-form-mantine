@@ -47,13 +47,13 @@ pnpm add react-hook-form-mantine react-hook-form @mantine/core @mantine/dates da
 
 The published package is ESM (`4.0.1`). Its peer dependencies are:
 
-| Package | Supported version |
-| --- | --- |
-| `@mantine/core` | `^9.0.0` |
-| `@mantine/dates` | `^9.0.0` |
-| `react` | `^19.0.0` |
-| `react-dom` | `^19.0.0` |
-| `react-hook-form` | `^7.43` |
+| Package           | Supported version |
+| ----------------- | ----------------- |
+| `@mantine/core`   | `^9.0.0`          |
+| `@mantine/dates`  | `^9.0.0`          |
+| `react`           | `^19.0.0`         |
+| `react-dom`       | `^19.0.0`         |
+| `react-hook-form` | `^7.43`           |
 
 ## What is covered
 
@@ -77,13 +77,13 @@ pnpm build
 
 ## Source map
 
-| Path | Responsibility |
-| --- | --- |
-| `src/<Component>/` | Mantine wrapper, tests, and Storybook story for each control. |
-| `src/index.ts` | Generated public export barrel. |
-| `example/` | Vite demo form exercising the wrappers together. |
-| `.storybook/` | Mantine provider, React Hook Form context, and Storybook configuration. |
-| `vite.config.ts` | Library and declaration build configuration. |
+| Path               | Responsibility                                                          |
+| ------------------ | ----------------------------------------------------------------------- |
+| `src/<Component>/` | Mantine wrapper, tests, and Storybook story for each control.           |
+| `src/index.ts`     | Generated public export barrel.                                         |
+| `example/`         | Vite demo form exercising the wrappers together.                        |
+| `.storybook/`      | Mantine provider, React Hook Form context, and Storybook configuration. |
+| `vite.config.ts`   | Library and declaration build configuration.                            |
 
 ## Status and license
 
