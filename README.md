@@ -8,6 +8,10 @@
 
 React Hook Form Mantine wraps Mantine inputs with React Hook Form’s controller model. Add `name` and `control` to a familiar Mantine component, keep Mantine’s props, and get field values and validation errors without hand-writing the same adapter in every form.
 
+![React Hook Form Mantine wrapper flow](docs/readme-flow.svg)
+
+_A source-level sketch of the wrapper contract._
+
 ## The five-minute win
 
 ```tsx
