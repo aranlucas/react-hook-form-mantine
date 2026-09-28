@@ -8,17 +8,17 @@
     <rect x="64" y="160" width="248" height="150" rx="18" fill="#2a2147" stroke="#c4b5fd" stroke-width="2"/>
     <text x="88" y="201" fill="#c4b5fd" font-size="14" font-weight="700">YOUR FORM</text>
     <text x="88" y="238" fill="#fafafa" font-size="20">Mantine control</text>
-    <text x="88" y="270" fill="#ddd6fe" font-size="15">name + control + rules</text>
+    <text x="88" y="270" fill="#ddd6fe" font-size="15">name · control · rules</text>
     <path d="M324 235h74" stroke="#c4b5fd" stroke-width="3"/><path d="m390 225 14 10-14 10" fill="none" stroke="#c4b5fd" stroke-width="3"/>
     <rect x="414" y="160" width="248" height="150" rx="18" fill="#2a2147" stroke="#67e8f9" stroke-width="2"/>
     <text x="438" y="201" fill="#67e8f9" font-size="14" font-weight="700">WRAPPER</text>
     <text x="438" y="238" fill="#fafafa" font-size="20">useController</text>
-    <text x="438" y="270" fill="#ddd6fe" font-size="15">value · onChange · fieldState</text>
+    <text x="438" y="270" fill="#ddd6fe" font-size="15">value · change · error</text>
     <path d="M674 235h74" stroke="#67e8f9" stroke-width="3"/><path d="m740 225 14 10-14 10" fill="none" stroke="#67e8f9" stroke-width="3"/>
     <rect x="764" y="160" width="248" height="150" rx="18" fill="#2a2147" stroke="#86efac" stroke-width="2"/>
     <text x="788" y="201" fill="#86efac" font-size="14" font-weight="700">RESULT</text>
     <text x="788" y="238" fill="#fafafa" font-size="20">Styled field + error</text>
-    <text x="788" y="270" fill="#ddd6fe" font-size="15">same API across 40+ exports</text>
+    <text x="788" y="270" fill="#ddd6fe" font-size="15">40+ exports · same API</text>
   </g>
   <text x="64" y="366" fill="#a78bfa" font-family="system-ui,sans-serif" font-size="15">The generated barrel in src/index.ts is the public export list; Storybook exercises the wrappers in context.</text>
 </svg>
