@@ -25,5 +25,5 @@ minimumReleaseAgeExclude:
   - vite@8.1.2
 overrides:
   esbuild: ^0.28.1
-  fast-uri: ^3.1.4
+  fast-uri: ^3.1.8
 pmOnFail: ignore
