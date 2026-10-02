@@ -1,4 +1,5 @@
-import { type UseControllerProps, useController, type FieldValues } from "react-hook-form";
+import { useFieldController } from "../../internal/useFieldController";
+import { type UseControllerProps, type FieldValues } from "react-hook-form";
 import { type ChipGroupProps as $ChipGroupProps, ChipGroup as $ChipGroup } from "@mantine/core";
 
 export type ChipGroupProps<T extends FieldValues> = UseControllerProps<T> &
@@ -15,14 +16,18 @@ export const ChipGroup = <T extends FieldValues>({
   ...props
 }: ChipGroupProps<T>) => {
   const {
+    props: inputProps,
     field: { value, onChange: fieldOnChange, ...field },
-  } = useController<T>({
-    name,
-    control,
-    defaultValue,
-    rules,
-    shouldUnregister,
-  });
+  } = useFieldController<T, typeof props>(
+    {
+      name,
+      control,
+      defaultValue,
+      rules,
+      shouldUnregister,
+    },
+    props,
+  );
 
   return (
     <$ChipGroup
@@ -32,7 +37,7 @@ export const ChipGroup = <T extends FieldValues>({
         onChange?.(e);
       }}
       {...field}
-      {...props}
+      {...inputProps}
     />
   );
 };

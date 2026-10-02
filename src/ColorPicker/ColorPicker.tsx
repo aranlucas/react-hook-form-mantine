@@ -1,4 +1,5 @@
-import { type UseControllerProps, useController, type FieldValues } from "react-hook-form";
+import { useFieldController } from "../internal/useFieldController";
+import { type UseControllerProps, type FieldValues } from "react-hook-form";
 import {
   ColorPicker as $ColorPicker,
   type ColorPickerProps as $ColorPickerProps,
@@ -17,14 +18,18 @@ export function ColorPicker<T extends FieldValues>({
   ...props
 }: ColorPickerProps<T>) {
   const {
+    props: inputProps,
     field: { value, onChange: fieldOnChange, ...field },
-  } = useController<T>({
-    name,
-    control,
-    defaultValue,
-    rules,
-    shouldUnregister,
-  });
+  } = useFieldController<T, typeof props>(
+    {
+      name,
+      control,
+      defaultValue,
+      rules,
+      shouldUnregister,
+    },
+    props,
+  );
 
   return (
     <$ColorPicker
@@ -34,7 +39,7 @@ export function ColorPicker<T extends FieldValues>({
         onChange?.(e);
       }}
       {...field}
-      {...props}
+      {...inputProps}
     />
   );
 }

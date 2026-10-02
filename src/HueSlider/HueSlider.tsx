@@ -1,4 +1,5 @@
-import { type FieldValues, useController, type UseControllerProps } from "react-hook-form";
+import { useFieldController } from "../internal/useFieldController";
+import { type FieldValues, type UseControllerProps } from "react-hook-form";
 import { HueSlider as $HueSlider, type HueSliderProps as $HueSliderProps } from "@mantine/core";
 
 export type HueSliderProps<T extends FieldValues> = UseControllerProps<T> &
@@ -14,14 +15,18 @@ export function HueSlider<T extends FieldValues>({
   ...props
 }: HueSliderProps<T>) {
   const {
+    props: inputProps,
     field: { value, onChange: fieldOnChange, ...field },
-  } = useController<T>({
-    name,
-    control,
-    defaultValue,
-    rules,
-    shouldUnregister,
-  });
+  } = useFieldController<T, typeof props>(
+    {
+      name,
+      control,
+      defaultValue,
+      rules,
+      shouldUnregister,
+    },
+    props,
+  );
 
   return (
     <$HueSlider
@@ -31,7 +36,7 @@ export function HueSlider<T extends FieldValues>({
         onChange?.(e);
       }}
       {...field}
-      {...props}
+      {...inputProps}
     />
   );
 }

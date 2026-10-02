@@ -1,4 +1,5 @@
-import { type FieldValues, useController, type UseControllerProps } from "react-hook-form";
+import { useFieldController } from "../internal/useFieldController";
+import { type FieldValues, type UseControllerProps } from "react-hook-form";
 import { Checkbox as $Checkbox, type CheckboxProps as $CheckboxProps } from "@mantine/core";
 import { CheckboxGroup } from "./CheckBoxGroup/CheckBoxGroup";
 
@@ -16,15 +17,19 @@ export const Checkbox = <T extends FieldValues>({
   ...props
 }: CheckboxProps<T>) => {
   const {
+    props: inputProps,
     field: { value, onChange: fieldOnChange, ...field },
     fieldState,
-  } = useController<T>({
-    name,
-    control,
-    defaultValue,
-    rules,
-    shouldUnregister,
-  });
+  } = useFieldController<T, typeof props>(
+    {
+      name,
+      control,
+      defaultValue,
+      rules,
+      shouldUnregister,
+    },
+    props,
+  );
 
   return (
     <$Checkbox
@@ -36,7 +41,7 @@ export const Checkbox = <T extends FieldValues>({
         onChange?.(e);
       }}
       {...field}
-      {...props}
+      {...inputProps}
     />
   );
 };

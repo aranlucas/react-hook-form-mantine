@@ -1,4 +1,5 @@
-import { type UseControllerProps, useController, type FieldValues } from "react-hook-form";
+import { useFieldController } from "../internal/useFieldController";
+import { type UseControllerProps, type FieldValues } from "react-hook-form";
 import {
   NativeSelect as $NativeSelect,
   type NativeSelectProps as $NativeSelectProps,
@@ -17,15 +18,19 @@ export function NativeSelect<T extends FieldValues>({
   ...props
 }: NativeSelectProps<T>) {
   const {
+    props: inputProps,
     field: { value, onChange: fieldOnChange, ...field },
     fieldState,
-  } = useController<T>({
-    name,
-    control,
-    defaultValue,
-    rules,
-    shouldUnregister,
-  });
+  } = useFieldController<T, typeof props>(
+    {
+      name,
+      control,
+      defaultValue,
+      rules,
+      shouldUnregister,
+    },
+    props,
+  );
 
   return (
     <$NativeSelect
@@ -36,7 +41,7 @@ export function NativeSelect<T extends FieldValues>({
       }}
       error={fieldState.error?.message}
       {...field}
-      {...props}
+      {...inputProps}
     />
   );
 }

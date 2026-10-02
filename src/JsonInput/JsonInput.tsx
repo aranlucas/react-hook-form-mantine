@@ -1,4 +1,5 @@
-import { type UseControllerProps, useController, type FieldValues } from "react-hook-form";
+import { useFieldController } from "../internal/useFieldController";
+import { type UseControllerProps, type FieldValues } from "react-hook-form";
 import { JsonInput as $JsonInput, type JsonInputProps as $JsonInputProps } from "@mantine/core";
 
 export type JsonInputProps<T extends FieldValues> = UseControllerProps<T> &
@@ -14,15 +15,19 @@ export function JsonInput<T extends FieldValues>({
   ...props
 }: JsonInputProps<T>) {
   const {
+    props: inputProps,
     field: { value, onChange: fieldOnChange, ...field },
     fieldState,
-  } = useController<T>({
-    name,
-    control,
-    defaultValue,
-    rules,
-    shouldUnregister,
-  });
+  } = useFieldController<T, typeof props>(
+    {
+      name,
+      control,
+      defaultValue,
+      rules,
+      shouldUnregister,
+    },
+    props,
+  );
 
   return (
     <$JsonInput
@@ -33,7 +38,7 @@ export function JsonInput<T extends FieldValues>({
       }}
       error={fieldState.error?.message}
       {...field}
-      {...props}
+      {...inputProps}
     />
   );
 }
