@@ -1,4 +1,5 @@
-import { type FieldValues, useController, type UseControllerProps } from "react-hook-form";
+import { useFieldController } from "../internal/useFieldController";
+import { type FieldValues, type UseControllerProps } from "react-hook-form";
 import {
   RangeSlider as $RangeSlider,
   type RangeSliderProps as $RangeSliderProps,
@@ -17,14 +18,18 @@ export function RangeSlider<T extends FieldValues>({
   ...props
 }: RangeSliderProps<T>) {
   const {
+    props: inputProps,
     field: { value, onChange: fieldOnChange, ...field },
-  } = useController<T>({
-    name,
-    control,
-    defaultValue,
-    rules,
-    shouldUnregister,
-  });
+  } = useFieldController<T, typeof props>(
+    {
+      name,
+      control,
+      defaultValue,
+      rules,
+      shouldUnregister,
+    },
+    props,
+  );
 
   return (
     <$RangeSlider
@@ -34,7 +39,7 @@ export function RangeSlider<T extends FieldValues>({
         onChange?.(e);
       }}
       {...field}
-      {...props}
+      {...inputProps}
     />
   );
 }

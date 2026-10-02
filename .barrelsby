@@ -4,6 +4,7 @@
     "src/stories",
     "stories.tsx",
     "test.tsx",
-    "src/test"
+    "src/test",
+    "src/internal"
   ]
 }

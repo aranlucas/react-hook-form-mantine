@@ -1,4 +1,5 @@
-import { type FieldValues, useController, type UseControllerProps } from "react-hook-form";
+import { useFieldController } from "../internal/useFieldController";
+import { type FieldValues, type UseControllerProps } from "react-hook-form";
 import { TimeInput as $TimeInput, type TimeInputProps as $TimeInputProps } from "@mantine/dates";
 
 export type TimeInputProps<T extends FieldValues> = UseControllerProps<T> &
@@ -14,15 +15,19 @@ export function TimeInput<T extends FieldValues>({
   ...props
 }: TimeInputProps<T>) {
   const {
+    props: inputProps,
     field: { value, onChange: fieldOnChange, ...field },
     fieldState,
-  } = useController<T>({
-    name,
-    control,
-    defaultValue,
-    rules,
-    shouldUnregister,
-  });
+  } = useFieldController<T, typeof props>(
+    {
+      name,
+      control,
+      defaultValue,
+      rules,
+      shouldUnregister,
+    },
+    props,
+  );
 
   return (
     <$TimeInput
@@ -33,7 +38,7 @@ export function TimeInput<T extends FieldValues>({
         onChange?.(e);
       }}
       {...field}
-      {...props}
+      {...inputProps}
     />
   );
 }

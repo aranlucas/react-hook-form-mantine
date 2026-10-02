@@ -39,6 +39,14 @@ export function ProfileForm() {
 
 The wrapper forwards Mantine’s UI props, passes `rules` to `useController`, and displays the field error through Mantine’s `error` prop. The same pattern scales from a text input to a date picker, slider, select, or grouped control.
 
+## Controller lifecycle
+
+Custom `onChange` and `onBlur` callbacks run alongside React Hook Form's handlers,
+so blur still marks the field touched and runs `mode: "onBlur"` validation.
+`disabled` is passed to the controller as well as the Mantine control: disabled
+field values are omitted from submitted data, following React Hook Form semantics.
+Use `readOnly` where supported if a non-editable value should still be submitted.
+
 ## Install
 
 ```bash

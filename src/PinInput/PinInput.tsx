@@ -1,4 +1,5 @@
-import { type UseControllerProps, useController, type FieldValues } from "react-hook-form";
+import { useFieldController } from "../internal/useFieldController";
+import { type UseControllerProps, type FieldValues } from "react-hook-form";
 import { PinInput as $PinInput, type PinInputProps as $PinInputProps } from "@mantine/core";
 
 export type PinInputProps<T extends FieldValues> = UseControllerProps<T> &
@@ -14,15 +15,19 @@ export function PinInput<T extends FieldValues>({
   ...props
 }: PinInputProps<T>) {
   const {
+    props: inputProps,
     field: { value, onChange: fieldOnChange, ...field },
     fieldState,
-  } = useController<T>({
-    name,
-    control,
-    defaultValue,
-    rules,
-    shouldUnregister,
-  });
+  } = useFieldController<T, typeof props>(
+    {
+      name,
+      control,
+      defaultValue,
+      rules,
+      shouldUnregister,
+    },
+    props,
+  );
 
   return (
     <$PinInput
@@ -33,7 +38,7 @@ export function PinInput<T extends FieldValues>({
       }}
       error={!(fieldState.error?.message == null)}
       {...field}
-      {...props}
+      {...inputProps}
     />
   );
 }

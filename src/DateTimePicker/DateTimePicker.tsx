@@ -1,4 +1,5 @@
-import { type FieldValues, useController, type UseControllerProps } from "react-hook-form";
+import { useFieldController } from "../internal/useFieldController";
+import { type FieldValues, type UseControllerProps } from "react-hook-form";
 import {
   DateTimePicker as $DateTimePicker,
   type DateTimePickerProps as $DateTimePickerProps,
@@ -17,15 +18,19 @@ export function DateTimePicker<T extends FieldValues>({
   ...props
 }: DateTimePickerProps<T>) {
   const {
+    props: inputProps,
     field: { value, onChange: fieldOnChange, ...field },
     fieldState,
-  } = useController<T>({
-    name,
-    control,
-    defaultValue,
-    rules,
-    shouldUnregister,
-  });
+  } = useFieldController<T, typeof props>(
+    {
+      name,
+      control,
+      defaultValue,
+      rules,
+      shouldUnregister,
+    },
+    props,
+  );
 
   return (
     <$DateTimePicker
@@ -36,7 +41,7 @@ export function DateTimePicker<T extends FieldValues>({
         onChange?.(e);
       }}
       {...field}
-      {...props}
+      {...inputProps}
     />
   );
 }

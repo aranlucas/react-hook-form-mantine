@@ -1,4 +1,5 @@
-import { type FieldValues, useController, type UseControllerProps } from "react-hook-form";
+import { useFieldController } from "../internal/useFieldController";
+import { type FieldValues, type UseControllerProps } from "react-hook-form";
 import { MaskInput as $MaskInput, type MaskInputProps as $MaskInputProps } from "@mantine/core";
 
 export type MaskInputProps<T extends FieldValues> = UseControllerProps<T> &
@@ -14,15 +15,19 @@ export function MaskInput<T extends FieldValues>({
   ...props
 }: MaskInputProps<T>) {
   const {
+    props: inputProps,
     field: { value, onChange: fieldOnChange, ...field },
     fieldState,
-  } = useController<T>({
-    name,
-    control,
-    defaultValue,
-    rules,
-    shouldUnregister,
-  });
+  } = useFieldController<T, typeof props>(
+    {
+      name,
+      control,
+      defaultValue,
+      rules,
+      shouldUnregister,
+    },
+    props,
+  );
 
   return (
     <$MaskInput
@@ -33,7 +38,7 @@ export function MaskInput<T extends FieldValues>({
         onChange?.(e);
       }}
       {...field}
-      {...props}
+      {...inputProps}
     />
   );
 }

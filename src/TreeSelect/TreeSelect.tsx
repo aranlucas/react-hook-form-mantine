@@ -1,4 +1,5 @@
-import { type FieldValues, useController, type UseControllerProps } from "react-hook-form";
+import { useFieldController } from "../internal/useFieldController";
+import { type FieldValues, type UseControllerProps } from "react-hook-form";
 import { TreeSelect as $TreeSelect, type TreeSelectProps as $TreeSelectProps } from "@mantine/core";
 
 export type TreeSelectProps<T extends FieldValues> = UseControllerProps<T> &
@@ -14,15 +15,19 @@ export function TreeSelect<T extends FieldValues>({
   ...props
 }: TreeSelectProps<T>) {
   const {
+    props: inputProps,
     field: { value, onChange: fieldOnChange, ...field },
     fieldState,
-  } = useController<T>({
-    name,
-    control,
-    defaultValue,
-    rules,
-    shouldUnregister,
-  });
+  } = useFieldController<T, typeof props>(
+    {
+      name,
+      control,
+      defaultValue,
+      rules,
+      shouldUnregister,
+    },
+    props,
+  );
 
   return (
     <$TreeSelect
@@ -33,7 +38,7 @@ export function TreeSelect<T extends FieldValues>({
         onChange?.(e);
       }}
       {...field}
-      {...props}
+      {...inputProps}
     />
   );
 }
