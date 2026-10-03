@@ -11,7 +11,9 @@ if (!commitMessagePath) {
 }
 
 const message = await readFile(commitMessagePath, "utf8");
+
 const config = await load({}, { cwd: process.cwd() });
+
 const report = await lint(message, config.rules, {
   defaultIgnores: config.defaultIgnores,
   helpUrl: config.helpUrl,

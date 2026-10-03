@@ -47,7 +47,7 @@
     "storybook": "storybook dev -p 6006",
     "test": "vitest",
     "watch": "vite build --watch",
-    "typecheck": "tsc --noEmit && pnpm --dir example typecheck"
+    "typecheck": "tsc --noEmit && pnpm --dir example typecheck && tsc --project tsconfig.anti-slop.json"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^21.2.2",
@@ -57,6 +57,7 @@
     "@hookform/resolvers": "^5.9.1",
     "@mantine/core": "^9.5.1",
     "@mantine/dates": "^9.5.1",
+    "@oxlint/plugins": "1.80.0",
     "@semantic-release/changelog": "^7.0.0",
     "@semantic-release/git": "^11.0.1",
     "@storybook/react": "^10.5.10",
@@ -72,7 +73,7 @@
     "husky": "^9.1.7",
     "jsdom": "^30.0.1",
     "oxfmt": "^0.70.0",
-    "oxlint": "^1.79.0",
+    "oxlint": "1.80.0",
     "prettier": "^3.9.6",
     "react": "^19.2.8",
     "react-dom": "^19.3.0",

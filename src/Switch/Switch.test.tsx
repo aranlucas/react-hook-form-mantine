@@ -11,6 +11,7 @@ describe("Switch", () => {
     const { form } = renderWithForm(<Switch name="test" label="Enable" />, {
       defaultValues: { test: false },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
@@ -19,9 +20,11 @@ describe("Switch", () => {
 
   it("toggles value on click", async () => {
     const user = userEvent.setup();
+
     const { form } = renderWithForm(<Switch name="test" label="Label" />, {
       defaultValues: { test: false },
     });
+
     await user.click(screen.getByRole("switch"));
     expect(form.getValues("test")).toBe(true);
   });

@@ -11,6 +11,7 @@ describe("JsonInput", () => {
     const { form } = renderWithForm(<JsonInput name="test" label="JSON" />, {
       defaultValues: { test: "" },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Invalid" });
       expect(screen.getByText("Invalid")).toBeInTheDocument();
@@ -19,9 +20,11 @@ describe("JsonInput", () => {
 
   it("updates value on user input", async () => {
     const user = userEvent.setup();
+
     const { form } = renderWithForm(<JsonInput name="test" label="Label" />, {
       defaultValues: { test: "" },
     });
+
     const input = screen.getByRole("textbox");
     await user.type(input, "Hello");
     expect(form.getValues("test")).toBe("Hello");

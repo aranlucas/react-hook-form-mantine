@@ -16,6 +16,7 @@ describe("ChipGroup", () => {
 
   it("selects value on click", async () => {
     const user = userEvent.setup();
+
     const { form } = renderWithForm(
       <ChipGroup name="test">
         <Chip.Item value="a">A</Chip.Item>
@@ -23,6 +24,7 @@ describe("ChipGroup", () => {
       </ChipGroup>,
       { defaultValues: { test: "" } },
     );
+
     await user.click(screen.getByText("A"));
     expect(form.getValues("test")).toBe("a");
   });

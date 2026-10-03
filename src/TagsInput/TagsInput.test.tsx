@@ -11,6 +11,7 @@ describe("TagsInput", () => {
     const { form } = renderWithForm(<TagsInput name="test" label="Tags" data={[]} />, {
       defaultValues: { test: [] },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();

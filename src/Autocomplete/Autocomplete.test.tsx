@@ -11,6 +11,7 @@ describe("Autocomplete", () => {
     const { form } = renderWithForm(<Autocomplete name="test" label="Country" data={[]} />, {
       defaultValues: { test: "" },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();

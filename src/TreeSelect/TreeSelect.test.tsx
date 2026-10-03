@@ -11,6 +11,7 @@ describe("TreeSelect", () => {
     const { form } = renderWithForm(<TreeSelect name="test" label="Category" data={[]} />, {
       defaultValues: { test: "" },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();

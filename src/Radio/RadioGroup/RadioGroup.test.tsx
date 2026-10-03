@@ -12,6 +12,7 @@ describe("RadioGroup", () => {
     const { form } = renderWithForm(<RadioGroup name="test" label="Options" />, {
       defaultValues: { test: "" },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
@@ -20,6 +21,7 @@ describe("RadioGroup", () => {
 
   it("toggles value on click", async () => {
     const user = userEvent.setup();
+
     const { form } = renderWithForm(
       <RadioGroup name="test" label="Options">
         <Radio.Item value="a" label="A" />
@@ -27,6 +29,7 @@ describe("RadioGroup", () => {
       </RadioGroup>,
       { defaultValues: { test: "" } },
     );
+
     await user.click(screen.getByText("A"));
     expect(form.getValues("test")).toBe("a");
   });

@@ -22,6 +22,7 @@ describe("controller lifecycle contracts", () => {
     "$label composes custom blur with touched state and validation",
     async ({ Input, initial, role, extra }) => {
       const onBlur = vi.fn();
+
       const { form } = renderWithForm(
         <Input
           name="test"
@@ -31,6 +32,7 @@ describe("controller lifecycle contracts", () => {
         />,
         { defaultValues: { test: initial }, mode: "onBlur" },
       );
+
       const input = screen.getByRole(role);
       fireEvent.blur(input);
       await waitFor(() => {
@@ -46,9 +48,11 @@ describe("controller lifecycle contracts", () => {
     "$label omits disabled values from submission and restores them when enabled",
     async ({ Input, initial, extra }) => {
       const onSubmit = vi.fn();
+
       const { form, rerender } = renderWithForm(<Input name="test" disabled {...extra} />, {
         defaultValues: { test: initial },
       });
+
       await act(async () => {
         await form.handleSubmit(onSubmit)();
       });
@@ -64,15 +68,18 @@ describe("controller lifecycle contracts", () => {
   it("preserves the existing CheckboxGroup external value contract", async () => {
     const onChange = vi.fn();
     const user = userEvent.setup();
+
     const group = (value: string[]) => (
       <CheckboxGroup name="test" value={value} onChange={onChange}>
         <Checkbox.Item value="a" label="A" />
         <Checkbox.Item value="b" label="B" />
       </CheckboxGroup>
     );
+
     const { form, rerender } = renderWithForm(group(["b"]), {
       defaultValues: { test: ["a"] },
     });
+
     expect(screen.getByRole("checkbox", { name: "A" })).not.toBeChecked();
     expect(screen.getByRole("checkbox", { name: "B" })).toBeChecked();
     await user.click(screen.getByRole("checkbox", { name: "A" }));
@@ -85,10 +92,12 @@ describe("controller lifecycle contracts", () => {
 
   it("inherits form-level disabled state when the input does not override it", async () => {
     const onSubmit = vi.fn();
+
     const { form } = renderWithForm(<TextInput name="test" />, {
       defaultValues: { test: "saved" },
       disabled: true,
     });
+
     expect(screen.getByRole("textbox")).toBeDisabled();
     await act(async () => {
       await form.handleSubmit(onSubmit)();
@@ -99,6 +108,7 @@ describe("controller lifecycle contracts", () => {
   it("preserves custom change events, reset, focus on error, and unregister", async () => {
     const onChange = vi.fn();
     const user = userEvent.setup();
+
     const { form, rerender } = renderWithForm(
       <TextInput
         name="test"
@@ -108,6 +118,7 @@ describe("controller lifecycle contracts", () => {
       />,
       { defaultValues: { test: "" } },
     );
+
     const input = screen.getByRole("textbox");
     await user.type(input, "saved");
     expect(onChange).toHaveBeenCalledTimes(5);
@@ -127,6 +138,7 @@ describe("controller lifecycle contracts", () => {
   it("preserves both Select onChange arguments and controller value", async () => {
     const onChange = vi.fn();
     const user = userEvent.setup();
+
     const { form } = renderWithForm(
       <Select
         name="test"
@@ -136,6 +148,7 @@ describe("controller lifecycle contracts", () => {
       />,
       { defaultValues: { test: null } },
     );
+
     await user.click(screen.getByRole("combobox"));
     await user.click(await screen.findByRole("option", { name: "A" }));
     expect(form.getValues("test")).toBe("a");

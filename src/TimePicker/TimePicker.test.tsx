@@ -11,6 +11,7 @@ describe("TimePicker", () => {
     const { form } = renderWithForm(<TimePicker name="test" label="Time" />, {
       defaultValues: { test: null },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
@@ -19,9 +20,11 @@ describe("TimePicker", () => {
 
   it("updates value on user input", async () => {
     const user = userEvent.setup();
+
     const { form } = renderWithForm(<TimePicker name="test" label="Label" />, {
       defaultValues: { test: "" },
     });
+
     await user.click(screen.getByLabelText("Label"));
     await waitFor(() => {
       expect(screen.getAllByRole("spinbutton").length).toBe(2);

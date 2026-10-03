@@ -9,15 +9,18 @@ const preview: Preview = {
   decorators: [
     (Story, context) => {
       const { parameters, args } = context;
-      const defaultValues = {
-        ...(args?.name ? { [args.name]: args[args.name] } : {}),
-        ...parameters?.form?.defaultValues,
-      };
+
+      const defaultValues = {};
+
+      if (args?.name) Object.assign(defaultValues, { [args.name]: args[args.name] });
+      Object.assign(defaultValues, parameters?.form?.defaultValues);
+
       const methods = useForm({
         defaultValues,
         resolver: parameters?.resolver,
         mode: parameters?.form?.mode ?? "onChange",
       });
+
       return (
         <MantineProvider>
           <FormProvider {...methods}>

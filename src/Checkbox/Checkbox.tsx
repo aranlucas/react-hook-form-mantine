@@ -47,4 +47,5 @@ export const Checkbox = <T extends FieldValues>({
 };
 
 Checkbox.Group = CheckboxGroup;
+
 Checkbox.Item = $Checkbox;

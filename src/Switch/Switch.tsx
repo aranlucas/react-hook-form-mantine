@@ -46,4 +46,5 @@ export function Switch<T extends FieldValues>({
 }
 
 Switch.Item = $Switch;
+
 Switch.Group = SwitchGroup;

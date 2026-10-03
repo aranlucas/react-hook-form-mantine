@@ -11,6 +11,7 @@ describe("TimeInput", () => {
     const { form } = renderWithForm(<TimeInput name="test" label="Time" />, {
       defaultValues: { test: "" },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
@@ -19,9 +20,11 @@ describe("TimeInput", () => {
 
   it("updates value on user input", async () => {
     const user = userEvent.setup();
+
     const { form } = renderWithForm(<TimeInput name="test" label="Label" />, {
       defaultValues: { test: "" },
     });
+
     const input = screen.getByLabelText("Label");
     await user.type(input, "12:34");
     expect(form.getValues("test")).toBeTruthy();

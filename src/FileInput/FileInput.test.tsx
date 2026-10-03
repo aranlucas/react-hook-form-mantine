@@ -11,6 +11,7 @@ describe("FileInput", () => {
     const { form } = renderWithForm(<FileInput name="test" label="File" />, {
       defaultValues: { test: null },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();

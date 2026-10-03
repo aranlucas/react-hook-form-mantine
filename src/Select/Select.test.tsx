@@ -11,6 +11,7 @@ describe("Select", () => {
     const { form } = renderWithForm(<Select name="test" label="Role" data={["A", "B"]} />, {
       defaultValues: { test: "" },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();

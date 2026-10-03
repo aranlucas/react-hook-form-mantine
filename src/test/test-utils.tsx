@@ -1,5 +1,11 @@
 import { cleanup, render as rtlRender } from "@testing-library/react";
-import { FormProvider, useForm, type FieldValues, type UseFormReturn } from "react-hook-form";
+import {
+  FormProvider,
+  useForm,
+  type FieldValues,
+  type UseFormProps,
+  type UseFormReturn,
+} from "react-hook-form";
 import { MantineProvider } from "@mantine/core";
 import { afterEach } from "vitest";
 
@@ -26,12 +32,13 @@ function customRender(ui: React.ReactElement, options = {}): RenderResult {
 
 export function renderWithForm(
   ui: React.ReactElement,
-  formOptions?: Parameters<typeof useForm>[0],
+  formOptions?: UseFormProps<FieldValues>,
 ): RenderResult & { form: UseFormReturn<FieldValues> } {
   let form: UseFormReturn<FieldValues>;
 
   function Wrapper({ children }: { children: React.ReactNode }) {
-    form = useForm(formOptions) as unknown as UseFormReturn<FieldValues>;
+    form = useForm<FieldValues>(formOptions);
+
     return (
       <MantineProvider>
         <FormProvider {...form}>{children}</FormProvider>
@@ -40,9 +47,12 @@ export function renderWithForm(
   }
 
   const result = rtlRender(ui, { wrapper: Wrapper });
+
   return { ...result, form: form! };
 }
 
 export * from "@testing-library/react";
+
 export { default as userEvent } from "@testing-library/user-event";
+
 export { customRender as render };

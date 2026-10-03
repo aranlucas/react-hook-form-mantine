@@ -11,6 +11,7 @@ describe("YearPickerInput", () => {
     const { form } = renderWithForm(<YearPickerInput name="test" label="Year" />, {
       defaultValues: { test: null },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
@@ -19,9 +20,11 @@ describe("YearPickerInput", () => {
 
   it("updates value on user input", async () => {
     const user = userEvent.setup();
+
     const { form } = renderWithForm(<YearPickerInput name="test" label="Label" />, {
       defaultValues: { test: "" },
     });
+
     await user.click(screen.getByLabelText("Label"));
     await waitFor(() => expect(screen.getByText("2026")).toBeInTheDocument());
     await user.click(screen.getByText("2026"));
