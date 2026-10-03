@@ -11,6 +11,7 @@ describe("MultiSelect", () => {
     const { form } = renderWithForm(<MultiSelect name="test" label="Roles" data={["A", "B"]} />, {
       defaultValues: { test: [] },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();

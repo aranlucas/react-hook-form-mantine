@@ -11,6 +11,7 @@ describe("Checkbox", () => {
     const { form } = renderWithForm(<Checkbox name="test" label="Accept" />, {
       defaultValues: { test: false },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
@@ -19,9 +20,11 @@ describe("Checkbox", () => {
 
   it("toggles value on click", async () => {
     const user = userEvent.setup();
+
     const { form } = renderWithForm(<Checkbox name="test" label="Label" />, {
       defaultValues: { test: false },
     });
+
     await user.click(screen.getByRole("checkbox"));
     expect(form.getValues("test")).toBe(true);
   });

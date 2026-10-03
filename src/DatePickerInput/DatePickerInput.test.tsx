@@ -11,6 +11,7 @@ describe("DatePickerInput", () => {
     const { form } = renderWithForm(<DatePickerInput name="test" label="Date" />, {
       defaultValues: { test: null },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
@@ -19,9 +20,11 @@ describe("DatePickerInput", () => {
 
   it("updates value on user input", async () => {
     const user = userEvent.setup();
+
     const { form } = renderWithForm(<DatePickerInput name="test" label="Label" />, {
       defaultValues: { test: "" },
     });
+
     await user.click(screen.getByLabelText("Label"));
     await waitFor(() => expect(screen.getByText("15")).toBeInTheDocument());
     await user.click(screen.getByText("15"));

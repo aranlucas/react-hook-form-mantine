@@ -11,6 +11,7 @@ describe("MaskInput", () => {
     const { form } = renderWithForm(<MaskInput name="test" label="Phone" mask="***-***-****" />, {
       defaultValues: { test: "" },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
@@ -22,6 +23,7 @@ describe("MaskInput", () => {
       <MaskInput name="test" label="Phone" mask="***-***-****" />,
       { defaultValues: { test: "" } },
     );
+
     const input = container.querySelector("input")!;
     fireEvent.change(input, { target: { value: "HelloWorld" } });
     expect(form.getValues("test")).toBe("HelloWorld");

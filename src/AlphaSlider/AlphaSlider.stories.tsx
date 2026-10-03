@@ -8,6 +8,7 @@ export default {
   component: AlphaSlider,
   render: (args) => {
     const [color, setColor] = useState("#228be6");
+
     return (
       <Stack>
         <ColorPicker value={color} onChange={setColor} />

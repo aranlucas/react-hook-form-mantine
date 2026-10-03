@@ -11,6 +11,7 @@ describe("NativeSelect", () => {
     const { form } = renderWithForm(<NativeSelect name="test" label="Option" data={["A", "B"]} />, {
       defaultValues: { test: "" },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
@@ -19,9 +20,11 @@ describe("NativeSelect", () => {
 
   it("selects value on change", async () => {
     const user = userEvent.setup();
+
     const { form } = renderWithForm(<NativeSelect name="test" label="Option" data={["A", "B"]} />, {
       defaultValues: { test: "" },
     });
+
     await user.selectOptions(screen.getByRole("combobox"), "A");
     expect(form.getValues("test")).toBe("A");
   });

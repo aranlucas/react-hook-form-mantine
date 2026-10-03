@@ -14,10 +14,10 @@ Object.defineProperty(window, "matchMedia", {
   }),
 });
 
-class ResizeObserverMock {
+class ResizeObserverMock implements ResizeObserver {
   observe() {}
   unobserve() {}
   disconnect() {}
 }
 
-window.ResizeObserver = ResizeObserverMock as unknown as typeof ResizeObserver;
+window.ResizeObserver = ResizeObserverMock;

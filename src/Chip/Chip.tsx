@@ -45,4 +45,5 @@ export const Chip = <T extends FieldValues>({
 };
 
 Chip.Group = ChipGroup;
+
 Chip.Item = $Chip;

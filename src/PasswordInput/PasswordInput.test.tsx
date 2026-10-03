@@ -11,6 +11,7 @@ describe("PasswordInput", () => {
     const { form } = renderWithForm(<PasswordInput name="test" label="Password" />, {
       defaultValues: { test: "" },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
@@ -19,9 +20,11 @@ describe("PasswordInput", () => {
 
   it("updates value on user input", async () => {
     const user = userEvent.setup();
+
     const { form } = renderWithForm(<PasswordInput name="test" label="Label" />, {
       defaultValues: { test: "" },
     });
+
     const input = screen.getByLabelText("Label");
     await user.type(input, "Hello");
     expect(form.getValues("test")).toBe("Hello");

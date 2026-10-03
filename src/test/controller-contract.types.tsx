@@ -13,5 +13,6 @@ export function checkboxGroupTypeContract() {
       values.map((value) => value.toUpperCase());
     },
   };
+
   return <CheckboxGroup {...props} value={["b"]} />;
 }

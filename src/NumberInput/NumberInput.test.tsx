@@ -11,6 +11,7 @@ describe("NumberInput", () => {
     const { form } = renderWithForm(<NumberInput name="test" label="Age" />, {
       defaultValues: { test: 0 },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
@@ -19,9 +20,11 @@ describe("NumberInput", () => {
 
   it("updates value on user input", async () => {
     const user = userEvent.setup();
+
     const { form } = renderWithForm(<NumberInput name="test" label="Age" />, {
       defaultValues: { test: 0 },
     });
+
     const input = screen.getByRole("textbox");
     await user.clear(input);
     await user.type(input, "42");

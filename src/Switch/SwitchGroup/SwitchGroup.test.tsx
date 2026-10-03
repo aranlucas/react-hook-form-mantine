@@ -12,6 +12,7 @@ describe("SwitchGroup", () => {
     const { form } = renderWithForm(<SwitchGroup name="test" label="Options" />, {
       defaultValues: { test: [] },
     });
+
     await waitFor(() => {
       form.setError("test", { message: "Required" });
       expect(screen.getByText("Required")).toBeInTheDocument();
@@ -20,6 +21,7 @@ describe("SwitchGroup", () => {
 
   it("toggles value on click", async () => {
     const user = userEvent.setup();
+
     const { form } = renderWithForm(
       <SwitchGroup name="test" label="Options">
         <Switch.Item value="a" label="A" />
@@ -27,6 +29,7 @@ describe("SwitchGroup", () => {
       </SwitchGroup>,
       { defaultValues: { test: [] } },
     );
+
     await user.click(screen.getByText("A"));
     expect(form.getValues("test")).toEqual(["a"]);
   });
