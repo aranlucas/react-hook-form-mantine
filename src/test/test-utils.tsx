@@ -17,7 +17,7 @@ import { type RenderResult } from "@testing-library/react";
 
 function AllProviders({ children }: { children: React.ReactNode }) {
   return (
-    <MantineProvider>
+    <MantineProvider env="test">
       <FormProvider {...useForm()}>{children}</FormProvider>
     </MantineProvider>
   );
@@ -40,7 +40,7 @@ export function renderWithForm(
     form = useForm<FieldValues>(formOptions);
 
     return (
-      <MantineProvider>
+      <MantineProvider env="test">
         <FormProvider {...form}>{children}</FormProvider>
       </MantineProvider>
     );
