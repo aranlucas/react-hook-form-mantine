@@ -1,3 +1,4 @@
+import { createRef } from "react";
 import { vi } from "vitest";
 import { Checkbox, CheckboxGroup, DateInput, Select, Slider, TextInput } from "../index";
 import { act, fireEvent, renderWithForm, screen, userEvent, waitFor } from "./test-utils";
@@ -133,6 +134,38 @@ describe("controller lifecycle contracts", () => {
     expect(input).toHaveFocus();
     rerender(<></>);
     expect(form.getValues()).toEqual({});
+  });
+
+  it("merges a user object ref with the controller ref", async () => {
+    const userRef = createRef<HTMLInputElement>();
+
+    const { form } = renderWithForm(
+      <TextInput name="test" ref={userRef} rules={{ required: "Required" }} />,
+      { defaultValues: { test: "" } },
+    );
+
+    const input = screen.getByRole("textbox");
+    expect(userRef.current).toBe(input);
+    await act(async () => {
+      await form.trigger("test", { shouldFocus: true });
+    });
+    expect(input).toHaveFocus();
+  });
+
+  it("merges a user callback ref with the controller ref", async () => {
+    const userRef = vi.fn();
+
+    const { form } = renderWithForm(
+      <TextInput name="test" ref={userRef} rules={{ required: "Required" }} />,
+      { defaultValues: { test: "" } },
+    );
+
+    const input = screen.getByRole("textbox");
+    expect(userRef).toHaveBeenCalledWith(input);
+    await act(async () => {
+      await form.trigger("test", { shouldFocus: true });
+    });
+    expect(input).toHaveFocus();
   });
 
   it("preserves both Select onChange arguments and controller value", async () => {

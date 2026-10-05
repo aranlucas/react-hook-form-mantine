@@ -8,6 +8,7 @@ import dts from "unplugin-dts/vite";
 const external = [
   "@mantine/core",
   "@mantine/dates",
+  "merge-refs",
   "react",
   "react-dom",
   "react/jsx-runtime",
