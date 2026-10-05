@@ -8,38 +8,8 @@ import {
 export type AlphaSliderProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$AlphaSliderProps, "value" | "defaultValue">;
 
-export function AlphaSlider<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: AlphaSliderProps<T>) {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export function AlphaSlider<T extends FieldValues>(props: AlphaSliderProps<T>) {
+  const { field, props: inputProps } = useFieldController(props);
 
-  return (
-    <$AlphaSlider
-      value={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$AlphaSlider {...field} {...inputProps} />;
 }

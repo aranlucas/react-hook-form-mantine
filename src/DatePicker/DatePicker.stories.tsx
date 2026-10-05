@@ -24,11 +24,12 @@ export const Primary: Story = {
 export const WithValue: Story = {
   args: {
     name: "test",
+    defaultDate: "2026-01-01",
   },
   parameters: {
     form: {
       defaultValues: {
-        test: new Date(),
+        test: "2026-01-15",
       },
     },
   },

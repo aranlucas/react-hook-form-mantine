@@ -6,43 +6,14 @@ import { SwitchGroup } from "./SwitchGroup/SwitchGroup";
 export type SwitchProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$SwitchProps, "value" | "checked" | "defaultValue">;
 
-export function Switch<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: SwitchProps<T>) {
+export function Switch<T extends FieldValues>(props: SwitchProps<T>) {
   const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
+    field: { value, ...field },
     fieldState,
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+    props: inputProps,
+  } = useFieldController(props);
 
-  return (
-    <$Switch
-      value={value}
-      checked={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      error={fieldState.error?.message}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$Switch checked={value} {...field} error={fieldState.error?.message} {...inputProps} />;
 }
 
 Switch.Item = $Switch;

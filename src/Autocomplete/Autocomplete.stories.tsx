@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Autocomplete } from "./Autocomplete";
+import { submitShowsError } from "../../.storybook/play";
 
 export default {
   title: "Components/Autocomplete",
@@ -45,4 +46,5 @@ export const WithValidation: Story = {
       },
     },
   },
+  play: submitShowsError("Please select a framework"),
 };

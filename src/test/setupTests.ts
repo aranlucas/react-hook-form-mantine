@@ -21,3 +21,8 @@ class ResizeObserverMock implements ResizeObserver {
 }
 
 window.ResizeObserver = ResizeObserverMock;
+
+// jsdom has no FontFaceSet; Mantine's autosize Textarea listens for font loading on it.
+if (!("fonts" in document)) {
+  Object.defineProperty(document, "fonts", { value: new EventTarget() });
+}

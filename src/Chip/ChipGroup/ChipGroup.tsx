@@ -6,38 +6,8 @@ export type ChipGroupProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$ChipGroupProps<boolean>, "value" | "defaultValue">;
 
 /** Chip group that manages selection state via react-hook-form. Children should use `Chip.Item` (raw Mantine Chip), not the wrapped `Chip` component. */
-export const ChipGroup = <T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: ChipGroupProps<T>) => {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export const ChipGroup = <T extends FieldValues>(props: ChipGroupProps<T>) => {
+  const { field, props: inputProps } = useFieldController(props);
 
-  return (
-    <$ChipGroup
-      value={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$ChipGroup {...field} {...inputProps} />;
 };

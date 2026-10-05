@@ -28,4 +28,12 @@ describe("Checkbox", () => {
     await user.click(screen.getByRole("checkbox"));
     expect(form.getValues("test")).toBe(true);
   });
+
+  it("binds the form value to checked, not the value attribute", () => {
+    renderWithForm(<Checkbox name="test" label="Label" />, { defaultValues: { test: true } });
+
+    const input = screen.getByRole("checkbox");
+    expect(input).toBeChecked();
+    expect(input).not.toHaveAttribute("value", "true");
+  });
 });

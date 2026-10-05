@@ -19,6 +19,7 @@
     "dist"
   ],
   "type": "module",
+  "sideEffects": false,
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -48,6 +49,9 @@
     "test": "vitest",
     "watch": "vite build --watch",
     "typecheck": "tsc --noEmit && pnpm --dir example typecheck && tsc --project tsconfig.anti-slop.json"
+  },
+  "dependencies": {
+    "merge-refs": "^2.0.0"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^21.2.2",

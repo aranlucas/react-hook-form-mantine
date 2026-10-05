@@ -9,40 +9,8 @@ import {
 export type MonthPickerInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$MonthPickerInputProps<DatePickerType>, "value" | "defaultValue">;
 
-export function MonthPickerInput<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: MonthPickerInputProps<T>) {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-    fieldState,
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export function MonthPickerInput<T extends FieldValues>(props: MonthPickerInputProps<T>) {
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
-  return (
-    <$MonthPickerInput
-      error={fieldState.error?.message}
-      value={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$MonthPickerInput {...field} error={fieldState.error?.message} {...inputProps} />;
 }

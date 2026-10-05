@@ -7,41 +7,13 @@ export type ChipProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$ChipProps, "value" | "defaultValue">;
 
 /** Standalone chip input with react-hook-form controller. For use inside `ChipGroup`, use `Chip.Item` to avoid double controller registration. */
-export const Chip = <T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: ChipProps<T>) => {
+export const Chip = <T extends FieldValues>(props: ChipProps<T>) => {
   const {
+    field: { value, ...field },
     props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+  } = useFieldController(props);
 
-  return (
-    <$Chip
-      value={value}
-      checked={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$Chip checked={value} {...field} {...inputProps} />;
 };
 
 Chip.Group = ChipGroup;

@@ -8,40 +8,8 @@ import {
 export type TimePickerProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$TimePickerProps, "value" | "defaultValue">;
 
-export function TimePicker<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: TimePickerProps<T>) {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-    fieldState,
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export function TimePicker<T extends FieldValues>(props: TimePickerProps<T>) {
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
-  return (
-    <$TimePicker
-      error={fieldState.error?.message}
-      value={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$TimePicker {...field} error={fieldState.error?.message} {...inputProps} />;
 }

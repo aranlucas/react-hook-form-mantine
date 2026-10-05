@@ -31,7 +31,7 @@ export const WithValue: Story = {
   parameters: {
     form: {
       defaultValues: {
-        test: new Date(),
+        test: "14:30",
       },
     },
   },

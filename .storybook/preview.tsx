@@ -1,46 +1,33 @@
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
-import { Box, MantineProvider } from "@mantine/core";
-import { FormProvider, useForm } from "react-hook-form";
+import { MantineProvider } from "@mantine/core";
 import type { Preview } from "@storybook/react";
-import { FormStatePanel } from "./FormStatePanel";
+import { StoryForm } from "./StoryForm";
 
 const preview: Preview = {
+  // Storybook applies decorators inside-out: every story gets Mantine, and component
+  // stories also get a form. Stories that render their own <form> set `form: false`.
   decorators: [
-    (Story, context) => {
-      const { parameters, args } = context;
-
-      const defaultValues = {};
-
-      if (args?.name) Object.assign(defaultValues, { [args.name]: args[args.name] });
-      Object.assign(defaultValues, parameters?.form?.defaultValues);
-
-      const methods = useForm({
-        defaultValues,
-        resolver: parameters?.resolver,
-        mode: parameters?.form?.mode ?? "onChange",
-      });
-
-      return (
-        <MantineProvider>
-          <FormProvider {...methods}>
-            <Box
-              component="form"
-              id="hook-form"
-              onSubmit={methods.handleSubmit((data) => {
-                parameters?.form?.onSubmit?.(data);
-                console.log("[Storybook onSubmit]", data);
-              })}
-              p="md"
-              maw={500}
-            >
-              <Story />
-              <FormStatePanel />
-            </Box>
-          </FormProvider>
-        </MantineProvider>
-      );
-    },
+    (Story, { args, parameters }) =>
+      parameters.form === false ? (
+        <Story />
+      ) : (
+        <StoryForm
+          {...parameters.form}
+          defaultValues={{
+            ...(args.name && { [args.name]: args[args.name] }),
+            ...parameters.form?.defaultValues,
+          }}
+          resolver={parameters.resolver}
+        >
+          <Story />
+        </StoryForm>
+      ),
+    (Story) => (
+      <MantineProvider>
+        <Story />
+      </MantineProvider>
+    ),
   ],
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },

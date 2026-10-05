@@ -5,40 +5,8 @@ import { FileInput as $FileInput, type FileInputProps as $FileInputProps } from 
 export type FileInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$FileInputProps, "value" | "defaultValue">;
 
-export function FileInput<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: FileInputProps<T>) {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-    fieldState,
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export function FileInput<T extends FieldValues>(props: FileInputProps<T>) {
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
-  return (
-    <$FileInput
-      value={value}
-      error={fieldState.error?.message}
-      onChange={(e: any) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$FileInput {...field} error={fieldState.error?.message} {...inputProps} />;
 }

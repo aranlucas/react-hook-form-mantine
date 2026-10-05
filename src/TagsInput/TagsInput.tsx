@@ -5,40 +5,8 @@ import { TagsInput as $TagsInput, type TagsInputProps as $TagsInputProps } from 
 export type TagsInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$TagsInputProps, "value" | "defaultValue">;
 
-export function TagsInput<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: TagsInputProps<T>) {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-    fieldState,
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export function TagsInput<T extends FieldValues>(props: TagsInputProps<T>) {
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
-  return (
-    <$TagsInput
-      error={fieldState.error?.message}
-      value={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$TagsInput {...field} error={fieldState.error?.message} {...inputProps} />;
 }

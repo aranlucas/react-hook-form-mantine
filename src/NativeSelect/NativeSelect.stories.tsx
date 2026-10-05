@@ -1,5 +1,6 @@
 import { type Meta, type StoryObj } from "@storybook/react";
 import { NativeSelect } from "./NativeSelect";
+import { submitShowsError } from "../../.storybook/play";
 
 export default {
   title: "Components/NativeSelect",
@@ -43,4 +44,5 @@ export const WithValidation: Story = {
       },
     },
   },
+  play: submitShowsError("Please select a framework"),
 };

@@ -5,38 +5,8 @@ import { HueSlider as $HueSlider, type HueSliderProps as $HueSliderProps } from 
 export type HueSliderProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$HueSliderProps, "value" | "defaultValue">;
 
-export function HueSlider<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: HueSliderProps<T>) {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export function HueSlider<T extends FieldValues>(props: HueSliderProps<T>) {
+  const { field, props: inputProps } = useFieldController(props);
 
-  return (
-    <$HueSlider
-      value={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$HueSlider {...field} {...inputProps} />;
 }
