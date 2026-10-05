@@ -42,6 +42,12 @@ export default defineConfig({
     },
     rolldownOptions: {
       external,
+      // One file per component so `sideEffects: false` lets consumers drop unused ones.
+      output: {
+        preserveModules: true,
+        preserveModulesRoot: "src",
+        entryFileNames: "[name].js",
+      },
     },
   },
   test: {
