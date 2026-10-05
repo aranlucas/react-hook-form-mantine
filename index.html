@@ -7,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    
     <style>
       @font-face {
         font-family: 'Nunito Sans';
@@ -46,8 +44,21 @@
     <link href="./sb-manager/runtime.js" rel="modulepreload" />
 
     
-    <link href="./sb-addons/common-manager-bundle.js" rel="modulepreload" />
-       
+    <link href="./sb-addons/storybook-core-server-presets-0/common-manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/docs-1/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/a11y-2/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/vitest-3/manager-bundle.js" rel="modulepreload" />
+    
+    <link href="./sb-addons/storybook-4/manager-bundle.js" rel="modulepreload" />
+      <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+<meta
+  name="description"
+  content="React Hook Form wrappers for every Mantine input — live demos, docs and tests."
+/>
+ 
 
     <style>
       #storybook-root[hidden] {
@@ -70,7 +81,7 @@
   "babelRemoveBugfixes": false,
   "backgrounds": true,
   "changeDetection": true,
-  "componentsManifest": false,
+  "componentsManifest": true,
   "controls": true,
   "disallowImplicitActionsInRenderV8": true,
   "highlight": true,
@@ -80,7 +91,12 @@
   "outline": true,
   "menuOnboardingChecklist": true,
   "sidebarOnboardingChecklist": true,
-  "viewport": true
+  "viewport": true,
+  "experimentalReactComponentMeta": true,
+  "experimentalTestSyntax": true,
+  "experimentalCodeExamples": true,
+  "experimentalSearchDocsHeadings": true,
+  "experimentalReview": true
 };
         
       
@@ -93,7 +109,9 @@
         
       
         
-          window['DOCS_OPTIONS'] = {};
+          window['DOCS_OPTIONS'] = {
+  "defaultName": "Docs"
+};
         
       
         
@@ -109,7 +127,10 @@
         
       
         
-          window['TAGS_OPTIONS'] = {};
+          window['TAGS_OPTIONS'] = {
+  "validation": {},
+  "example": {}
+};
         
       
         
@@ -133,7 +154,15 @@
       import './sb-manager/globals-runtime.js';
 
       
-        import './sb-addons/common-manager-bundle.js';
+        import './sb-addons/storybook-core-server-presets-0/common-manager-bundle.js';
+      
+        import './sb-addons/docs-1/manager-bundle.js';
+      
+        import './sb-addons/a11y-2/manager-bundle.js';
+      
+        import './sb-addons/vitest-3/manager-bundle.js';
+      
+        import './sb-addons/storybook-4/manager-bundle.js';
       
 
       import './sb-manager/runtime.js';

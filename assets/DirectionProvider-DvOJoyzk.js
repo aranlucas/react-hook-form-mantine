@@ -1,1 +1,0 @@
-import{t as e}from"./react-Q1GcV6wX.js";import{M as t}from"./index.esm-CCQgQDTi.js";import{n}from"./rolldown-runtime-DkW27tQK.js";function r(){return(0,i.use)(a)}var i,a;function o(){return(o=n((()=>{i=e(),t(),a=(0,i.createContext)({dir:`ltr`,toggleDirection:()=>{},setDirection:()=>{}})})))()}export{r as n,o as t};

@@ -1,1 +1,0 @@
-import{M as e,g as t,h as n}from"./index.esm-CCQgQDTi.js";import{n as r}from"./rolldown-runtime-DkW27tQK.js";function i(e){let t=e;return t.withProps=e=>{let n=n=>(0,a.jsx)(t,{...e,...n});return n.extend=t.extend,n.displayName=`WithProps(${t.displayName})`,n},t.extend=n,t}var a;function o(){return(o=r((()=>{t(),a=e()})))()}export{i as n,o as t};
