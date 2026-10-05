@@ -1,14 +1,12 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { PinInput } from "./PinInput";
 
-export default {
-  title: "Components/PinInput",
+const meta = preview.meta({
+  title: "Inputs/PinInput",
   component: PinInput,
-} satisfies Meta<typeof PinInput>;
+});
 
-type Story = StoryObj<typeof PinInput>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     length: 6,
@@ -20,9 +18,9 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithValue: Story = {
+export const WithValue = meta.story({
   args: {
     name: "test",
     length: 4,
@@ -35,4 +33,4 @@ export const WithValue: Story = {
       },
     },
   },
-};
+});

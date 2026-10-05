@@ -1,15 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { MultiSelect } from "./MultiSelect";
 import { submitShowsError } from "../../.storybook/play";
 
-export default {
-  title: "Components/MultiSelect",
+const meta = preview.meta({
+  title: "Combobox/MultiSelect",
   component: MultiSelect,
-} satisfies Meta<typeof MultiSelect>;
+});
 
-type Story = StoryObj<typeof MultiSelect>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "Your favorite frameworks/libraries",
@@ -24,9 +22,10 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithValidation: Story = {
+export const WithValidation = meta.story({
+  tags: ["validation"],
   args: {
     name: "test",
     label: "Required selection",
@@ -46,5 +45,9 @@ export const WithValidation: Story = {
       },
     },
   },
-  play: submitShowsError("Please select at least one framework"),
-};
+});
+
+WithValidation.test(
+  "shows the error on submit",
+  submitShowsError("Please select at least one framework"),
+);

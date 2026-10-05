@@ -1,14 +1,17 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { ColorPicker } from "./ColorPicker";
 
-export default {
-  title: "Components/ColorPicker",
+const meta = preview.meta({
+  title: "Color/ColorPicker",
   component: ColorPicker,
-} satisfies Meta<typeof ColorPicker>;
+  args: {
+    saturationLabel: "Saturation",
+    hueLabel: "Hue",
+    alphaLabel: "Alpha",
+  },
+});
 
-type Story = StoryObj<typeof ColorPicker>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     format: "rgba",
@@ -20,9 +23,9 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const HexFormat: Story = {
+export const HexFormat = meta.story({
   args: {
     name: "test",
     format: "hex",
@@ -34,4 +37,4 @@ export const HexFormat: Story = {
       },
     },
   },
-};
+});

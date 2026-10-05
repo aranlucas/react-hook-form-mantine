@@ -24,7 +24,7 @@ export function StoryForm({
   children,
 }: StoryFormProps) {
   const methods = useForm({ defaultValues, mode, resolver });
-  const [submitted, setSubmitted] = useState<unknown>(null);
+  const [submitted, setSubmitted] = useState<FieldValues | null>(null);
 
   return (
     <FormProvider {...methods}>

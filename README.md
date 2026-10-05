@@ -81,7 +81,22 @@ pnpm test --run
 pnpm build
 ```
 
-`pnpm format` is the repository’s check command; `pnpm format:fix` writes formatting. Use `pnpm storybook` to explore the component stories locally and `pnpm build-storybook` to produce the static Storybook build. `pnpm test` also renders every story and runs its `play` function, so a broken story fails the test suite. CI runs formatting, linting, type checking, tests, and the library build on Node 24.
+`pnpm format` is the repository’s check command; `pnpm format:fix` writes formatting. CI runs formatting, linting, type checking, tests, and the library build on Node 24.
+
+`pnpm test` runs two Vitest projects: `unit` (component tests in jsdom) and `storybook`, which renders every story in headless Chromium and fails on a broken render, a failing `play` function or `.test()`, or an accessibility violation. Run one with `pnpm test:unit` or `pnpm test:storybook`; the first run needs `pnpm exec playwright install chromium`.
+
+## Storybook
+
+`pnpm storybook` opens the component workshop on port 6006; `pnpm build-storybook` produces the static site deployed to GitHub Pages.
+
+- **Every story is a real form.** A form state panel under each story shows values, errors, touched and dirty fields, and the submit result. `onChange` and `onBlur` are `fn()` spies, so their calls appear in the Actions panel.
+- **Theme from the toolbar.** Switch the Mantine color scheme, primary color and default radius. Stories can pin these with `globals`, as `Examples / Full form / Dark` does.
+- **Tests in the sidebar.** Stories use CSF Next (`preview.meta` / `meta.story`) and the `Story.test()` API, so each named test is listed under its story. The test widget runs interactions, accessibility checks and coverage in the browser, with watch mode.
+- **Generated docs.** Each component gets a docs page with what it wraps, an import snippet, links to Mantine and the source, and a props table, with react-hook-form props and events grouped separately.
+- **For coding agents.** The dev server serves an MCP endpoint at `http://localhost:6006/mcp` (`@storybook/addon-mcp`) with the component manifest and stories.
+- **Filter by tag.** `validation` marks stories with rules or a resolver; `example` marks full-form examples.
+
+Storybook's docgen reads prop types through the TypeScript compiler API, which TypeScript 7 doesn't provide. `.pnpmfile.cjs` gives the docgen packages TypeScript 6 while the project compiles with 7.
 
 ## Source map
 
@@ -91,6 +106,7 @@ pnpm build
 | `src/index.ts`     | Public export barrel.                                                   |
 | `example/`         | Vite demo form exercising the wrappers together.                        |
 | `.storybook/`      | Mantine provider, React Hook Form context, and Storybook configuration. |
+| `vitest.config.ts` | Unit and Storybook test projects.                                       |
 | `vite.config.ts`   | Library and declaration build configuration.                            |
 
 ## Status and license

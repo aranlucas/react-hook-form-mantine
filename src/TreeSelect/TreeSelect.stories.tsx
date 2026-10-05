@@ -1,14 +1,12 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { TreeSelect } from "./TreeSelect";
 
-export default {
-  title: "Components/TreeSelect",
+const meta = preview.meta({
+  title: "Combobox/TreeSelect",
   component: TreeSelect,
-} satisfies Meta<typeof TreeSelect>;
+});
 
-type Story = StoryObj<typeof TreeSelect>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "Pick a folder",
@@ -40,4 +38,4 @@ export const Primary: Story = {
       },
     },
   },
-};
+});

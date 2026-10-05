@@ -1,15 +1,13 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { NativeSelect } from "./NativeSelect";
 import { submitShowsError } from "../../.storybook/play";
 
-export default {
-  title: "Components/NativeSelect",
+const meta = preview.meta({
+  title: "Combobox/NativeSelect",
   component: NativeSelect,
-} satisfies Meta<typeof NativeSelect>;
+});
 
-type Story = StoryObj<typeof NativeSelect>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "Select your favorite framework/library",
@@ -23,9 +21,10 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithValidation: Story = {
+export const WithValidation = meta.story({
+  tags: ["validation"],
   args: {
     name: "test",
     label: "Required selection",
@@ -44,5 +43,6 @@ export const WithValidation: Story = {
       },
     },
   },
-  play: submitShowsError("Please select a framework"),
-};
+});
+
+WithValidation.test("shows the error on submit", submitShowsError("Please select a framework"));

@@ -1,0 +1,12 @@
+/*
+ * The a11y tests hold stories to WCAG AA contrast. Mantine colors weekend and outside-month
+ * days with lighter shades that fall short on white; its day styles use :where(), so these win.
+ */
+:root[data-mantine-color-scheme="light"] [data-weekend]:not([data-selected], [data-in-range]) {
+  color: var(--mantine-color-red-9);
+}
+
+:root[data-mantine-color-scheme="light"] [data-outside]:not([data-selected], [data-in-range]) {
+  color: #666d75;
+  opacity: 1;
+}

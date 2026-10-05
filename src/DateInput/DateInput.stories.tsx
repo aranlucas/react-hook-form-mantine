@@ -1,14 +1,12 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { DateInput } from "./DateInput";
 
-export default {
-  title: "Components/DateInput",
+const meta = preview.meta({
+  title: "Dates/DateInput",
   component: DateInput,
-} satisfies Meta<typeof DateInput>;
+});
 
-type Story = StoryObj<typeof DateInput>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "Pick a date",
@@ -23,9 +21,9 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithValue: Story = {
+export const WithValue = meta.story({
   args: {
     name: "test",
     label: "Date input",
@@ -39,4 +37,4 @@ export const WithValue: Story = {
       },
     },
   },
-};
+});

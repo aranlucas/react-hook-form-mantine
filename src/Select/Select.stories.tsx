@@ -1,15 +1,13 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { Select } from "./Select";
 import { submitShowsError } from "../../.storybook/play";
 
-export default {
-  title: "Components/Select",
+const meta = preview.meta({
+  title: "Combobox/Select",
   component: Select,
-} satisfies Meta<typeof Select>;
+});
 
-type Story = StoryObj<typeof Select>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "Your favorite framework/library",
@@ -29,9 +27,10 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithValidation: Story = {
+export const WithValidation = meta.story({
+  tags: ["validation"],
   args: {
     name: "test",
     label: "Required selection",
@@ -56,10 +55,11 @@ export const WithValidation: Story = {
       },
     },
   },
-  play: submitShowsError("Please select a framework"),
-};
+});
 
-export const Searchable: Story = {
+WithValidation.test("shows the error on submit", submitShowsError("Please select a framework"));
+
+export const Searchable = meta.story({
   args: {
     name: "test",
     label: "Searchable select",
@@ -80,4 +80,4 @@ export const Searchable: Story = {
       },
     },
   },
-};
+});

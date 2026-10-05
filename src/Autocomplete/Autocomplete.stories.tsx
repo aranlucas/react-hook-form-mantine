@@ -1,15 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { Autocomplete } from "./Autocomplete";
 import { submitShowsError } from "../../.storybook/play";
 
-export default {
-  title: "Components/Autocomplete",
+const meta = preview.meta({
+  title: "Combobox/Autocomplete",
   component: Autocomplete,
-} satisfies Meta<typeof Autocomplete>;
+});
 
-type Story = StoryObj<typeof Autocomplete>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "Your favorite framework",
@@ -24,9 +22,10 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithValidation: Story = {
+export const WithValidation = meta.story({
+  tags: ["validation"],
   args: {
     name: "test",
     label: "Required framework",
@@ -46,5 +45,6 @@ export const WithValidation: Story = {
       },
     },
   },
-  play: submitShowsError("Please select a framework"),
-};
+});
+
+WithValidation.test("shows the error on submit", submitShowsError("Please select a framework"));

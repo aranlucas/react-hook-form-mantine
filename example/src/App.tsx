@@ -168,9 +168,15 @@ export default function App() {
               control={control}
               placeholder="Pick color"
               label="Your favorite color"
+              eyeDropperButtonProps={{ "aria-label": "Pick a color from the screen" }}
             />
             <Input.Wrapper label="Accent color">
-              <ColorPicker name="colorPicker" control={control} />
+              <ColorPicker
+                name="colorPicker"
+                control={control}
+                saturationLabel="Accent saturation"
+                hueLabel="Accent hue"
+              />
             </Input.Wrapper>
             <DatePickerInput
               name="datePicker"
@@ -246,7 +252,14 @@ export default function App() {
               </Group>
             </Radio.Group>
             <Input.Wrapper label="Price range">
-              <RangeSlider name="rangeSlider" control={control} mt="xs" mb="md" />
+              <RangeSlider
+                name="rangeSlider"
+                control={control}
+                thumbFromLabel="Minimum price"
+                thumbToLabel="Maximum price"
+                mt="xs"
+                mb="md"
+              />
             </Input.Wrapper>
             <Input.Wrapper label="Rate this library">
               <Rating name="rating" control={control} mt="xs" />
@@ -272,6 +285,7 @@ export default function App() {
               <Slider
                 name="slider"
                 control={control}
+                thumbLabel="Volume"
                 mt="xs"
                 mb="md"
                 marks={[

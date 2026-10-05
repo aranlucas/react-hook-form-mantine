@@ -1,14 +1,12 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { Radio } from "./Radio";
 
-export default {
-  title: "Components/Radio",
+const meta = preview.meta({
+  title: "Toggles/Radio",
   component: Radio,
-} satisfies Meta<typeof Radio>;
+});
 
-type Story = StoryObj<typeof Radio>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "Select this option",
@@ -21,4 +19,4 @@ export const Primary: Story = {
       },
     },
   },
-};
+});

@@ -1,14 +1,16 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
+import { calendarAriaLabels } from "../../.storybook/a11y";
 import { DatePicker } from "./DatePicker";
 
-export default {
-  title: "Components/DatePicker",
+const meta = preview.meta({
+  title: "Dates/DatePicker",
   component: DatePicker,
-} satisfies Meta<typeof DatePicker>;
+  args: {
+    ariaLabels: calendarAriaLabels,
+  },
+});
 
-type Story = StoryObj<typeof DatePicker>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
   },
@@ -19,9 +21,9 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithValue: Story = {
+export const WithValue = meta.story({
   args: {
     name: "test",
     defaultDate: "2026-01-01",
@@ -33,4 +35,4 @@ export const WithValue: Story = {
       },
     },
   },
-};
+});

@@ -1,26 +1,24 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../../.storybook/preview";
 import { SwitchGroup } from "./SwitchGroup";
 import { Group } from "@mantine/core";
 import { Switch } from "../Switch";
 
-export default {
-  title: "Components/SwitchGroup",
+const meta = preview.meta({
+  title: "Toggles/SwitchGroup",
   component: SwitchGroup,
-} satisfies Meta<typeof SwitchGroup>;
-
-type StoryGroup = StoryObj<typeof SwitchGroup>;
-
-export const Primary: StoryGroup = {
-  render: (args) => (
-    <SwitchGroup {...args}>
+  args: {
+    children: (
       <Group mt="xs">
         <Switch.Item value="react" label="React" />
         <Switch.Item value="svelte" label="Svelte" />
         <Switch.Item value="ng" label="Angular" />
         <Switch.Item value="vue" label="Vue" />
       </Group>
-    </SwitchGroup>
-  ),
+    ),
+  },
+});
+
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "Select your favorite framework/library",
@@ -33,4 +31,4 @@ export const Primary: StoryGroup = {
       },
     },
   },
-};
+});

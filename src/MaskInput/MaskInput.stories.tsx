@@ -1,14 +1,12 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { MaskInput } from "./MaskInput";
 
-export default {
-  title: "Components/MaskInput",
+const meta = preview.meta({
+  title: "Inputs/MaskInput",
   component: MaskInput,
-} satisfies Meta<typeof MaskInput>;
+});
 
-type Story = StoryObj<typeof MaskInput>;
-
-export const PhoneNumber: Story = {
+export const PhoneNumber = meta.story({
   args: {
     name: "test",
     label: "Phone number",
@@ -23,9 +21,9 @@ export const PhoneNumber: Story = {
       },
     },
   },
-};
+});
 
-export const CreditCard: Story = {
+export const CreditCard = meta.story({
   args: {
     name: "test",
     label: "Credit card number",
@@ -40,4 +38,4 @@ export const CreditCard: Story = {
       },
     },
   },
-};
+});

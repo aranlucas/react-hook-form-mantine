@@ -1,14 +1,12 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { JsonInput } from "./JsonInput";
 
-export default {
-  title: "Components/JsonInput",
+const meta = preview.meta({
+  title: "Inputs/JsonInput",
   component: JsonInput,
-} satisfies Meta<typeof JsonInput>;
+});
 
-type Story = StoryObj<typeof JsonInput>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "Your package.json",
@@ -25,9 +23,9 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithValue: Story = {
+export const WithValue = meta.story({
   args: {
     name: "test",
     label: "JSON input",
@@ -42,4 +40,4 @@ export const WithValue: Story = {
       },
     },
   },
-};
+});

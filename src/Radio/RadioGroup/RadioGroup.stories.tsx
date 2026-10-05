@@ -1,27 +1,25 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../../.storybook/preview";
 import { RadioGroup } from "./RadioGroup";
 import { Group } from "@mantine/core";
 import { Radio } from "../Radio";
 import { submitShowsError } from "../../../.storybook/play";
 
-export default {
-  title: "Components/RadioGroup",
+const meta = preview.meta({
+  title: "Toggles/RadioGroup",
   component: RadioGroup,
-} satisfies Meta<typeof RadioGroup>;
-
-type Story = StoryObj<typeof RadioGroup>;
-
-export const Primary: Story = {
-  render: (args) => (
-    <RadioGroup {...args}>
+  args: {
+    children: (
       <Group mt="xs">
         <Radio.Item value="react" label="React" />
         <Radio.Item value="svelte" label="Svelte" />
         <Radio.Item value="ng" label="Angular" />
         <Radio.Item value="vue" label="Vue" />
       </Group>
-    </RadioGroup>
-  ),
+    ),
+  },
+});
+
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "Select your favorite framework/library",
@@ -34,19 +32,10 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithValidation: Story = {
-  render: (args) => (
-    <RadioGroup {...args}>
-      <Group mt="xs">
-        <Radio.Item value="react" label="React" />
-        <Radio.Item value="svelte" label="Svelte" />
-        <Radio.Item value="ng" label="Angular" />
-        <Radio.Item value="vue" label="Vue" />
-      </Group>
-    </RadioGroup>
-  ),
+export const WithValidation = meta.story({
+  tags: ["validation"],
   args: {
     name: "test",
     label: "Pick a framework",
@@ -64,5 +53,6 @@ export const WithValidation: Story = {
       },
     },
   },
-  play: submitShowsError("Please select a framework"),
-};
+});
+
+WithValidation.test("shows the error on submit", submitShowsError("Please select a framework"));

@@ -1,20 +1,21 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { Stack } from "@mantine/core";
 import { HueSlider } from "./HueSlider";
 
-export default {
-  title: "Components/HueSlider",
+const meta = preview.meta({
+  title: "Color/HueSlider",
   component: HueSlider,
+  args: {
+    "aria-label": "Hue",
+  },
   render: (args) => (
     <Stack>
       <HueSlider {...args} />
     </Stack>
   ),
-} satisfies Meta<typeof HueSlider>;
+});
 
-type Story = StoryObj<typeof HueSlider>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
   },
@@ -25,4 +26,4 @@ export const Primary: Story = {
       },
     },
   },
-};
+});

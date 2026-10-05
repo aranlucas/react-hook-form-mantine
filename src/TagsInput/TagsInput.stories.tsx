@@ -1,14 +1,12 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { TagsInput } from "./TagsInput";
 
-export default {
-  title: "Components/TagsInput",
+const meta = preview.meta({
+  title: "Combobox/TagsInput",
   component: TagsInput,
-} satisfies Meta<typeof TagsInput>;
+});
 
-type Story = StoryObj<typeof TagsInput>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "Tags",
@@ -23,9 +21,9 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const Empty: Story = {
+export const Empty = meta.story({
   args: {
     name: "test",
     label: "Tags input",
@@ -39,4 +37,4 @@ export const Empty: Story = {
       },
     },
   },
-};
+});
