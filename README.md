@@ -89,7 +89,7 @@ pnpm build
 
 `pnpm storybook` opens the component workshop on port 6006; `pnpm build-storybook` produces the static site. GitHub Pages serves the `gh-pages` branch: main's Storybook at the root, and every same-repository pull request's at `/pr-preview/pr-<number>/`, linked from a comment on the pull request and removed when it closes.
 
-- **Every story is a real form.** A form state panel under each story shows values, errors, touched and dirty fields, and the submit result. `onChange` and `onBlur` are `fn()` spies, so their calls appear in the Actions panel.
+- **Every story is a real form.** Components render in a form card with Reset and Submit. A **Form** addon panel (`.storybook/form-addon/`) shows each field's value, dirty, touched and error state, the raw values and errors, and the submit result, with its own Reset and Submit. `onChange` and `onBlur` are `fn()` spies, so their calls appear in the Actions panel.
 - **Theme from the toolbar.** Switch the Mantine color scheme, primary color and default radius. Stories can pin these with `globals`, as `Examples / Full form / Dark` does.
 - **Tests in the sidebar.** Stories use CSF Next (`preview.meta` / `meta.story`) and the `Story.test()` API, so each named test is listed under its story. The test widget runs interactions, accessibility checks and coverage in the browser, with watch mode.
 - **Generated docs.** Each component gets a docs page with what it wraps, an import snippet, links to Mantine and the source, and a props table, with react-hook-form props and events grouped separately.

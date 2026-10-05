@@ -88,12 +88,13 @@ export default definePreview({
   // Storybook applies decorators inside-out: every story gets Mantine, and component
   // stories also get a form. Stories that render their own <form> set `form: false`.
   decorators: [
-    (Story, { args, parameters }) =>
+    (Story, { args, id, parameters }) =>
       parameters.form === false ? (
         <Story />
       ) : (
         <StoryForm
           {...parameters.form}
+          storyId={id}
           defaultValues={{
             ...(args.name && { [args.name]: args[args.name] }),
             ...parameters.form?.defaultValues,

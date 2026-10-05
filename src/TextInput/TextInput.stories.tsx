@@ -33,8 +33,8 @@ Primary.test(
 
     await expect(args.onChange).toHaveBeenCalledTimes(3);
     await expect(args.onBlur).toHaveBeenCalledOnce();
-    await expect(canvas.getByText(/"test": "Ada"/)).toBeVisible();
-    await expect(canvas.getByText("1 touched")).toBeVisible();
+    await expect(input).toHaveValue("Ada");
+    await expect(canvas.getByRole("status")).toHaveTextContent("Unsaved changes");
   },
 );
 
@@ -88,7 +88,7 @@ WithValidation.test("submits a valid value", async ({ canvas, userEvent }) => {
   await userEvent.type(canvas.getByRole("textbox", { name: "Email" }), "ada@example.com");
   await userEvent.click(canvas.getByRole("button", { name: "Submit" }));
 
-  await expect(await canvas.findByText("onSubmit result")).toBeVisible();
+  await expect(canvas.getByRole("status")).toHaveTextContent("Submitted");
   await expect(canvas.queryByText("Invalid email address")).not.toBeInTheDocument();
 });
 

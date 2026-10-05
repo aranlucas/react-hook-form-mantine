@@ -72,7 +72,7 @@ const tips: { title: string; body: ReactNode }[] = [
   },
   {
     title: "Watch the form state",
-    body: "Each story renders inside a real form. The panel under it shows values, errors and the submit result as you type.",
+    body: "Each story renders inside a real form. The Form panel shows every field's value, dirty, touched and error state, plus the submit result, and can reset or submit the form.",
   },
   {
     title: "Run the tests here",
