@@ -9,7 +9,7 @@ export type DateTimePickerProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$DateTimePickerProps, "value" | "defaultValue">;
 
 export function DateTimePicker<T extends FieldValues>(props: DateTimePickerProps<T>) {
-  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
   return <$DateTimePicker {...field} error={fieldState.error?.message} {...inputProps} />;
 }

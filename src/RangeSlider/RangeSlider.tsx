@@ -9,7 +9,7 @@ export type RangeSliderProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$RangeSliderProps, "value" | "defaultValue">;
 
 export function RangeSlider<T extends FieldValues>(props: RangeSliderProps<T>) {
-  const { field, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, props: inputProps } = useFieldController(props);
 
   return <$RangeSlider {...field} {...inputProps} />;
 }

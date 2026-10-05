@@ -8,7 +8,7 @@ export type RadioProps<T extends FieldValues> = UseControllerProps<T> &
 
 /** Standalone radio input with react-hook-form controller. For use inside `RadioGroup`, use `Radio.Item` to avoid double controller registration. */
 export function Radio<T extends FieldValues>(props: RadioProps<T>) {
-  const { field, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, props: inputProps } = useFieldController(props);
 
   return <$Radio {...field} {...inputProps} />;
 }

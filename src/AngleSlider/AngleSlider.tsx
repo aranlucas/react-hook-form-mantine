@@ -9,7 +9,7 @@ export type AngleSliderProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$AngleSliderProps, "value" | "defaultValue">;
 
 export function AngleSlider<T extends FieldValues>(props: AngleSliderProps<T>) {
-  const { field, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, props: inputProps } = useFieldController(props);
 
   return <$AngleSlider {...field} {...inputProps} />;
 }

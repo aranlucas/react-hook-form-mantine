@@ -10,7 +10,7 @@ export type DatePickerInputProps<T extends FieldValues> = UseControllerProps<T> 
   Omit<$DatePickerInputProps<DatePickerType>, "value" | "defaultValue">;
 
 export function DatePickerInput<T extends FieldValues>(props: DatePickerInputProps<T>) {
-  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
   return <$DatePickerInput {...field} error={fieldState.error?.message} {...inputProps} />;
 }

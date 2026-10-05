@@ -6,7 +6,7 @@ export type SliderProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$SliderProps, "value" | "defaultValue">;
 
 export function Slider<T extends FieldValues>(props: SliderProps<T>) {
-  const { field, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, props: inputProps } = useFieldController(props);
 
   return <$Slider {...field} {...inputProps} />;
 }

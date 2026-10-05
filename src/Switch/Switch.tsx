@@ -11,7 +11,7 @@ export function Switch<T extends FieldValues>(props: SwitchProps<T>) {
     field: { value, ...field },
     fieldState,
     props: inputProps,
-  } = useFieldController<T, typeof props>(props);
+  } = useFieldController(props);
 
   return <$Switch checked={value} {...field} error={fieldState.error?.message} {...inputProps} />;
 }

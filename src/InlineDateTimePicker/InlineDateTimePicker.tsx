@@ -9,7 +9,7 @@ export type InlineDateTimePickerProps<T extends FieldValues> = UseControllerProp
   Omit<$InlineDateTimePickerProps, "value" | "defaultValue">;
 
 export function InlineDateTimePicker<T extends FieldValues>(props: InlineDateTimePickerProps<T>) {
-  const { field, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, props: inputProps } = useFieldController(props);
 
   return <$InlineDateTimePicker {...field} {...inputProps} />;
 }

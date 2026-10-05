@@ -7,7 +7,7 @@ export type RadioGroupProps<T extends FieldValues> = UseControllerProps<T> &
 
 /** Radio group that manages selection state via react-hook-form. Children should use `Radio.Item` (raw Mantine Radio), not the wrapped `Radio` component. */
 export function RadioGroup<T extends FieldValues>(props: RadioGroupProps<T>) {
-  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
   return <$RadioGroup {...field} error={fieldState.error?.message} {...inputProps} />;
 }

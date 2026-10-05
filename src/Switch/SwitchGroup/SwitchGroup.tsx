@@ -9,7 +9,7 @@ export type SwitchGroupProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$SwitchGroupProps, "value" | "checked" | "defaultValue">;
 
 export function SwitchGroup<T extends FieldValues>(props: SwitchGroupProps<T>) {
-  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
   return <$SwitchGroup {...field} error={fieldState.error?.message} {...inputProps} />;
 }

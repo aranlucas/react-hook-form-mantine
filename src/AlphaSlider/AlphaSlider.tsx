@@ -9,7 +9,7 @@ export type AlphaSliderProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$AlphaSliderProps, "value" | "defaultValue">;
 
 export function AlphaSlider<T extends FieldValues>(props: AlphaSliderProps<T>) {
-  const { field, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, props: inputProps } = useFieldController(props);
 
   return <$AlphaSlider {...field} {...inputProps} />;
 }

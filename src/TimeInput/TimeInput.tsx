@@ -6,7 +6,7 @@ export type TimeInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$TimeInputProps, "value" | "defaultValue">;
 
 export function TimeInput<T extends FieldValues>(props: TimeInputProps<T>) {
-  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
   return <$TimeInput {...field} error={fieldState.error?.message} {...inputProps} />;
 }

@@ -7,7 +7,7 @@ export type ChipGroupProps<T extends FieldValues> = UseControllerProps<T> &
 
 /** Chip group that manages selection state via react-hook-form. Children should use `Chip.Item` (raw Mantine Chip), not the wrapped `Chip` component. */
 export const ChipGroup = <T extends FieldValues>(props: ChipGroupProps<T>) => {
-  const { field, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, props: inputProps } = useFieldController(props);
 
   return <$ChipGroup {...field} {...inputProps} />;
 };

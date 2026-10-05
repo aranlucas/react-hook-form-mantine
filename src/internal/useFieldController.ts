@@ -8,7 +8,8 @@ import {
   useController,
 } from "react-hook-form";
 
-type FieldProps<T extends FieldValues> = UseControllerProps<T> & {
+type FieldHandlers = {
+  disabled?: boolean;
   onBlur?: (...args: any[]) => void;
   onChange?: (...args: any[]) => void;
   ref?: Ref<any>;
@@ -21,8 +22,8 @@ type ControllerKeys = "name" | "control" | "defaultValue" | "rules" | "shouldUnr
  * user's `onChange`, `onBlur` and `ref` are composed into `field` so they cannot replace form
  * bookkeeping when the remaining props are spread after it.
  */
-export function useFieldController<T extends FieldValues, P extends FieldProps<T>>(
-  props: P,
+export function useFieldController<T extends FieldValues, P extends FieldHandlers>(
+  props: P & UseControllerProps<T>,
 ): UseControllerReturn<T> & {
   props: Omit<P, ControllerKeys | "onBlur" | "onChange" | "ref">;
 } {

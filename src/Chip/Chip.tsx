@@ -11,7 +11,7 @@ export const Chip = <T extends FieldValues>(props: ChipProps<T>) => {
   const {
     field: { value, ...field },
     props: inputProps,
-  } = useFieldController<T, typeof props>(props);
+  } = useFieldController(props);
 
   return <$Chip checked={value} {...field} {...inputProps} />;
 };

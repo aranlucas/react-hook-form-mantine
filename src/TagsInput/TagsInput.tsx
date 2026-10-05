@@ -6,7 +6,7 @@ export type TagsInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$TagsInputProps, "value" | "defaultValue">;
 
 export function TagsInput<T extends FieldValues>(props: TagsInputProps<T>) {
-  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
   return <$TagsInput {...field} error={fieldState.error?.message} {...inputProps} />;
 }

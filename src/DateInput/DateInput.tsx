@@ -6,7 +6,7 @@ export type DateInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$DateInputProps, "value" | "defaultValue">;
 
 export function DateInput<T extends FieldValues>(props: DateInputProps<T>) {
-  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
   return <$DateInput {...field} error={fieldState.error?.message} {...inputProps} />;
 }

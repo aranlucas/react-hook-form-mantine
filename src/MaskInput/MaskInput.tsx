@@ -6,7 +6,7 @@ export type MaskInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$MaskInputProps, "value" | "defaultValue">;
 
 export function MaskInput<T extends FieldValues>(props: MaskInputProps<T>) {
-  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
   return <$MaskInput {...field} error={fieldState.error?.message} {...inputProps} />;
 }

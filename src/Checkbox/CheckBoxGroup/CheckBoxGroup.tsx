@@ -10,7 +10,7 @@ export type CheckboxGroupProps<T extends FieldValues> = UseControllerProps<T> &
 
 /** Checkbox group that manages selection state via react-hook-form. Children should use `Checkbox.Item` (raw Mantine Checkbox), not the wrapped `Checkbox` component. */
 export const CheckboxGroup = <T extends FieldValues>(props: CheckboxGroupProps<T>) => {
-  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
   return <$CheckboxGroup {...field} error={fieldState.error?.message} {...inputProps} />;
 };

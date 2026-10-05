@@ -6,7 +6,7 @@ export type RatingProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$RatingProps, "value" | "defaultValue">;
 
 export function Rating<T extends FieldValues>(props: RatingProps<T>) {
-  const { field, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, props: inputProps } = useFieldController(props);
 
   return <$Rating {...field} {...inputProps} />;
 }

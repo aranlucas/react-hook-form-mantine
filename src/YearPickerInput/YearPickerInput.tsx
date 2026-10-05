@@ -10,7 +10,7 @@ export type YearPickerInputProps<T extends FieldValues> = UseControllerProps<T> 
   Omit<$YearPickerInputProps<DatePickerType>, "value" | "defaultValue">;
 
 export function YearPickerInput<T extends FieldValues>(props: YearPickerInputProps<T>) {
-  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
   return <$YearPickerInput {...field} error={fieldState.error?.message} {...inputProps} />;
 }

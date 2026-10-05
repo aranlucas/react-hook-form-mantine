@@ -9,7 +9,7 @@ export type NativeSelectProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$NativeSelectProps, "value" | "defaultValue">;
 
 export function NativeSelect<T extends FieldValues>(props: NativeSelectProps<T>) {
-  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
   return <$NativeSelect {...field} error={fieldState.error?.message} {...inputProps} />;
 }

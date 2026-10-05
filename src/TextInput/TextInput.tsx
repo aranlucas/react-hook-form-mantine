@@ -6,7 +6,7 @@ export type TextInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$TextInputProps, "value" | "defaultValue">;
 
 export function TextInput<T extends FieldValues>(props: TextInputProps<T>) {
-  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
   return <$TextInput {...field} error={fieldState.error?.message} {...inputProps} />;
 }

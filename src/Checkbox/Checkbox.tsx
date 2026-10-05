@@ -12,7 +12,7 @@ export const Checkbox = <T extends FieldValues>(props: CheckboxProps<T>) => {
     field: { value, ...field },
     fieldState,
     props: inputProps,
-  } = useFieldController<T, typeof props>(props);
+  } = useFieldController(props);
 
   return <$Checkbox checked={value} {...field} error={fieldState.error?.message} {...inputProps} />;
 };

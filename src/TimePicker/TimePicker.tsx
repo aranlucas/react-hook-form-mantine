@@ -9,7 +9,7 @@ export type TimePickerProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$TimePickerProps, "value" | "defaultValue">;
 
 export function TimePicker<T extends FieldValues>(props: TimePickerProps<T>) {
-  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
   return <$TimePicker {...field} error={fieldState.error?.message} {...inputProps} />;
 }

@@ -6,7 +6,7 @@ export type ColorInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$ColorInputProps, "value" | "defaultValue">;
 
 export function ColorInput<T extends FieldValues>(props: ColorInputProps<T>) {
-  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
   return <$ColorInput {...field} error={fieldState.error?.message} {...inputProps} />;
 }

@@ -6,7 +6,7 @@ export type FileInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$FileInputProps, "value" | "defaultValue">;
 
 export function FileInput<T extends FieldValues>(props: FileInputProps<T>) {
-  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
   return <$FileInput {...field} error={fieldState.error?.message} {...inputProps} />;
 }

@@ -6,7 +6,7 @@ export type PinInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$PinInputProps, "value" | "defaultValue">;
 
 export function PinInput<T extends FieldValues>(props: PinInputProps<T>) {
-  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
   return <$PinInput {...field} error={!!fieldState.error} {...inputProps} />;
 }

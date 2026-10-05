@@ -9,7 +9,7 @@ export type SegmentedControlProps<T extends FieldValues> = UseControllerProps<T>
   Omit<$SegmentedControlProps, "values" | "defaultValues">;
 
 export function SegmentedControl<T extends FieldValues>(props: SegmentedControlProps<T>) {
-  const { field, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, props: inputProps } = useFieldController(props);
 
   return <$SegmentedControl {...field} {...inputProps} />;
 }

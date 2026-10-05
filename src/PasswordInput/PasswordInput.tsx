@@ -9,7 +9,7 @@ export type PasswordInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$PasswordInputProps, "value" | "defaultValue">;
 
 export function PasswordInput<T extends FieldValues>(props: PasswordInputProps<T>) {
-  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
+  const { field, fieldState, props: inputProps } = useFieldController(props);
 
   return <$PasswordInput {...field} error={fieldState.error?.message} {...inputProps} />;
 }
