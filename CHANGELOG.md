@@ -1,3 +1,12 @@
+## [4.0.2](https://github.com/aranlucas/react-hook-form-mantine/compare/v4.0.1...v4.0.2) (2026-10-05)
+
+
+### Bug Fixes
+
+* keep pnpm 12 lockfiles compatible with Vercel ([#43](https://github.com/aranlucas/react-hook-form-mantine/issues/43)) ([930e4a6](https://github.com/aranlucas/react-hook-form-mantine/commit/930e4a6c7a9299b3e453a7bf134f91ea8e1ee140))
+* merge user refs and compose controller props in useFieldController ([#67](https://github.com/aranlucas/react-hook-form-mantine/issues/67)) ([870aeff](https://github.com/aranlucas/react-hook-form-mantine/commit/870aeffc4077a102eee7997f8b5d07def5c483d1))
+* preserve form lifecycle in Mantine wrappers ([#65](https://github.com/aranlucas/react-hook-form-mantine/issues/65)) ([0869c6f](https://github.com/aranlucas/react-hook-form-mantine/commit/0869c6f280f5a6f4fdb2f567031ac937c9e786ab))
+
 ## [4.0.1](https://github.com/aranlucas/react-hook-form-mantine/compare/v4.0.0...v4.0.1) (2026-07-03)
 
 
