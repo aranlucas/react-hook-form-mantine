@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/aranlucas/react-hook-form-mantine/compare/v4.0.3...v4.1.0) (2026-10-05)
+
+
+### Features
+
+* **storybook:** rebuild Storybook on 10.6 with docs, tests, theming and PR previews ([#71](https://github.com/aranlucas/react-hook-form-mantine/issues/71)) ([06aa648](https://github.com/aranlucas/react-hook-form-mantine/commit/06aa6481a32538151d212224dcb1652e842212c9)), closes [#pages](https://github.com/aranlucas/react-hook-form-mantine/issues/pages) [#pages](https://github.com/aranlucas/react-hook-form-mantine/issues/pages)
+
 ## [4.0.3](https://github.com/aranlucas/react-hook-form-mantine/compare/v4.0.2...v4.0.3) (2026-10-05)
 
 
