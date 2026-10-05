@@ -1,5 +1,8 @@
 import { type Meta, type StoryObj } from "@storybook/react";
 import { SegmentedControl } from "./SegmentedControl";
+import { submitShowsError } from "../../.storybook/play";
+import { Input } from "@mantine/core";
+import { useFormContext } from "react-hook-form";
 
 export default {
   title: "Components/SegmentedControl",
@@ -49,4 +52,17 @@ export const WithValidation: Story = {
       },
     },
   },
+  // SegmentedControl has no error prop, so the story renders the message itself.
+  render: function Render(args) {
+    const { formState, getFieldState } = useFormContext();
+    const { error } = getFieldState(args.name, formState);
+
+    return (
+      <>
+        <SegmentedControl {...args} />
+        {error && <Input.Error mt={5}>{error.message}</Input.Error>}
+      </>
+    );
+  },
+  play: submitShowsError("Please select an option"),
 };

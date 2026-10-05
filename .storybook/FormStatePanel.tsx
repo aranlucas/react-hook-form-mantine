@@ -1,24 +1,23 @@
 import { Badge, Button, Card, Code, Group, Stack, Text } from "@mantine/core";
-import { useState } from "react";
 import { useFormContext, useFormState, useWatch } from "react-hook-form";
 
-export const FormStatePanel = () => {
+type FormStatePanelProps = {
+  /** Values from the last successful submit, or null. */
+  submitted: unknown;
+  onReset: () => void;
+};
+
+export const FormStatePanel = ({ submitted, onReset }: FormStatePanelProps) => {
   const { control, reset } = useFormContext();
-  const [lastResult, setLastResult] = useState<unknown>(null);
   const values = useWatch({ control });
 
   const { isDirty, isValid, errors, touchedFields, dirtyFields } = useFormState({
     control,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setLastResult(values);
-  };
-
   const handleReset = () => {
     reset();
-    setLastResult(null);
+    onReset();
   };
 
   const errorCount = Object.keys(errors).length;
@@ -61,7 +60,7 @@ export const FormStatePanel = () => {
           <Button size="compact-xs" variant="light" onClick={handleReset}>
             Reset
           </Button>
-          <Button size="compact-xs" variant="filled" onClick={handleSubmit} disabled={!isValid}>
+          <Button size="compact-xs" variant="filled" type="submit">
             Submit
           </Button>
         </Group>
@@ -85,13 +84,13 @@ export const FormStatePanel = () => {
             </Code>
           </div>
         )}
-        {lastResult !== null && (
+        {submitted !== null && (
           <div>
             <Text size="xs" fw={500} c="green">
               onSubmit result
             </Text>
             <Code block fz="xs" color="teal">
-              {JSON.stringify(lastResult, null, 2)}
+              {JSON.stringify(submitted, null, 2)}
             </Code>
           </div>
         )}

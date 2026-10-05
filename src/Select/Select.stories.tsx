@@ -1,5 +1,6 @@
 import { type Meta, type StoryObj } from "@storybook/react";
 import { Select } from "./Select";
+import { submitShowsError } from "../../.storybook/play";
 
 export default {
   title: "Components/Select",
@@ -55,6 +56,7 @@ export const WithValidation: Story = {
       },
     },
   },
+  play: submitShowsError("Please select a framework"),
 };
 
 export const Searchable: Story = {

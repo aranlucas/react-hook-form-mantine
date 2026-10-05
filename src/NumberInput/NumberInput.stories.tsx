@@ -1,5 +1,6 @@
 import { type Meta, type StoryObj } from "@storybook/react";
 import { NumberInput } from "./NumberInput";
+import { submitShowsError } from "../../.storybook/play";
 
 export default {
   title: "Components/NumberInput",
@@ -43,8 +44,9 @@ export const WithValidation: Story = {
   parameters: {
     form: {
       defaultValues: {
-        test: 1,
+        test: "",
       },
     },
   },
+  play: submitShowsError("Quantity is required"),
 };

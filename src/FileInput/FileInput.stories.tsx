@@ -1,5 +1,6 @@
 import { type Meta, type StoryObj } from "@storybook/react";
 import { FileInput } from "./FileInput";
+import { submitShowsError } from "../../.storybook/play";
 
 export default {
   title: "Components/FileInput",
@@ -45,4 +46,5 @@ export const WithValidation: Story = {
       },
     },
   },
+  play: submitShowsError("File is required"),
 };

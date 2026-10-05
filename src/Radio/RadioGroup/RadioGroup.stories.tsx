@@ -2,6 +2,7 @@ import { type Meta, type StoryObj } from "@storybook/react";
 import { RadioGroup } from "./RadioGroup";
 import { Group } from "@mantine/core";
 import { Radio } from "../Radio";
+import { submitShowsError } from "../../../.storybook/play";
 
 export default {
   title: "Components/RadioGroup",
@@ -63,4 +64,5 @@ export const WithValidation: Story = {
       },
     },
   },
+  play: submitShowsError("Please select a framework"),
 };

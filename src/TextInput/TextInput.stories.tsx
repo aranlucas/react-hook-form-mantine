@@ -1,4 +1,5 @@
 import { type Meta, type StoryObj } from "@storybook/react";
+import { expect, userEvent, within } from "storybook/test";
 import { TextInput } from "./TextInput";
 
 export default {
@@ -46,5 +47,22 @@ export const WithValidation: Story = {
         test: "",
       },
     },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByRole("textbox", { name: "Email" });
+    const submit = canvas.getByRole("button", { name: "Submit" });
+
+    await userEvent.click(submit);
+    await expect(await canvas.findByText("Email is required")).toBeVisible();
+    await expect(input).toHaveFocus();
+
+    await userEvent.type(input, "not-an-email");
+    await expect(await canvas.findByText("Invalid email address")).toBeVisible();
+
+    await userEvent.clear(input);
+    await userEvent.type(input, "ada@example.com");
+    await userEvent.click(submit);
+    await expect(await canvas.findByText("onSubmit result")).toBeVisible();
   },
 };

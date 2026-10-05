@@ -2,6 +2,7 @@ import { Group } from "@mantine/core";
 import { type Meta, type StoryObj } from "@storybook/react";
 import { CheckboxGroup } from "./CheckBoxGroup";
 import { Checkbox } from "../Checkbox";
+import { submitShowsError } from "../../../.storybook/play";
 
 type StoryGroup = StoryObj<typeof CheckboxGroup>;
 
@@ -63,4 +64,5 @@ export const WithValidation: StoryGroup = {
       },
     },
   },
+  play: submitShowsError("Please select at least one option"),
 };

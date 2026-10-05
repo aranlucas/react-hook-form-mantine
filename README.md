@@ -65,9 +65,9 @@ The published package is ESM (`4.0.1`). Its peer dependencies are:
 
 ## What is covered
 
-The package exports wrappers for Mantine text and password inputs, textarea, number and mask inputs, checkbox/radio/switch/chip groups, select/autocomplete/multi-select, color and JSON inputs, date/month/year/time pickers, sliders, rating, segmented control, tags, file and PIN inputs, and related groups. The generated barrel at [`src/index.ts`](src/index.ts) is the complete export list.
+The package exports wrappers for Mantine text and password inputs, textarea, number and mask inputs, checkbox/radio/switch/chip groups, select/autocomplete/multi-select, color and JSON inputs, date/month/year/time pickers, sliders, rating, segmented control, tags, file and PIN inputs, and related groups. The barrel at [`src/index.ts`](src/index.ts) is the complete export list.
 
-Try the full form in [`example/src/App.tsx`](example/src/App.tsx), browse the [deployed demo](https://aranlucas.github.io/react-hook-form-mantine), or inspect the Storybook stories in `src/**/*.stories.tsx`.
+Try the full form in [`example/src/App.tsx`](example/src/App.tsx) (also in Storybook under **Examples / Full form**), browse the [deployed demo](https://aranlucas.github.io/react-hook-form-mantine), or inspect the Storybook stories in `src/**/*.stories.tsx`.
 
 ## Development
 
@@ -81,14 +81,14 @@ pnpm test --run
 pnpm build
 ```
 
-`pnpm format` is the repository’s check command; `pnpm format:fix` writes formatting. Use `pnpm storybook` to explore the component stories locally and `pnpm build-storybook` to produce the static Storybook build. CI runs formatting, linting, type checking, tests, and the library build on Node 24.
+`pnpm format` is the repository’s check command; `pnpm format:fix` writes formatting. Use `pnpm storybook` to explore the component stories locally and `pnpm build-storybook` to produce the static Storybook build. `pnpm test` also renders every story and runs its `play` function, so a broken story fails the test suite. CI runs formatting, linting, type checking, tests, and the library build on Node 24.
 
 ## Source map
 
 | Path               | Responsibility                                                          |
 | ------------------ | ----------------------------------------------------------------------- |
 | `src/<Component>/` | Mantine wrapper, tests, and Storybook story for each control.           |
-| `src/index.ts`     | Generated public export barrel.                                         |
+| `src/index.ts`     | Public export barrel.                                                   |
 | `example/`         | Vite demo form exercising the wrappers together.                        |
 | `.storybook/`      | Mantine provider, React Hook Form context, and Storybook configuration. |
 | `vite.config.ts`   | Library and declaration build configuration.                            |

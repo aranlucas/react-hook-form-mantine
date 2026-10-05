@@ -1,5 +1,6 @@
 import { type Meta, type StoryObj } from "@storybook/react";
 import { Textarea } from "./Textarea";
+import { submitShowsError } from "../../.storybook/play";
 
 export default {
   title: "Components/Textarea",
@@ -50,4 +51,5 @@ export const WithValidation: Story = {
       },
     },
   },
+  play: submitShowsError("Comment is required"),
 };

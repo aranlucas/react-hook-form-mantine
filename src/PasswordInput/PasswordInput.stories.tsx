@@ -1,5 +1,6 @@
 import { type Meta, type StoryObj } from "@storybook/react";
 import { PasswordInput } from "./PasswordInput";
+import { submitShowsError } from "../../.storybook/play";
 
 export default {
   title: "Components/PasswordInput",
@@ -48,4 +49,5 @@ export const WithValidation: Story = {
       },
     },
   },
+  play: submitShowsError("Password is required"),
 };

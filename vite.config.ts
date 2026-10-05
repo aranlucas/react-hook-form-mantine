@@ -49,5 +49,9 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: "./src/test/setupTests.ts",
+    // Lets the example's stories import the package by name in the story tests.
+    alias: {
+      "react-hook-form-mantine": new URL("./src/index.ts", import.meta.url).pathname,
+    },
   },
 });

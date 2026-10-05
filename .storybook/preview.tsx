@@ -1,8 +1,10 @@
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 import { Box, MantineProvider } from "@mantine/core";
+import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import type { Preview } from "@storybook/react";
+import { action } from "storybook/actions";
 import { FormStatePanel } from "./FormStatePanel";
 
 const preview: Preview = {
@@ -21,21 +23,35 @@ const preview: Preview = {
         mode: parameters?.form?.mode ?? "onChange",
       });
 
+      const [submitted, setSubmitted] = useState<unknown>(null);
+
+      // Stories that bring their own form (such as the full example) opt out with `form: false`.
+      if (parameters?.form === false) {
+        return (
+          <MantineProvider>
+            <Story />
+          </MantineProvider>
+        );
+      }
+
       return (
         <MantineProvider>
           <FormProvider {...methods}>
             <Box
               component="form"
               id="hook-form"
+              noValidate
+              // A real submit, so validation runs and the first invalid field is focused.
               onSubmit={methods.handleSubmit((data) => {
+                setSubmitted(data);
                 parameters?.form?.onSubmit?.(data);
-                console.log("[Storybook onSubmit]", data);
+                action("onSubmit")(data);
               })}
               p="md"
               maw={500}
             >
               <Story />
-              <FormStatePanel />
+              <FormStatePanel submitted={submitted} onReset={() => setSubmitted(null)} />
             </Box>
           </FormProvider>
         </MantineProvider>
