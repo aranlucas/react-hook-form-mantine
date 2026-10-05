@@ -8,11 +8,13 @@ import {
   useController,
 } from "react-hook-form";
 
+// `never[]` accepts any handler signature without `any`: parameters are contravariant, so every
+// function is assignable to one that takes `never`. The precise signature comes back through P.
 type FieldHandlers = {
   disabled?: boolean;
-  onBlur?: (...args: any[]) => void;
-  onChange?: (...args: any[]) => void;
-  ref?: Ref<any>;
+  onBlur?: (...args: never[]) => void;
+  onChange?: (...args: never[]) => void;
+  ref?: Ref<unknown>;
 };
 
 type ControllerKeys = "name" | "control" | "defaultValue" | "rules" | "shouldUnregister" | "exact";
