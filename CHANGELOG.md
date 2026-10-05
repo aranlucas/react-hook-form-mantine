@@ -1,3 +1,10 @@
+## [4.0.3](https://github.com/aranlucas/react-hook-form-mantine/compare/v4.0.2...v4.0.3) (2026-10-05)
+
+
+### Bug Fixes
+
+* **ci:** deploy Storybook from main and quiet picker test warnings ([#68](https://github.com/aranlucas/react-hook-form-mantine/issues/68)) ([7046d60](https://github.com/aranlucas/react-hook-form-mantine/commit/7046d609fe051242fbe7b7ce408a6c0c5bf3d719))
+
 ## [4.0.2](https://github.com/aranlucas/react-hook-form-mantine/compare/v4.0.1...v4.0.2) (2026-10-05)
 
 

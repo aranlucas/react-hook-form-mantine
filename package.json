@@ -1,6 +1,6 @@
 {
   "name": "react-hook-form-mantine",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "React hook form wrapper for Mantine components",
   "keywords": [
     "form-validation",
