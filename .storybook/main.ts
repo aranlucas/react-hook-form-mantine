@@ -9,9 +9,6 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {},
   },
-  docs: {
-    autodocs: "tag",
-  },
   viteFinal: (config) =>
     mergeConfig(config, {
       build: {
