@@ -1,14 +1,15 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { ColorInput } from "./ColorInput";
 
-export default {
-  title: "Components/ColorInput",
+const meta = preview.meta({
+  title: "Color/ColorInput",
   component: ColorInput,
-} satisfies Meta<typeof ColorInput>;
+  args: {
+    eyeDropperButtonProps: { "aria-label": "Pick a color from the screen" },
+  },
+});
 
-type Story = StoryObj<typeof ColorInput>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "Pick a color",
@@ -22,9 +23,9 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const Empty: Story = {
+export const Empty = meta.story({
   args: {
     name: "test",
     label: "Color input",
@@ -37,4 +38,4 @@ export const Empty: Story = {
       },
     },
   },
-};
+});

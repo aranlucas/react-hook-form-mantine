@@ -1,15 +1,13 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { NumberInput } from "./NumberInput";
 import { submitShowsError } from "../../.storybook/play";
 
-export default {
-  title: "Components/NumberInput",
+const meta = preview.meta({
+  title: "Inputs/NumberInput",
   component: NumberInput,
-} satisfies Meta<typeof NumberInput>;
+});
 
-type Story = StoryObj<typeof NumberInput>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     placeholder: "Your age",
@@ -25,9 +23,10 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithValidation: Story = {
+export const WithValidation = meta.story({
+  tags: ["validation"],
   args: {
     name: "test",
     placeholder: "Quantity",
@@ -48,5 +47,6 @@ export const WithValidation: Story = {
       },
     },
   },
-  play: submitShowsError("Quantity is required"),
-};
+});
+
+WithValidation.test("shows the error on submit", submitShowsError("Quantity is required"));

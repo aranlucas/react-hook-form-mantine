@@ -1,15 +1,13 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../../.storybook/preview";
 import { ChipGroup } from "./ChipGroup";
 import { Chip } from "../Chip";
 
-export default {
-  title: "Components/ChipGroup",
+const meta = preview.meta({
+  title: "Toggles/ChipGroup",
   component: ChipGroup,
-} satisfies Meta<typeof ChipGroup>;
+});
 
-type StoryGroup = StoryObj<typeof ChipGroup>;
-
-export const Single: StoryGroup = {
+export const Single = meta.story({
   render: (args) => (
     <ChipGroup {...args}>
       <Chip.Item value="react">React</Chip.Item>
@@ -29,9 +27,9 @@ export const Single: StoryGroup = {
       },
     },
   },
-};
+});
 
-export const Multiple: StoryGroup = {
+export const Multiple = meta.story({
   render: (args) => (
     <ChipGroup {...args}>
       <Chip.Item value="react">React</Chip.Item>
@@ -51,4 +49,4 @@ export const Multiple: StoryGroup = {
       },
     },
   },
-};
+});

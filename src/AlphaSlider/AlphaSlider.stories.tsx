@@ -1,26 +1,34 @@
+import preview from "../../.storybook/preview";
 import { useState } from "react";
-import { type Meta, type StoryObj } from "@storybook/react";
 import { Stack, ColorPicker } from "@mantine/core";
 import { AlphaSlider } from "./AlphaSlider";
 
-export default {
-  title: "Components/AlphaSlider",
+const meta = preview.meta({
+  title: "Color/AlphaSlider",
   component: AlphaSlider,
+  args: {
+    "aria-label": "Alpha",
+    // Replaced by the picker's color in render.
+    color: "#228be6",
+  },
   render: (args) => {
     const [color, setColor] = useState("#228be6");
 
     return (
       <Stack>
-        <ColorPicker value={color} onChange={setColor} />
+        <ColorPicker
+          value={color}
+          onChange={setColor}
+          saturationLabel="Saturation"
+          hueLabel="Hue"
+        />
         <AlphaSlider {...args} color={color} />
       </Stack>
     );
   },
-} satisfies Meta<typeof AlphaSlider>;
+});
 
-type Story = StoryObj<typeof AlphaSlider>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
   },
@@ -31,4 +39,4 @@ export const Primary: Story = {
       },
     },
   },
-};
+});

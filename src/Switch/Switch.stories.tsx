@@ -1,14 +1,12 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { Switch } from "./Switch";
 
-export default {
-  title: "Components/Switch",
+const meta = preview.meta({
+  title: "Toggles/Switch",
   component: Switch,
-} satisfies Meta<typeof Switch>;
+});
 
-type Story = StoryObj<typeof Switch>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "Enable notifications",
@@ -21,9 +19,9 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithLabel: Story = {
+export const WithLabel = meta.story({
   args: {
     name: "test",
     label: "Dark mode",
@@ -37,4 +35,4 @@ export const WithLabel: Story = {
       },
     },
   },
-};
+});

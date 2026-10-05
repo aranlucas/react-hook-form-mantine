@@ -1,14 +1,12 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { Rating } from "./Rating";
 
-export default {
-  title: "Components/Rating",
+const meta = preview.meta({
+  title: "Toggles/Rating",
   component: Rating,
-} satisfies Meta<typeof Rating>;
+});
 
-type Story = StoryObj<typeof Rating>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
   },
@@ -19,9 +17,9 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const FiveStars: Story = {
+export const FiveStars = meta.story({
   args: {
     name: "test",
     count: 5,
@@ -33,4 +31,4 @@ export const FiveStars: Story = {
       },
     },
   },
-};
+});

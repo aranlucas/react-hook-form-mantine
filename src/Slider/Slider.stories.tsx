@@ -1,14 +1,15 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { Slider } from "./Slider";
 
-export default {
-  title: "Components/Slider",
+const meta = preview.meta({
+  title: "Sliders/Slider",
   component: Slider,
-} satisfies Meta<typeof Slider>;
+  args: {
+    thumbLabel: "Volume",
+  },
+});
 
-type Story = StoryObj<typeof Slider>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     marks: [
@@ -24,9 +25,9 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithMarks: Story = {
+export const WithMarks = meta.story({
   args: {
     name: "test",
     marks: [
@@ -44,4 +45,4 @@ export const WithMarks: Story = {
       },
     },
   },
-};
+});

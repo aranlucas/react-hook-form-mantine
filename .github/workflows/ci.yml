@@ -30,6 +30,9 @@ jobs:
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Install Playwright Chromium
+        # The storybook test project runs every story in a real browser.
+        run: pnpm exec playwright install --with-deps chromium
       - name: Format
         run: pnpm format
       - name: Lint

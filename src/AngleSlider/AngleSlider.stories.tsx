@@ -1,14 +1,15 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { AngleSlider } from "./AngleSlider";
 
-export default {
-  title: "Components/AngleSlider",
+const meta = preview.meta({
+  title: "Sliders/AngleSlider",
   component: AngleSlider,
-} satisfies Meta<typeof AngleSlider>;
+  args: {
+    "aria-label": "Angle",
+  },
+});
 
-type Story = StoryObj<typeof AngleSlider>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     marks: [
@@ -26,9 +27,9 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithoutMarks: Story = {
+export const WithoutMarks = meta.story({
   args: {
     name: "test",
     size: 120,
@@ -40,4 +41,4 @@ export const WithoutMarks: Story = {
       },
     },
   },
-};
+});

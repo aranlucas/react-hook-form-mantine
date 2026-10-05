@@ -1,14 +1,16 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { RangeSlider } from "./RangeSlider";
 
-export default {
-  title: "Components/RangeSlider",
+const meta = preview.meta({
+  title: "Sliders/RangeSlider",
   component: RangeSlider,
-} satisfies Meta<typeof RangeSlider>;
+  args: {
+    thumbFromLabel: "Minimum price",
+    thumbToLabel: "Maximum price",
+  },
+});
 
-type Story = StoryObj<typeof RangeSlider>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     min: 0,
@@ -27,9 +29,9 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithStep: Story = {
+export const WithStep = meta.story({
   args: {
     name: "test",
     min: 0,
@@ -44,4 +46,4 @@ export const WithStep: Story = {
       },
     },
   },
-};
+});

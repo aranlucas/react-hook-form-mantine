@@ -1,27 +1,25 @@
+import preview from "../../../.storybook/preview";
 import { Group } from "@mantine/core";
-import { type Meta, type StoryObj } from "@storybook/react";
 import { CheckboxGroup } from "./CheckBoxGroup";
 import { Checkbox } from "../Checkbox";
 import { submitShowsError } from "../../../.storybook/play";
 
-type StoryGroup = StoryObj<typeof CheckboxGroup>;
-
-export default {
-  title: "Components/CheckboxGroup",
+const meta = preview.meta({
+  title: "Toggles/CheckboxGroup",
   component: CheckboxGroup,
-} satisfies Meta<typeof CheckboxGroup>;
-
-export const Primary: StoryGroup = {
-  render: (args) => (
-    <CheckboxGroup {...args}>
+  args: {
+    children: (
       <Group mt="xs">
         <Checkbox.Item value="react" label="React" />
         <Checkbox.Item value="svelte" label="Svelte" />
         <Checkbox.Item value="ng" label="Angular" />
         <Checkbox.Item value="vue" label="Vue" />
       </Group>
-    </CheckboxGroup>
-  ),
+    ),
+  },
+});
+
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "Select your favorite frameworks/libraries",
@@ -34,19 +32,10 @@ export const Primary: StoryGroup = {
       },
     },
   },
-};
+});
 
-export const WithValidation: StoryGroup = {
-  render: (args) => (
-    <CheckboxGroup {...args}>
-      <Group mt="xs">
-        <Checkbox.Item value="react" label="React" />
-        <Checkbox.Item value="svelte" label="Svelte" />
-        <Checkbox.Item value="ng" label="Angular" />
-        <Checkbox.Item value="vue" label="Vue" />
-      </Group>
-    </CheckboxGroup>
-  ),
+export const WithValidation = meta.story({
+  tags: ["validation"],
   args: {
     name: "test",
     label: "Required selection",
@@ -64,5 +53,9 @@ export const WithValidation: StoryGroup = {
       },
     },
   },
-  play: submitShowsError("Please select at least one option"),
-};
+});
+
+WithValidation.test(
+  "shows the error on submit",
+  submitShowsError("Please select at least one option"),
+);

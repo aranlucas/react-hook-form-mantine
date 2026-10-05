@@ -1,14 +1,12 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { Chip } from "./Chip";
 
-export default {
-  title: "Components/Chip",
+const meta = preview.meta({
+  title: "Toggles/Chip",
   component: Chip,
-} satisfies Meta<typeof Chip>;
+});
 
-type Story = StoryObj<typeof Chip>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     children: "React",
@@ -20,9 +18,9 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const Unchecked: Story = {
+export const Unchecked = meta.story({
   args: {
     name: "test",
     children: "Vue",
@@ -34,4 +32,4 @@ export const Unchecked: Story = {
       },
     },
   },
-};
+});

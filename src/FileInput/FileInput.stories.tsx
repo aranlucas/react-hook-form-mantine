@@ -1,15 +1,13 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { FileInput } from "./FileInput";
 import { submitShowsError } from "../../.storybook/play";
 
-export default {
-  title: "Components/FileInput",
+const meta = preview.meta({
+  title: "Inputs/FileInput",
   component: FileInput,
-} satisfies Meta<typeof FileInput>;
+});
 
-type Story = StoryObj<typeof FileInput>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "Your Resume",
@@ -24,9 +22,10 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithValidation: Story = {
+export const WithValidation = meta.story({
+  tags: ["validation"],
   args: {
     name: "test",
     label: "Upload file",
@@ -46,5 +45,6 @@ export const WithValidation: Story = {
       },
     },
   },
-  play: submitShowsError("File is required"),
-};
+});
+
+WithValidation.test("shows the error on submit", submitShowsError("File is required"));

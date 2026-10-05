@@ -1,15 +1,13 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { Textarea } from "./Textarea";
 import { submitShowsError } from "../../.storybook/play";
 
-export default {
-  title: "Components/Textarea",
+const meta = preview.meta({
+  title: "Inputs/Textarea",
   component: Textarea,
-} satisfies Meta<typeof Textarea>;
+});
 
-type Story = StoryObj<typeof Textarea>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     placeholder: "Your comment",
@@ -26,9 +24,10 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithValidation: Story = {
+export const WithValidation = meta.story({
+  tags: ["validation"],
   args: {
     name: "test",
     placeholder: "Your comment",
@@ -51,5 +50,6 @@ export const WithValidation: Story = {
       },
     },
   },
-  play: submitShowsError("Comment is required"),
-};
+});
+
+WithValidation.test("shows the error on submit", submitShowsError("Comment is required"));

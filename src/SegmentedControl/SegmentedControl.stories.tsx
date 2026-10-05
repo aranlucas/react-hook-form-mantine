@@ -1,17 +1,15 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { SegmentedControl } from "./SegmentedControl";
 import { submitShowsError } from "../../.storybook/play";
 import { Input } from "@mantine/core";
 import { useFormContext } from "react-hook-form";
 
-export default {
-  title: "Components/SegmentedControl",
+const meta = preview.meta({
+  title: "Toggles/SegmentedControl",
   component: SegmentedControl,
-} satisfies Meta<typeof SegmentedControl>;
+});
 
-type Story = StoryObj<typeof SegmentedControl>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     data: [
@@ -28,9 +26,10 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithValidation: Story = {
+export const WithValidation = meta.story({
+  tags: ["validation"],
   args: {
     name: "test",
     data: [
@@ -64,5 +63,6 @@ export const WithValidation: Story = {
       </>
     );
   },
-  play: submitShowsError("Please select an option"),
-};
+});
+
+WithValidation.test("shows the error on submit", submitShowsError("Please select an option"));

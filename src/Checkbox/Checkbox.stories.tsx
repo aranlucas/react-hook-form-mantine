@@ -1,14 +1,12 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { Checkbox } from "./Checkbox";
 
-export default {
-  title: "Components/Checkbox",
+const meta = preview.meta({
+  title: "Toggles/Checkbox",
   component: Checkbox,
-} satisfies Meta<typeof Checkbox>;
+});
 
-type Story = StoryObj<typeof Checkbox>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "I agree to sell my privacy",
@@ -21,9 +19,10 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const Required: Story = {
+export const Required = meta.story({
+  tags: ["validation"],
   args: {
     name: "test",
     label: "I accept the terms and conditions",
@@ -41,4 +40,4 @@ export const Required: Story = {
       },
     },
   },
-};
+});

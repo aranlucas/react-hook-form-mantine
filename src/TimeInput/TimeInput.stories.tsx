@@ -1,14 +1,12 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { TimeInput } from "./TimeInput";
 
-export default {
-  title: "Components/TimeInput",
+const meta = preview.meta({
+  title: "Dates/TimeInput",
   component: TimeInput,
-} satisfies Meta<typeof TimeInput>;
+});
 
-type Story = StoryObj<typeof TimeInput>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "Pick a time",
@@ -22,9 +20,9 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithValue: Story = {
+export const WithValue = meta.story({
   args: {
     name: "test",
     label: "Time input",
@@ -37,4 +35,4 @@ export const WithValue: Story = {
       },
     },
   },
-};
+});

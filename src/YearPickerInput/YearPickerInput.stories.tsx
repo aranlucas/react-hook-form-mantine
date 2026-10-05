@@ -1,14 +1,12 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { YearPickerInput } from "./YearPickerInput";
 
-export default {
-  title: "Components/YearPickerInput",
+const meta = preview.meta({
+  title: "Dates/YearPickerInput",
   component: YearPickerInput,
-} satisfies Meta<typeof YearPickerInput>;
+});
 
-type Story = StoryObj<typeof YearPickerInput>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     label: "Pick a year",
@@ -22,9 +20,9 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithValue: Story = {
+export const WithValue = meta.story({
   args: {
     name: "test",
     label: "Year input",
@@ -37,4 +35,4 @@ export const WithValue: Story = {
       },
     },
   },
-};
+});

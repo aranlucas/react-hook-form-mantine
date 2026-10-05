@@ -1,15 +1,13 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { PasswordInput } from "./PasswordInput";
 import { submitShowsError } from "../../.storybook/play";
 
-export default {
-  title: "Components/PasswordInput",
+const meta = preview.meta({
+  title: "Inputs/PasswordInput",
   component: PasswordInput,
-} satisfies Meta<typeof PasswordInput>;
+});
 
-type Story = StoryObj<typeof PasswordInput>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
     placeholder: "Password",
@@ -24,9 +22,10 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithValidation: Story = {
+export const WithValidation = meta.story({
+  tags: ["validation"],
   args: {
     name: "test",
     placeholder: "Password",
@@ -49,5 +48,6 @@ export const WithValidation: Story = {
       },
     },
   },
-  play: submitShowsError("Password is required"),
-};
+});
+
+WithValidation.test("shows the error on submit", submitShowsError("Password is required"));

@@ -1,14 +1,14 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
 import { Input } from "./Input";
 
-export default {
-  title: "Components/Input",
+const meta = preview.meta({
+  title: "Inputs/Input",
   component: Input,
-} satisfies Meta<typeof Input>;
+  // InputProps has no HTML attributes, so the accessible name is spread in untyped.
+  render: (args) => <Input {...args} {...{ "aria-label": "Answer" }} />,
+});
 
-type Story = StoryObj<typeof Input>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
   },
@@ -19,9 +19,10 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithError: Story = {
+export const WithError = meta.story({
+  tags: ["validation"],
   args: {
     name: "test",
     rules: {
@@ -38,4 +39,4 @@ export const WithError: Story = {
       },
     },
   },
-};
+});

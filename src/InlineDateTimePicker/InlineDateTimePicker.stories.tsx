@@ -1,14 +1,17 @@
-import { type Meta, type StoryObj } from "@storybook/react";
+import preview from "../../.storybook/preview";
+import { calendarAriaLabels } from "../../.storybook/a11y";
 import { InlineDateTimePicker } from "./InlineDateTimePicker";
 
-export default {
-  title: "Components/InlineDateTimePicker",
+const meta = preview.meta({
+  title: "Dates/InlineDateTimePicker",
   component: InlineDateTimePicker,
-} satisfies Meta<typeof InlineDateTimePicker>;
+  args: {
+    ariaLabels: calendarAriaLabels,
+    submitButtonProps: { "aria-label": "Confirm date and time" },
+  },
+});
 
-type Story = StoryObj<typeof InlineDateTimePicker>;
-
-export const Primary: Story = {
+export const Primary = meta.story({
   args: {
     name: "test",
   },
@@ -19,9 +22,9 @@ export const Primary: Story = {
       },
     },
   },
-};
+});
 
-export const WithValue: Story = {
+export const WithValue = meta.story({
   args: {
     name: "test",
   },
@@ -32,4 +35,4 @@ export const WithValue: Story = {
       },
     },
   },
-};
+});
