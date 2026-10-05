@@ -8,40 +8,8 @@ import {
 export type AutocompleteProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$AutocompleteProps, "value" | "defaultValue">;
 
-export function Autocomplete<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: AutocompleteProps<T>) {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-    fieldState,
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export function Autocomplete<T extends FieldValues>(props: AutocompleteProps<T>) {
+  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
 
-  return (
-    <$Autocomplete
-      error={fieldState.error?.message}
-      value={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$Autocomplete {...field} error={fieldState.error?.message} {...inputProps} />;
 }

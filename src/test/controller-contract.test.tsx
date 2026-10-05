@@ -1,5 +1,6 @@
-import { createRef } from "react";
+import { type ComponentType, type Ref, createRef } from "react";
 import { vi } from "vitest";
+import * as fields from "../index";
 import { Checkbox, CheckboxGroup, DateInput, Select, Slider, TextInput } from "../index";
 import { act, fireEvent, renderWithForm, screen, userEvent, waitFor } from "./test-utils";
 
@@ -134,6 +135,26 @@ describe("controller lifecycle contracts", () => {
     expect(input).toHaveFocus();
     rerender(<></>);
     expect(form.getValues()).toEqual({});
+  });
+
+  // ChipGroup only provides context and renders no element of its own to attach a ref to.
+  const refTargets = Object.entries(fields).filter(([key]) => key !== "ChipGroup");
+
+  const requiredProps = {
+    AlphaSlider: { color: "#fff" },
+    MaskInput: { mask: "999" },
+    SegmentedControl: { data: ["a"] },
+    TreeSelect: { data: [] },
+  };
+
+  it.each(refTargets)("%s forwards a user ref to its element", (key, Field) => {
+    const userRef = createRef<HTMLElement>();
+    const extra = Object.entries(requiredProps).find(([name]) => name === key)?.[1];
+    // SAFETY: every export of the index is a field wrapper that accepts a name and a ref.
+    const Component = Field as ComponentType<{ name: string; ref: Ref<HTMLElement> }>;
+
+    renderWithForm(<Component name="test" ref={userRef} {...extra} />);
+    expect(userRef.current).toBeInstanceOf(HTMLElement);
   });
 
   it("merges a user object ref with the controller ref", async () => {

@@ -8,40 +8,8 @@ import {
 export type NumberInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$NumberInputProps, "value" | "defaultValue">;
 
-export function NumberInput<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: NumberInputProps<T>) {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-    fieldState,
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export function NumberInput<T extends FieldValues>(props: NumberInputProps<T>) {
+  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
 
-  return (
-    <$NumberInput
-      value={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      error={fieldState.error?.message}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$NumberInput {...field} error={fieldState.error?.message} {...inputProps} />;
 }

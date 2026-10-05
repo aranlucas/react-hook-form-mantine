@@ -8,40 +8,8 @@ import {
 export type MultiSelectProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$MultiSelectProps, "value" | "defaultValue">;
 
-export function MultiSelect<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: MultiSelectProps<T>) {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-    fieldState,
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export function MultiSelect<T extends FieldValues>(props: MultiSelectProps<T>) {
+  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
 
-  return (
-    <$MultiSelect
-      value={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      error={fieldState.error?.message}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$MultiSelect {...field} error={fieldState.error?.message} {...inputProps} />;
 }

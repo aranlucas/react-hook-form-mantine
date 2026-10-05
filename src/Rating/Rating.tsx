@@ -5,38 +5,8 @@ import { Rating as $Rating, type RatingProps as $RatingProps } from "@mantine/co
 export type RatingProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$RatingProps, "value" | "defaultValue">;
 
-export function Rating<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: RatingProps<T>) {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export function Rating<T extends FieldValues>(props: RatingProps<T>) {
+  const { field, props: inputProps } = useFieldController<T, typeof props>(props);
 
-  return (
-    <$Rating
-      value={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$Rating {...field} {...inputProps} />;
 }

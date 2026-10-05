@@ -8,40 +8,8 @@ import {
 export type NativeSelectProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$NativeSelectProps, "value" | "defaultValue">;
 
-export function NativeSelect<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: NativeSelectProps<T>) {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-    fieldState,
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export function NativeSelect<T extends FieldValues>(props: NativeSelectProps<T>) {
+  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
 
-  return (
-    <$NativeSelect
-      value={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      error={fieldState.error?.message}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$NativeSelect {...field} error={fieldState.error?.message} {...inputProps} />;
 }

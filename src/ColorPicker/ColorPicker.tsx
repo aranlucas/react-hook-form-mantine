@@ -8,38 +8,8 @@ import {
 export type ColorPickerProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$ColorPickerProps, "value" | "defaultValue">;
 
-export function ColorPicker<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: ColorPickerProps<T>) {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export function ColorPicker<T extends FieldValues>(props: ColorPickerProps<T>) {
+  const { field, props: inputProps } = useFieldController<T, typeof props>(props);
 
-  return (
-    <$ColorPicker
-      value={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$ColorPicker {...field} {...inputProps} />;
 }

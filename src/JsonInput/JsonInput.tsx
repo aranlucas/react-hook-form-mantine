@@ -5,40 +5,8 @@ import { JsonInput as $JsonInput, type JsonInputProps as $JsonInputProps } from 
 export type JsonInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$JsonInputProps, "value" | "defaultValue">;
 
-export function JsonInput<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: JsonInputProps<T>) {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-    fieldState,
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export function JsonInput<T extends FieldValues>(props: JsonInputProps<T>) {
+  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
 
-  return (
-    <$JsonInput
-      value={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      error={fieldState.error?.message}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$JsonInput {...field} error={fieldState.error?.message} {...inputProps} />;
 }

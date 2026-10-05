@@ -8,38 +8,8 @@ import {
 export type RangeSliderProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$RangeSliderProps, "value" | "defaultValue">;
 
-export function RangeSlider<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: RangeSliderProps<T>) {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export function RangeSlider<T extends FieldValues>(props: RangeSliderProps<T>) {
+  const { field, props: inputProps } = useFieldController<T, typeof props>(props);
 
-  return (
-    <$RangeSlider
-      value={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$RangeSlider {...field} {...inputProps} />;
 }

@@ -5,40 +5,8 @@ import { Select as $Select, type SelectProps as $SelectProps } from "@mantine/co
 export type SelectProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$SelectProps, "value" | "defaultValue">;
 
-export function Select<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: SelectProps<T>) {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-    fieldState,
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export function Select<T extends FieldValues>(props: SelectProps<T>) {
+  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
 
-  return (
-    <$Select
-      value={value}
-      onChange={(value, option) => {
-        fieldOnChange(value);
-        onChange?.(value, option);
-      }}
-      error={fieldState.error?.message}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$Select {...field} error={fieldState.error?.message} {...inputProps} />;
 }

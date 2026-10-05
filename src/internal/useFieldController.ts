@@ -8,19 +8,47 @@ import {
   useController,
 } from "react-hook-form";
 
-type InputLifecycleProps = {
-  disabled?: boolean;
+type FieldProps<T extends FieldValues> = UseControllerProps<T> & {
   onBlur?: (...args: any[]) => void;
+  onChange?: (...args: any[]) => void;
   ref?: Ref<any>;
 };
 
-/** Binds controller lifecycle without letting custom blur or refs replace form bookkeeping. */
-export function useFieldController<T extends FieldValues, P extends InputLifecycleProps>(
-  options: UseControllerProps<T>,
+type ControllerKeys = "name" | "control" | "defaultValue" | "rules" | "shouldUnregister" | "exact";
+
+/**
+ * Binds a wrapper's props to react-hook-form. Controller options are consumed here, and the
+ * user's `onChange`, `onBlur` and `ref` are composed into `field` so they cannot replace form
+ * bookkeeping when the remaining props are spread after it.
+ */
+export function useFieldController<T extends FieldValues, P extends FieldProps<T>>(
   props: P,
-): UseControllerReturn<T> & { props: Omit<P, "onBlur" | "ref"> } {
-  const { onBlur, ref, ...rest } = props;
-  const controller = useController<T>({ ...options, disabled: props.disabled });
+): UseControllerReturn<T> & {
+  props: Omit<P, ControllerKeys | "onBlur" | "onChange" | "ref">;
+} {
+  const {
+    name,
+    control,
+    defaultValue,
+    rules,
+    shouldUnregister,
+    exact,
+    onBlur,
+    onChange,
+    ref,
+    ...rest
+  } = props;
+
+  const controller = useController<T>({
+    name,
+    control,
+    defaultValue,
+    rules,
+    shouldUnregister,
+    exact,
+    disabled: props.disabled,
+  });
+
   const fieldRef = controller.field.ref;
   // A user ref would otherwise override field.ref and break setFocus / focus on error.
   // SAFETY: fieldRef is always defined, so mergeRefs returns fieldRef itself or a merged callback.
@@ -36,6 +64,11 @@ export function useFieldController<T extends FieldValues, P extends InputLifecyc
     field: {
       ...controller.field,
       ref: mergedRef,
+      // The form stores the first argument (a value or change event); the user gets all of them.
+      onChange: (...args: Parameters<NonNullable<P["onChange"]>>) => {
+        controller.field.onChange(args[0]);
+        onChange?.(...args);
+      },
       onBlur: (...args: Parameters<NonNullable<P["onBlur"]>>) => {
         controller.field.onBlur();
         onBlur?.(...args);

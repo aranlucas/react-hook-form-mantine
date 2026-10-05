@@ -7,43 +7,14 @@ export type CheckboxProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$CheckboxProps, "checked" | "defaultValue">;
 
 /** Standalone checkbox input with react-hook-form controller. For use inside `CheckboxGroup`, use `Checkbox.Item` to avoid double controller registration. */
-export const Checkbox = <T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: CheckboxProps<T>) => {
+export const Checkbox = <T extends FieldValues>(props: CheckboxProps<T>) => {
   const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
+    field: { value, ...field },
     fieldState,
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+    props: inputProps,
+  } = useFieldController<T, typeof props>(props);
 
-  return (
-    <$Checkbox
-      error={fieldState.error?.message}
-      value={value}
-      checked={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$Checkbox checked={value} {...field} error={fieldState.error?.message} {...inputProps} />;
 };
 
 Checkbox.Group = CheckboxGroup;

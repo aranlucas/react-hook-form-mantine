@@ -5,38 +5,8 @@ import { Slider as $Slider, type SliderProps as $SliderProps } from "@mantine/co
 export type SliderProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$SliderProps, "value" | "defaultValue">;
 
-export function Slider<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: SliderProps<T>) {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export function Slider<T extends FieldValues>(props: SliderProps<T>) {
+  const { field, props: inputProps } = useFieldController<T, typeof props>(props);
 
-  return (
-    <$Slider
-      value={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$Slider {...field} {...inputProps} />;
 }

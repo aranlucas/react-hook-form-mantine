@@ -8,40 +8,8 @@ import {
 export type PasswordInputProps<T extends FieldValues> = UseControllerProps<T> &
   Omit<$PasswordInputProps, "value" | "defaultValue">;
 
-export function PasswordInput<T extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  rules,
-  shouldUnregister,
-  onChange,
-  ...props
-}: PasswordInputProps<T>) {
-  const {
-    props: inputProps,
-    field: { value, onChange: fieldOnChange, ...field },
-    fieldState,
-  } = useFieldController<T, typeof props>(
-    {
-      name,
-      control,
-      defaultValue,
-      rules,
-      shouldUnregister,
-    },
-    props,
-  );
+export function PasswordInput<T extends FieldValues>(props: PasswordInputProps<T>) {
+  const { field, fieldState, props: inputProps } = useFieldController<T, typeof props>(props);
 
-  return (
-    <$PasswordInput
-      value={value}
-      onChange={(e) => {
-        fieldOnChange(e);
-        onChange?.(e);
-      }}
-      error={fieldState.error?.message}
-      {...field}
-      {...inputProps}
-    />
-  );
+  return <$PasswordInput {...field} error={fieldState.error?.message} {...inputProps} />;
 }
