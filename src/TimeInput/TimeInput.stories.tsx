@@ -18,7 +18,7 @@ export const Primary: Story = {
   parameters: {
     form: {
       defaultValues: {
-        test: null,
+        test: "",
       },
     },
   },
