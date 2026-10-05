@@ -1,11 +1,14 @@
 name: Storybook
 
+# GitHub Pages serves the gh-pages branch: main's Storybook at the root, and each pull request's
+# at /pr-preview/pr-<number>/. Previews are removed when their pull request closes.
+
 on:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, closed]
   workflow_dispatch:
 
 permissions:
@@ -17,6 +20,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.event.action != 'closed'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -33,35 +37,69 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Build Storybook
         run: pnpm build-storybook
-      - name: Upload Storybook artifact
-        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
+      - name: Skip Jekyll
+        # Pages runs Jekyll on branch deploys, which would drop Storybook's `_`-prefixed files.
+        run: touch storybook-static/.nojekyll
+      - name: Upload Storybook
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
+          name: storybook
           path: storybook-static
+          include-hidden-files: true
+          retention-days: 7
 
   deploy-production:
     if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     permissions:
-      pages: write
-      id-token: write
+      contents: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: https://aranlucas.github.io/react-hook-form-mantine/
     steps:
-      - name: Deploy Storybook to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Download Storybook
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: storybook
+          path: storybook-static
+      - name: Deploy Storybook to gh-pages
+        uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4.9.0
+        with:
+          folder: storybook-static
+          branch: gh-pages
+          # Leave pull request previews in place.
+          clean-exclude: pr-preview/
+          force: false
 
   deploy-preview:
-    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    # Fork pull requests get a read-only token, so they can't push a preview.
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      !cancelled() && (needs.build.result == 'success' || github.event.action == 'closed')
     needs: build
     runs-on: ubuntu-latest
     permissions:
-      pages: write
-      id-token: write
+      contents: write
+      pull-requests: write
     steps:
-      - name: Deploy Storybook preview to GitHub Pages
-        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Download Storybook
+        if: github.event.action != 'closed'
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
-          preview: true
+          name: storybook
+          path: storybook-static
+      - name: Deploy or remove the preview
+        # Deploys on opened/synchronize/reopened, removes on closed, and keeps a sticky comment
+        # with the preview URL on the pull request.
+        uses: rossjrw/pr-preview-action@ffa7509e91a3ec8dfc2e5536c4d5c1acdf7a6de9 # v1.8.1
+        with:
+          source-dir: storybook-static
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          qr-code: false
+          # Post the comment once Pages has published the preview, not just pushed it.
+          wait-for-pages-deployment: true
