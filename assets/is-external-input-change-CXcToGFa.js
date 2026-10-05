@@ -1,0 +1,1 @@
+import{s as e}from"./Combobox-BIb2_NbW.js";import{n as t}from"./rolldown-runtime-DkW27tQK.js";function n(t){let n=t.currentTarget;return e(n).activeElement!==n}function r(){return(r=t((()=>{})))()}export{n,r as t};
