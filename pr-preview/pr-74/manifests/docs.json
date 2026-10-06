@@ -1,0 +1,12 @@
+{
+  "v": 0,
+  "docs": {
+    "introduction--docs": {
+      "id": "introduction--docs",
+      "name": "Docs",
+      "path": "./.storybook/pages/Introduction.mdx",
+      "title": "Introduction",
+      "content": "import { Meta, Unstyled } from \"@storybook/addon-docs/blocks\";\nimport { Welcome } from \"./Welcome\";\n\n<Meta title=\"Introduction\" />\n\n<Unstyled>\n  <Welcome />\n</Unstyled>\n"
+    }
+  }
+}
