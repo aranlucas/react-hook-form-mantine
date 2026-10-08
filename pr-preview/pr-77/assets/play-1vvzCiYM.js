@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";var t,n;function r(){return(r=e((()=>{({expect:t}=__STORYBOOK_MODULE_TEST__),n=e=>async({canvas:n,userEvent:r})=>{await r.click(n.getByRole(`button`,{name:`Submit`})),await t(await n.findByText(e)).toBeVisible()}})))()}export{n,r as t};
