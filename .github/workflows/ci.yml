@@ -22,7 +22,6 @@ jobs:
       - name: Set up pnpm, Node.js, and dependencies
         uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
         with:
-          runtime: node@24
           cache: true
           require-lockfile: true
       - name: Install Playwright Chromium
