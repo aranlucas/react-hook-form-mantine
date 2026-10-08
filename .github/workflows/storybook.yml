@@ -24,17 +24,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - name: Setup pnpm
+      - name: Set up pnpm, Node.js, and dependencies
         uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
         with:
-          install: false
-      - name: Setup Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version: 24
-          cache: "pnpm"
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+          runtime: node@24
+          cache: true
+          require-lockfile: true
       - name: Build Storybook
         run: pnpm build-storybook
       - name: Skip Jekyll
