@@ -34,8 +34,6 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "storybook:portless": "portless run --name storybook.react-hook-form-mantine storybook dev --host 127.0.0.1 --exact-port --no-open",
-    "dev:example:portless": "pnpm --dir example dev:portless",
     "build": "vite build",
     "build-storybook": "storybook build",
     "commitlint": "node scripts/commitlint.mjs",
@@ -47,12 +45,14 @@
     "prepare": "husky",
     "prepublishOnly": "pnpm build",
     "semantic-release": "semantic-release",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "portless run --name storybook.react-hook-form-mantine storybook dev --host 127.0.0.1 --exact-port --no-open",
     "test": "vitest",
     "watch": "vite build --watch",
     "typecheck": "tsc --noEmit && pnpm --dir example typecheck && tsc --project tsconfig.anti-slop.json",
     "test:unit": "vitest --project=unit",
-    "test:storybook": "vitest --project=storybook"
+    "test:storybook": "vitest --project=storybook",
+    "storybook:direct": "storybook dev -p 6006",
+    "dev:example": "pnpm --dir example dev"
   },
   "dependencies": {
     "merge-refs": "^2.0.0"

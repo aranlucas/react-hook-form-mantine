@@ -93,21 +93,21 @@ pnpm build
 - **Theme from the toolbar.** Switch the Mantine color scheme, primary color and default radius. Stories can pin these with `globals`, as `Examples / Full form / Dark` does.
 - **Tests in the sidebar.** Stories use CSF Next (`preview.meta` / `meta.story`) and the `Story.test()` API, so each named test is listed under its story. The test widget runs interactions, accessibility checks and coverage in the browser, with watch mode.
 - **Generated docs.** Each component gets a docs page with what it wraps, an import snippet, links to Mantine and the source, and a props table, with react-hook-form props and events grouped separately.
-- **For coding agents.** The dev server serves an MCP endpoint at `http://localhost:6006/mcp` (`@storybook/addon-mcp`) with the component manifest and stories.
+- **For coding agents.** The dev server serves an MCP endpoint at `https://storybook.react-hook-form-mantine.localhost/mcp` (`@storybook/addon-mcp`) with the component manifest and stories.
 - **Filter by tag.** `validation` marks stories with rules or a resolver; `example` marks full-form examples.
 
 Storybook's docgen reads prop types through the TypeScript compiler API, which TypeScript 7 doesn't provide. `.pnpmfile.cjs` gives the docgen packages TypeScript 6 while the project compiles with 7.
 
-### Named local URLs with Portless (optional)
+### Named local URLs with Portless
 
 After installing the workspace dependencies, use Node.js 24 or newer and install
 [Portless](https://github.com/vercel-labs/portless/tree/v0.15.7) once:
 
 ```sh
 npm install -g portless@0.15.7
-pnpm storybook:portless
+pnpm storybook
 # In another terminal, run the standalone example:
-pnpm dev:example:portless
+pnpm dev:example
 ```
 
 | Surface | Default local URL |
@@ -129,7 +129,7 @@ for port 443 and local hostname entries. The proxy remembers custom ports and
 domains from previous runs. `portless list` shows active routes and
 `portless doctor` checks connection and certificate problems.
 
-Use `pnpm storybook` or `pnpm --dir example dev` for the original localhost
+Use `pnpm storybook:direct` or `pnpm --dir example dev:direct` for the localhost
 workflows. Library builds, package exports, publishing, and Storybook previews
 continue to use their existing commands.
 
