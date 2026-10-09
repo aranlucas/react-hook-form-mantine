@@ -51,7 +51,6 @@
     "typecheck": "tsc --noEmit && pnpm --dir example typecheck && tsc --project tsconfig.anti-slop.json",
     "test:unit": "vitest --project=unit",
     "test:storybook": "vitest --project=storybook",
-    "storybook:direct": "storybook dev -p 6006",
     "dev:example": "pnpm --dir example dev"
   },
   "dependencies": {

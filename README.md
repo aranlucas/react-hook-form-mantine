@@ -110,11 +110,11 @@ pnpm storybook
 pnpm dev:example
 ```
 
-| Surface | Default local URL |
-| --- | --- |
-| Storybook | <https://storybook.react-hook-form-mantine.localhost> |
-| Storybook MCP endpoint | <https://storybook.react-hook-form-mantine.localhost/mcp> |
-| Standalone Vite example | <https://example.react-hook-form-mantine.localhost> |
+| Surface                 | Default local URL                                         |
+| ----------------------- | --------------------------------------------------------- |
+| Storybook               | <https://storybook.react-hook-form-mantine.localhost>     |
+| Storybook MCP endpoint  | <https://storybook.react-hook-form-mantine.localhost/mcp> |
+| Standalone Vite example | <https://example.react-hook-form-mantine.localhost>       |
 
 Portless assigns an independent available port to each server. Storybook reads
 its assigned `PORT` and uses `--exact-port` to fail if it cannot bind; keep
@@ -129,9 +129,8 @@ for port 443 and local hostname entries. The proxy remembers custom ports and
 domains from previous runs. `portless list` shows active routes and
 `portless doctor` checks connection and certificate problems.
 
-Use `pnpm storybook:direct` or `pnpm --dir example dev:direct` for the localhost
-workflows. Library builds, package exports, publishing, and Storybook previews
-continue to use their existing commands.
+Library builds, package exports, publishing, and Storybook previews continue to
+use their existing commands.
 
 ## Source map
 

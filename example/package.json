@@ -7,8 +7,7 @@
     "dev": "portless run --name example.react-hook-form-mantine vite",
     "build": "pnpm typecheck && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit",
-    "dev:direct": "vite"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
