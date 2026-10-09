@@ -1,39 +1,46 @@
 name: CI
 
 on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
   workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
 
 permissions:
   contents: read
 
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  verify:
+  ci:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
       - name: Set up pnpm, Node.js, and dependencies
         uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
         with:
           cache: true
           require-lockfile: true
-      - name: Install Playwright Chromium
-        # The storybook test project runs every story in a real browser.
-        run: pnpm exec playwright install --with-deps chromium
-      - name: Format
-        run: pnpm format
-      - name: Lint
-        run: pnpm lint
-      - name: Typecheck
-        run: pnpm typecheck
-      - name: Test
-        run: pnpm test --run
-      - name: Build
-        run: pnpm build
+
+      - parallel:
+          - name: Check formatting
+            run: pnpm format
+
+          - name: Lint
+            run: pnpm lint
+
+          - name: Typecheck
+            run: pnpm typecheck
+
+          - name: Test
+            run: pnpm exec playwright install --with-deps chromium && pnpm test --run
+
+          - name: Build
+            run: pnpm build
