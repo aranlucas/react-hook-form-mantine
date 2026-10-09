@@ -45,13 +45,12 @@
     "prepare": "husky",
     "prepublishOnly": "pnpm build",
     "semantic-release": "semantic-release",
-    "storybook": "portless run --name storybook.react-hook-form-mantine storybook dev --host 127.0.0.1 --exact-port --no-open",
+    "storybook": "portless run storybook dev",
     "test": "vitest",
     "watch": "vite build --watch",
     "typecheck": "tsc --noEmit && pnpm --dir example typecheck && tsc --project tsconfig.anti-slop.json",
     "test:unit": "vitest --project=unit",
-    "test:storybook": "vitest --project=storybook",
-    "dev:example": "pnpm --dir example dev"
+    "test:storybook": "vitest --project=storybook"
   },
   "dependencies": {
     "merge-refs": "^2.0.0"
@@ -88,6 +87,7 @@
     "oxfmt": "^0.72.0",
     "oxlint": "1.87.0",
     "playwright": "^1.64.0",
+    "portless": "0.15.7",
     "prettier": "^3.9.9",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",

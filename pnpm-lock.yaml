@@ -111,6 +111,9 @@ importers:
       playwright:
         specifier: ^1.64.0
         version: 1.64.0
+      portless:
+        specifier: 0.15.7
+        version: 0.15.7
       prettier:
         specifier: ^3.9.9
         version: 3.9.9
@@ -3179,6 +3182,12 @@ packages:
   pngjs@7.0.0:
     resolution: {integrity: sha512-LKWqWJRhstyYo9pGvgor/ivk2w94eSjE3RGVuzLGlr3NmD8bf7RcYGze1mNdEHRP6TRP6rMuDHk5t44hnTRyow==}
     engines: {node: '>=14.19.0'}
+
+  portless@0.15.7:
+    resolution: {integrity: sha512-fffMnzfwU/0chJmOMmeAOjFouRsZUmdJagxdqE4DATLw83ssAnHX4BzvNqOI5vBgsuvWLX5ZLg63bzs7zdVFNw==}
+    engines: {node: '>=24'}
+    os: [darwin, linux, win32]
+    hasBin: true
 
   postcss@8.5.29:
     resolution: {integrity: sha512-49cGhUbXj8Qenv0iTMxA1cFBzxXoctpC9Ujd77t1WcbJIr6nF/eI7g/8MgxrYldFRuAXvja7xQRwavoW7kgrxQ==}
@@ -6514,6 +6523,8 @@ snapshots:
       playwright-core: 1.64.0
 
   pngjs@7.0.0: {}
+
+  portless@0.15.7: {}
 
   postcss@8.5.29:
     dependencies:
