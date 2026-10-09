@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "dev:portless": "portless run --name example.react-hook-form-mantine vite",
     "dev": "vite",
     "build": "pnpm typecheck && vite build",
     "preview": "vite preview",

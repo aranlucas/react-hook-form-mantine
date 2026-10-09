@@ -98,6 +98,41 @@ pnpm build
 
 Storybook's docgen reads prop types through the TypeScript compiler API, which TypeScript 7 doesn't provide. `.pnpmfile.cjs` gives the docgen packages TypeScript 6 while the project compiles with 7.
 
+### Named local URLs with Portless (optional)
+
+After installing the workspace dependencies, use Node.js 24 or newer and install
+[Portless](https://github.com/vercel-labs/portless/tree/v0.15.7) once:
+
+```sh
+npm install -g portless@0.15.7
+pnpm storybook:portless
+# In another terminal, run the standalone example:
+pnpm dev:example:portless
+```
+
+| Surface | Default local URL |
+| --- | --- |
+| Storybook | <https://storybook.react-hook-form-mantine.localhost> |
+| Storybook MCP endpoint | <https://storybook.react-hook-form-mantine.localhost/mcp> |
+| Standalone Vite example | <https://example.react-hook-form-mantine.localhost> |
+
+Portless assigns an independent available port to each server. Storybook reads
+its assigned `PORT` and uses `--exact-port` to fail if it cannot bind; keep
+`SBCONFIG_PORT` unset for this command because Storybook gives it precedence over
+`PORT`. Portless supplies Vite's port and strict-port flags automatically. Linked
+Git worktrees receive a branch prefix, so use the URLs printed at startup. The
+example resolves the library directly from `src/`, as in its existing Vite setup.
+
+The first launch should run in an interactive terminal. The default HTTPS setup
+may ask to trust a local certificate authority and request administrator access
+for port 443 and local hostname entries. The proxy remembers custom ports and
+domains from previous runs. `portless list` shows active routes and
+`portless doctor` checks connection and certificate problems.
+
+Use `pnpm storybook` or `pnpm --dir example dev` for the original localhost
+workflows. Library builds, package exports, publishing, and Storybook previews
+continue to use their existing commands.
+
 ## Source map
 
 | Path               | Responsibility                                                          |
