@@ -87,13 +87,13 @@ pnpm build
 
 ## Storybook
 
-`pnpm storybook` opens the component workshop on port 6006; `pnpm build-storybook` produces the static site. GitHub Pages serves the `gh-pages` branch: main's Storybook at the root, and every same-repository pull request's at `/pr-preview/pr-<number>/`, linked from a comment on the pull request and removed when it closes.
+`pnpm storybook` serves the component workshop at `https://react-hook-form-mantine.localhost` through [Portless](https://github.com/vercel-labs/portless) (a dev dependency); its first run may ask for `sudo` to bind port 443 and trust a local certificate. `pnpm --dir example dev` serves the Vite example at `https://example.react-hook-form-mantine.localhost`; `pnpm build-storybook` produces the static site. GitHub Pages serves the `gh-pages` branch: main's Storybook at the root, and every same-repository pull request's at `/pr-preview/pr-<number>/`, linked from a comment on the pull request and removed when it closes.
 
 - **Every story is a real form.** Components render in a form card with Reset and Submit. A **Form** addon panel (`.storybook/form-addon/`) shows each field's value, dirty, touched and error state, the raw values and errors, and the submit result, with its own Reset and Submit. `onChange` and `onBlur` are `fn()` spies, so their calls appear in the Actions panel.
 - **Theme from the toolbar.** Switch the Mantine color scheme, primary color and default radius. Stories can pin these with `globals`, as `Examples / Full form / Dark` does.
 - **Tests in the sidebar.** Stories use CSF Next (`preview.meta` / `meta.story`) and the `Story.test()` API, so each named test is listed under its story. The test widget runs interactions, accessibility checks and coverage in the browser, with watch mode.
 - **Generated docs.** Each component gets a docs page with what it wraps, an import snippet, links to Mantine and the source, and a props table, with react-hook-form props and events grouped separately.
-- **For coding agents.** The dev server serves an MCP endpoint at `http://localhost:6006/mcp` (`@storybook/addon-mcp`) with the component manifest and stories.
+- **For coding agents.** The dev server serves an MCP endpoint at `https://react-hook-form-mantine.localhost/mcp` (`@storybook/addon-mcp`) with the component manifest and stories.
 - **Filter by tag.** `validation` marks stories with rules or a resolver; `example` marks full-form examples.
 
 Storybook's docgen reads prop types through the TypeScript compiler API, which TypeScript 7 doesn't provide. `.pnpmfile.cjs` gives the docgen packages TypeScript 6 while the project compiles with 7.
