@@ -50,12 +50,14 @@
     "watch": "vite build --watch",
     "typecheck": "tsc --noEmit && pnpm --dir example typecheck",
     "test:unit": "vitest --project=unit",
-    "test:storybook": "vitest --project=storybook"
+    "test:storybook": "vitest --project=storybook",
+    "format:check": "oxfmt --check"
   },
   "dependencies": {
     "merge-refs": "^2.0.0"
   },
   "devDependencies": {
+    "@aranlucas/oxforge": "^0.1.3",
     "@aranlucas/oxlint-plugin-anti-slop": "0.1.0",
     "@commitlint/config-conventional": "^21.2.3",
     "@commitlint/format": "^21.2.3",
@@ -84,8 +86,9 @@
     "@vitest/ui": "^5.0.3",
     "husky": "^9.1.7",
     "jsdom": "^30.1.2",
-    "oxfmt": "^0.72.0",
-    "oxlint": "1.87.0",
+    "oxfmt": "^0.73.0",
+    "oxlint": "^1.88.0",
+    "oxlint-tsgolint": "^7.0.2004",
     "playwright": "^1.64.0",
     "portless": "0.15.7",
     "prettier": "^3.9.9",
