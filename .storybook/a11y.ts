@@ -1,7 +1,8 @@
-/** Names for the calendar header's icon-only buttons, which have no text of their own. */
+/**
+ * Names for the calendar header's icon-only buttons, which have no text of their own.
+ * The level controls are left out: their visible month/year text is their accessible name.
+ */
 export const calendarAriaLabels = {
-  monthLevelControl: "Show months",
-  yearLevelControl: "Show years",
   nextMonth: "Next month",
   previousMonth: "Previous month",
   nextYear: "Next year",
