@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";var t;function n(){return(n=e((()=>{t={monthLevelControl:`Show months`,yearLevelControl:`Show years`,nextMonth:`Next month`,previousMonth:`Previous month`,nextYear:`Next year`,previousYear:`Previous year`,nextDecade:`Next decade`,previousDecade:`Previous decade`}})))()}export{n,t};
