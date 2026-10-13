@@ -25,7 +25,6 @@
     "src/**/*.test.tsx",
     "src/setupTests.tsx",
     "dist",
-    "example",
-    "tools/oxlint/anti-slop"
+    "example"
   ]
 }

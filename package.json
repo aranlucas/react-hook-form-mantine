@@ -48,7 +48,7 @@
     "storybook": "portless run storybook dev",
     "test": "vitest",
     "watch": "vite build --watch",
-    "typecheck": "tsc --noEmit && pnpm --dir example typecheck && tsc --project tsconfig.anti-slop.json",
+    "typecheck": "tsc --noEmit && pnpm --dir example typecheck",
     "test:unit": "vitest --project=unit",
     "test:storybook": "vitest --project=storybook"
   },
@@ -56,6 +56,7 @@
     "merge-refs": "^2.0.0"
   },
   "devDependencies": {
+    "@aranlucas/oxlint-plugin-anti-slop": "0.1.0",
     "@commitlint/config-conventional": "^21.2.3",
     "@commitlint/format": "^21.2.3",
     "@commitlint/lint": "^21.2.3",
@@ -63,7 +64,6 @@
     "@hookform/resolvers": "^5.9.1",
     "@mantine/core": "^9.7.1",
     "@mantine/dates": "^9.7.1",
-    "@oxlint/plugins": "1.87.0",
     "@semantic-release/changelog": "^7.0.0",
     "@semantic-release/git": "^11.0.1",
     "@storybook/addon-a11y": "10.6.1",
