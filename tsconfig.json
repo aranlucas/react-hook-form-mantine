@@ -19,8 +19,12 @@
     "jsxFragmentFactory": "",
     "types": ["vitest/globals", "@testing-library/jest-dom/vitest"],
     "noEmit": true,
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@test/*": ["./test/*"]
+    }
   },
-  "include": ["src", ".storybook", "*.ts"],
+  "include": ["src", ".storybook", "*.ts", "test"],
   "exclude": ["dist", "storybook-static", "example", "node_modules"]
 }
