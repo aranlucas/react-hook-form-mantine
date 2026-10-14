@@ -10,18 +10,18 @@ export default mergeConfig(
     test: {
       coverage: {
         include: ["src/**/*.{ts,tsx}"],
-        exclude: ["src/**/*.stories.tsx", "src/**/*.test.tsx", "src/test/**", "src/index.ts"],
+        exclude: ["src/**/*.stories.tsx", "test/**", "src/index.ts"],
       },
       projects: [
         {
           extends: true,
           test: {
             name: "unit",
-            include: ["src/**/*.test.{ts,tsx}"],
+            include: ["test/**/*.test.{ts,tsx}"],
             css: true,
             globals: true,
             environment: "jsdom",
-            setupFiles: "./src/test/setupTests.ts",
+            setupFiles: "./test/setupTests.ts",
           },
         },
         {

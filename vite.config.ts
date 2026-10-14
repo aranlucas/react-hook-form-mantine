@@ -17,19 +17,14 @@ const external = [
 const shouldBuildTypes = process.env.STORYBOOK !== "true";
 
 export default defineConfig({
+  resolve: { tsconfigPaths: true },
   plugins: [
     react(),
     shouldBuildTypes &&
       dts({
         entryRoot: "src",
         include: ["src"],
-        exclude: [
-          "src/**/*.stories.tsx",
-          "src/**/*.test.ts",
-          "src/**/*.test.tsx",
-          "src/stories/**",
-          "src/test/**",
-        ],
+        exclude: ["src/**/*.stories.tsx", "test/**", "src/stories/**"],
       }),
   ],
   build: {

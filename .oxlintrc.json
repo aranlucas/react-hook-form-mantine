@@ -77,7 +77,7 @@
   "overrides": [
     {
       "files": [
-        "src/test/test-utils.tsx",
+        "test/test-utils.tsx",
         ".storybook/preview.tsx",
         ".storybook/form-addon/manager.tsx"
       ],
