@@ -19,6 +19,13 @@ type FieldHandlers = {
 
 type ControllerKeys = "name" | "control" | "defaultValue" | "rules" | "shouldUnregister" | "exact";
 
+type FieldControllerReturn<
+  T extends FieldValues,
+  P extends FieldHandlers,
+> = UseControllerReturn<T> & {
+  props: Omit<P, ControllerKeys | "onBlur" | "onChange" | "ref">;
+};
+
 /**
  * Binds a wrapper's props to react-hook-form. Controller options are consumed here, and the
  * user's `onChange`, `onBlur` and `ref` are composed into `field` so they cannot replace form
@@ -26,9 +33,7 @@ type ControllerKeys = "name" | "control" | "defaultValue" | "rules" | "shouldUnr
  */
 export function useFieldController<T extends FieldValues, P extends FieldHandlers>(
   props: P & UseControllerProps<T>,
-): UseControllerReturn<T> & {
-  props: Omit<P, ControllerKeys | "onBlur" | "onChange" | "ref">;
-} {
+): FieldControllerReturn<T, P> {
   const {
     name,
     control,

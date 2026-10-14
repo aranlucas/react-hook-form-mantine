@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { cleanup, render as rtlRender } from "@testing-library/react";
 import {
   FormProvider,
@@ -15,7 +16,10 @@ afterEach(() => {
 
 import { type RenderResult } from "@testing-library/react";
 
-function AllProviders({ children }: { children: React.ReactNode }) {
+type ProviderProps = { children: React.ReactNode };
+type FormRenderResult<T extends FieldValues> = RenderResult & { form: UseFormReturn<T> };
+
+function AllProviders({ children }: ProviderProps) {
   return (
     <MantineProvider env="test">
       <FormProvider {...useForm()}>{children}</FormProvider>
@@ -30,18 +34,22 @@ function customRender(ui: React.ReactElement, options = {}): RenderResult {
   });
 }
 
-export function renderWithForm(
+export function renderWithForm<T extends FieldValues = FieldValues>(
   ui: React.ReactElement,
-  formOptions?: UseFormProps<FieldValues>,
-): RenderResult & { form: UseFormReturn<FieldValues> } {
-  let form: UseFormReturn<FieldValues>;
+  formOptions?: UseFormProps<T>,
+): FormRenderResult<T> {
+  let form: UseFormReturn<T>;
 
-  function Wrapper({ children }: { children: React.ReactNode }) {
-    form = useForm<FieldValues>(formOptions);
+  function Wrapper({ children }: ProviderProps) {
+    const methods = useForm<T>(formOptions);
+
+    useEffect(() => {
+      form = methods;
+    }, [methods]);
 
     return (
       <MantineProvider env="test">
-        <FormProvider {...form}>{children}</FormProvider>
+        <FormProvider {...methods}>{children}</FormProvider>
       </MantineProvider>
     );
   }

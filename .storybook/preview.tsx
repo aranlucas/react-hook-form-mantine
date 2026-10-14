@@ -14,7 +14,8 @@ import {
 import { definePreview } from "@storybook/react-vite";
 import { fn } from "storybook/test";
 import { DocsPage } from "./DocsPage";
-import { StoryForm } from "./StoryForm";
+import { type Resolver } from "react-hook-form";
+import { StoryForm, type StoryFormParameters } from "./StoryForm";
 import { lightTheme } from "./theme";
 
 // Colors whose shade 8 keeps white button text above WCAG AA (4.5:1).
@@ -43,7 +44,10 @@ const controllerProp = (description: string, summary: string) => ({
   table: { category: "react-hook-form", type: { summary } },
 });
 
-export default definePreview({
+type FormParameters = { form?: StoryFormParameters | false; resolver?: Resolver };
+type ToolbarGlobals = { primaryColor: MantineColor; radius: string; colorScheme: "light" | "dark" };
+
+const preview = definePreview({
   addons: [addonDocs(), addonA11y()],
   tags: ["autodocs"],
 
@@ -88,38 +92,45 @@ export default definePreview({
   // Storybook applies decorators inside-out: every story gets Mantine, and component
   // stories also get a form. Stories that render their own <form> set `form: false`.
   decorators: [
-    (Story, { args, id, parameters }) =>
-      parameters.form === false ? (
-        <Story />
-      ) : (
+    (Story, context) => {
+      const { id } = context;
+      const args = context.args as Record<string, unknown>;
+      const parameters = context.parameters as FormParameters;
+      if (parameters.form === false) return <Story />;
+      const name = typeof args.name === "string" ? args.name : undefined;
+      return (
         <StoryForm
           {...parameters.form}
           storyId={id}
           defaultValues={{
-            ...(args.name && { [args.name]: args[args.name] }),
+            ...(name && { [name]: args[name] }),
             ...parameters.form?.defaultValues,
           }}
           resolver={parameters.resolver}
         >
           <Story />
         </StoryForm>
-      ),
-    (Story, { globals }) => (
-      <MantineProvider
-        theme={createTheme({
-          primaryColor: globals.primaryColor,
-          primaryShade: 8,
-          defaultRadius: globals.radius,
-        })}
-        cssVariablesResolver={cssVariablesResolver}
-        forceColorScheme={globals.colorScheme}
-      >
-        {/* Paints the scheme's background in docs too, where the page body isn't Mantine's. */}
-        <Box bg="var(--mantine-color-body)" c="var(--mantine-color-text)">
-          <Story />
-        </Box>
-      </MantineProvider>
-    ),
+      );
+    },
+    (Story, context) => {
+      const globals = context.globals as ToolbarGlobals;
+      return (
+        <MantineProvider
+          theme={createTheme({
+            primaryColor: globals.primaryColor,
+            primaryShade: 8,
+            defaultRadius: globals.radius,
+          })}
+          cssVariablesResolver={cssVariablesResolver}
+          forceColorScheme={globals.colorScheme}
+        >
+          {/* Paints the scheme's background in docs too, where the page body isn't Mantine's. */}
+          <Box bg="var(--mantine-color-body)" c="var(--mantine-color-text)">
+            <Story />
+          </Box>
+        </MantineProvider>
+      );
+    },
   ],
 
   // Every wrapper composes these with the form's own handlers; the spies log to the Actions panel.
@@ -179,3 +190,5 @@ export default definePreview({
     },
   },
 });
+
+export default preview;

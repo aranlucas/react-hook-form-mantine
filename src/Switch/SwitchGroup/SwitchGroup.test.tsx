@@ -4,14 +4,23 @@ import { Switch } from "../Switch";
 
 describe("SwitchGroup", () => {
   it("renders with a name", () => {
-    render(<SwitchGroup name="test" label="Options" />);
+    render(
+      <SwitchGroup name="test" label="Options">
+        {null}
+      </SwitchGroup>,
+    );
     expect(screen.getByText("Options")).toBeInTheDocument();
   });
 
   it("displays error message", async () => {
-    const { form } = renderWithForm(<SwitchGroup name="test" label="Options" />, {
-      defaultValues: { test: [] },
-    });
+    const { form } = renderWithForm(
+      <SwitchGroup name="test" label="Options">
+        {null}
+      </SwitchGroup>,
+      {
+        defaultValues: { test: [] },
+      },
+    );
 
     await waitFor(() => {
       form.setError("test", { message: "Required" });

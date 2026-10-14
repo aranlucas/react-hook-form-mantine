@@ -16,15 +16,11 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "jsxFactory": "",
-    "jsxFragmentFactory": ""
+    "jsxFragmentFactory": "",
+    "types": ["vitest/globals", "@testing-library/jest-dom/vitest"],
+    "noEmit": true,
+    "allowImportingTsExtensions": true
   },
-  "include": ["src"],
-  "exclude": [
-    "src/**/*.spec.tsx",
-    "src/**/*.test.ts",
-    "src/**/*.test.tsx",
-    "src/setupTests.tsx",
-    "dist",
-    "example"
-  ]
+  "include": ["src", ".storybook", "*.ts"],
+  "exclude": ["dist", "storybook-static", "example", "node_modules"]
 }

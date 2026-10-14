@@ -4,14 +4,23 @@ import { Checkbox } from "../Checkbox";
 
 describe("CheckboxGroup", () => {
   it("renders with a name", () => {
-    render(<CheckboxGroup name="test" label="Options" />);
+    render(
+      <CheckboxGroup name="test" label="Options">
+        {null}
+      </CheckboxGroup>,
+    );
     expect(screen.getByText("Options")).toBeInTheDocument();
   });
 
   it("displays error message", async () => {
-    const { form } = renderWithForm(<CheckboxGroup name="test" label="Options" />, {
-      defaultValues: { test: [] },
-    });
+    const { form } = renderWithForm(
+      <CheckboxGroup name="test" label="Options">
+        {null}
+      </CheckboxGroup>,
+      {
+        defaultValues: { test: [] },
+      },
+    );
 
     await waitFor(() => {
       form.setError("test", { message: "Required" });

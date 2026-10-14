@@ -6,8 +6,17 @@ const docgenPackages = new Set([
   "@joshwooding/vite-plugin-react-docgen-typescript",
 ]);
 
+/**
+ * @typedef {object} PackageManifest
+ * @property {string} name
+ * @property {Record<string, string>} [dependencies]
+ * @property {Record<string, string>} [peerDependencies]
+ * @property {Record<string, object>} [peerDependenciesMeta]
+ */
+
 module.exports = {
   hooks: {
+    /** @param {PackageManifest} pkg */
     readPackage(pkg) {
       if (docgenPackages.has(pkg.name)) {
         delete pkg.peerDependencies?.typescript;

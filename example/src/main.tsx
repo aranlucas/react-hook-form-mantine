@@ -5,7 +5,7 @@ import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.createRoot(document.querySelector("#root")!).render(
   <React.StrictMode>
     <MantineProvider>
       <App />

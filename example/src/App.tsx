@@ -109,7 +109,12 @@ export default function App() {
   return (
     <Container size={1000}>
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-        <form onSubmit={handleSubmit(setSubmitted)} noValidate>
+        <form
+          onSubmit={(event) => {
+            handleSubmit(setSubmitted)(event).catch(console.error);
+          }}
+          noValidate
+        >
           <Stack>
             <TextInput
               name="fullName"

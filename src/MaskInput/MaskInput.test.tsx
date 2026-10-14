@@ -18,7 +18,7 @@ describe("MaskInput", () => {
     });
   });
 
-  it("updates value on user input", async () => {
+  it("updates value on user input", () => {
     const { form, container } = renderWithForm(
       <MaskInput name="test" label="Phone" mask="***-***-****" />,
       { defaultValues: { test: "" } },

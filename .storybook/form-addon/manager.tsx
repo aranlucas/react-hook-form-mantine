@@ -39,7 +39,7 @@ const Heading = styled.h3(({ theme }) => ({
   fontWeight: theme.typography.weight.bold,
   letterSpacing: "0.35em",
   textTransform: "uppercase",
-  color: theme.textMutedColor,
+  color: String(theme.textMutedColor),
 }));
 
 const Fields = styled.table(({ theme }) => ({
@@ -52,15 +52,17 @@ const Fields = styled.table(({ theme }) => ({
     borderBottom: `1px solid ${theme.appBorderColor}`,
     verticalAlign: "top",
   },
-  th: { color: theme.textMutedColor, fontWeight: theme.typography.weight.bold },
+  th: { color: String(theme.textMutedColor), fontWeight: theme.typography.weight.bold },
   code: { fontFamily: theme.typography.fonts.mono, wordBreak: "break-all" },
 }));
 
 const ErrorText = styled.span(({ theme }) => ({ color: theme.color.negativeText }));
 
-const Muted = styled.span(({ theme }) => ({ color: theme.textMutedColor }));
+const Muted = styled.span(({ theme }) => ({ color: String(theme.textMutedColor) }));
 
-const Json = ({ code }: { code: string }) => (
+type JsonProps = { code: string };
+
+const Json = ({ code }: JsonProps) => (
   <SyntaxHighlighter language="json" copyable bordered padded>
     {code}
   </SyntaxHighlighter>

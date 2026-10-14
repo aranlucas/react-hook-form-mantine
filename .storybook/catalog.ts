@@ -8,7 +8,9 @@ type Entry = {
   mantine: string;
 };
 
-export const categories: { name: Category; summary: string }[] = [
+type CategoryDescription = { name: Category; summary: string };
+
+export const categories: CategoryDescription[] = [
   { name: "Inputs", summary: "Free-form text, numbers, files and structured values." },
   { name: "Combobox", summary: "Pick one or many values from a list of options." },
   { name: "Toggles", summary: "Booleans, single choices and small option sets." },
