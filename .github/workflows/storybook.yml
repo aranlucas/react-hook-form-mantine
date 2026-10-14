@@ -29,15 +29,11 @@ jobs:
           require-lockfile: true
       - name: Build Storybook
         run: pnpm build-storybook
-      - name: Skip Jekyll
-        # Pages runs Jekyll on branch deploys, which would drop Storybook's `_`-prefixed files.
-        run: touch storybook-static/.nojekyll
       - name: Upload Storybook
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: storybook
           path: storybook-static
-          include-hidden-files: true
           retention-days: 7
 
   deploy-preview:
