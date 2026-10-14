@@ -1,1 +1,0 @@
-import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{Jt as t,Kt as n}from"./iframe-Df98ca6t.js";function r(){return(r=e((()=>{t()})))()}r();export{n as DocsRenderer};
