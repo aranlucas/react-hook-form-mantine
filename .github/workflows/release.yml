@@ -47,3 +47,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm semantic-release
+      - name: Build Storybook
+        run: pnpm build-storybook
+      - name: Deploy Storybook to gh-pages
+        uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4.9.0
+        with:
+          folder: storybook-static
+          branch: gh-pages
+          # Leave pull request previews in place.
+          clean-exclude: pr-preview/
+          force: false
