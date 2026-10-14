@@ -29,6 +29,7 @@ const useNavigate = () => {
 };
 
 type WelcomeTip = { title: string; body: ReactNode };
+
 type WelcomeFeature = WelcomeTip & { mark: string };
 
 const features: WelcomeFeature[] = [

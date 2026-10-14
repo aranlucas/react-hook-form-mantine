@@ -31,9 +31,13 @@ function FormStatus() {
 
   let status = "No changes";
 
-  if (errorCount > 0) status = `Fix ${errorCount} ${errorCount === 1 ? "error" : "errors"}`;
-  else if (isSubmitSuccessful) status = "Submitted";
-  else if (isDirty) status = "Unsaved changes";
+  if (errorCount > 0) {
+    status = `Fix ${errorCount} ${errorCount === 1 ? "error" : "errors"}`;
+  } else if (isSubmitSuccessful) {
+    status = "Submitted";
+  } else if (isDirty) {
+    status = "Unsaved changes";
+  }
 
   return (
     <Text size="sm" c={errorCount > 0 ? "var(--mantine-color-error)" : "dimmed"} role="status">

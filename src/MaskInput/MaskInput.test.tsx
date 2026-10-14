@@ -19,12 +19,11 @@ describe("MaskInput", () => {
   });
 
   it("updates value on user input", () => {
-    const { form, container } = renderWithForm(
-      <MaskInput name="test" label="Phone" mask="***-***-****" />,
-      { defaultValues: { test: "" } },
-    );
+    const { form } = renderWithForm(<MaskInput name="test" label="Phone" mask="***-***-****" />, {
+      defaultValues: { test: "" },
+    });
 
-    const input = container.querySelector("input")!;
+    const input = screen.getByRole("textbox", { name: "Phone" });
     fireEvent.change(input, { target: { value: "HelloWorld" } });
     expect(form.getValues("test")).toBe("HelloWorld");
   });

@@ -7,45 +7,6 @@
     "./node_modules/@aranlucas/oxforge/configs/type-aware.json"
   ],
   "rules": {
-    "oxc/no-accumulating-spread": "error",
-    "eslint/curly": "off",
-    "eslint/no-console": "off",
-    "eslint/no-magic-numbers": "off",
-    "eslint/id-length": "off",
-    "eslint/max-lines": "off",
-    "eslint/max-lines-per-function": "off",
-    "eslint/max-statements": "off",
-    "eslint/func-style": "off",
-    "eslint/no-inline-comments": "off",
-    "eslint/no-negated-condition": "off",
-    "eslint/new-cap": "off",
-    "eslint/no-restricted-imports": "off",
-    "unicorn/no-useless-undefined": "off",
-    "unicorn/prefer-add-event-listener": "off",
-    "unicorn/prefer-code-point": "off",
-    "unicorn/no-this-assignment": "off",
-    "unicorn/consistent-function-scoping": "off",
-    "react/button-has-type": "off",
-    "typescript/no-non-null-assertion": "off",
-    "eslint/radix": "off",
-    "anti-slop/no-array-filter-map": "off",
-    "anti-slop/no-chained-type-assertions": "off",
-    "anti-slop/no-conditional-empty-object-spread": "off",
-    "anti-slop/no-known-value-widening": "off",
-    "anti-slop/no-module-mocking": "off",
-    "anti-slop/no-object-parameters": "off",
-    "anti-slop/no-reduce-accumulator-copy": "off",
-    "anti-slop/no-reflect-apply": "off",
-    "anti-slop/no-reflect-get": "off",
-    "anti-slop/no-runtime-typeof": "off",
-    "anti-slop/no-shape-in-symbol-names": "off",
-    "anti-slop/no-unknown-parameters": "off",
-    "anti-slop/no-unknown-returns": "off",
-    "anti-slop/no-unknown-type-aliases": "off",
-    "anti-slop/no-unsafe-dictionary-type": "off",
-    "anti-slop/no-widen-then-assert": "off",
-    "anti-slop/require-readable-spacing": "off",
-    "anti-slop/require-safety-comment-for-type-assertion": "off",
     "unicorn/filename-case": [
       "error",
       {
@@ -67,6 +28,12 @@
           "@semantic-release/git",
           "./form-addon/manager"
         ]
+      }
+    ],
+    "eslint/no-console": [
+      "error",
+      {
+        "allow": ["error", "log"]
       }
     ]
   },
@@ -116,6 +83,12 @@
       ],
       "rules": {
         "react/only-export-components": "off"
+      }
+    },
+    {
+      "files": [".storybook/preview.tsx"],
+      "rules": {
+        "anti-slop/no-unsafe-dictionary-type": "off"
       }
     }
   ]

@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import { fileURLToPath } from "node:url";
 
 const packageSource = fileURLToPath(new URL("../src/index.ts", import.meta.url));
+
 const sharedDependencies = [
   "@mantine/core",
   "@mantine/dates",

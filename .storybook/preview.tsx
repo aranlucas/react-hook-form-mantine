@@ -13,6 +13,7 @@ import {
 } from "@mantine/core";
 import { definePreview } from "@storybook/react-vite";
 import { fn } from "storybook/test";
+import { z } from "zod";
 import { DocsPage } from "./DocsPage";
 import { type Resolver } from "react-hook-form";
 import { StoryForm, type StoryFormParameters } from "./StoryForm";
@@ -45,6 +46,7 @@ const controllerProp = (description: string, summary: string) => ({
 });
 
 type FormParameters = { form?: StoryFormParameters | false; resolver?: Resolver };
+
 type ToolbarGlobals = { primaryColor: MantineColor; radius: string; colorScheme: "light" | "dark" };
 
 const preview = definePreview({
@@ -94,10 +96,17 @@ const preview = definePreview({
   decorators: [
     (Story, context) => {
       const { id } = context;
+      // SAFETY: Storybook supplies a string-keyed argument bag; each value stays unknown.
       const args = context.args as Record<string, unknown>;
+      // SAFETY: These parameters are authored by the local stories using StoryFormParameters.
       const parameters = context.parameters as FormParameters;
-      if (parameters.form === false) return <Story />;
-      const name = typeof args.name === "string" ? args.name : undefined;
+
+      if (parameters.form === false) {
+        return <Story />;
+      }
+
+      const name = z.string().safeParse(args.name).data;
+
       return (
         <StoryForm
           {...parameters.form}
@@ -113,7 +122,9 @@ const preview = definePreview({
       );
     },
     (Story, context) => {
+      // SAFETY: Storybook supplies the values from the toolbar options and initialGlobals above.
       const globals = context.globals as ToolbarGlobals;
+
       return (
         <MantineProvider
           theme={createTheme({
