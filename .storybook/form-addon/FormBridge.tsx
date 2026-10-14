@@ -1,5 +1,6 @@
 import { type RefObject, useEffect, useRef } from "react";
 import { type FieldValues, useFormContext, useFormState, useWatch } from "react-hook-form";
+import { z } from "zod";
 import { addons } from "storybook/preview-api";
 import { EVENTS, type FieldSnapshot, type FormSnapshot } from "./constants";
 
@@ -12,13 +13,17 @@ type FormBridgeProps = {
 };
 
 /** Form data as JSON. Errors drop their DOM `ref`, and files show their name. */
-const json = (value: unknown, space?: number) =>
+const json = <Value,>(value: Value, space?: number) =>
   JSON.stringify(
     value,
-    (key, item: unknown) => {
-      if (key === "ref") return undefined;
+    <Item,>(key: string, item: Item): Item | string | void => {
+      if (key === "ref") {
+        return;
+      }
 
-      if (item instanceof File) return `File(${item.name})`;
+      if (item instanceof File) {
+        return `File(${item.name})`;
+      }
 
       return item;
     },
@@ -38,7 +43,7 @@ export function FormBridge({ storyId, mode, submitted, formRef, onReset }: FormB
     value: json(values[name]) || "undefined",
     dirty: Boolean(dirtyFields[name]),
     touched: Boolean(touchedFields[name]),
-    error: typeof errors[name]?.message === "string" ? errors[name].message : undefined,
+    error: z.string().safeParse(errors[name]?.message).data,
   }));
 
   const snapshot: FormSnapshot = {
@@ -65,11 +70,15 @@ export function FormBridge({ storyId, mode, submitted, formRef, onReset }: FormB
     channel?.emit(EVENTS.STATE, JSON.parse(serialized));
   }, [channel, serialized]);
 
-  useEffect(() => {
-    if (!channel) return undefined;
+  useEffect((): (() => void) | void => {
+    if (!channel) {
+      return;
+    }
 
     const forThisStory = (handler: () => void) => (id: string) => {
-      if (id === storyId) handler();
+      if (id === storyId) {
+        handler();
+      }
     };
 
     const reset = forThisStory(onReset);

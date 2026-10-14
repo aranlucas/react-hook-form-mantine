@@ -5,18 +5,21 @@ import { Checkbox, CheckboxGroup, DateInput, Select, Slider, TextInput } from ".
 import { act, fireEvent, renderWithForm, screen, userEvent, waitFor } from "./test-utils";
 
 type TestValues = { test: string | string[] | number | boolean | null };
+
 type ControlProps = {
   name: "test";
   disabled?: boolean;
   onBlur?: (event: FocusEvent<HTMLElement>) => void;
   rules?: { validate: () => string };
 };
+
 type ControlCase = {
   label: string;
   initial: TestValues["test"];
   role: string;
   renderInput: (props: ControlProps) => ReactElement;
 };
+
 type RefFieldProps = { name: string; ref: Ref<HTMLElement> };
 
 const controls: ControlCase[] = [

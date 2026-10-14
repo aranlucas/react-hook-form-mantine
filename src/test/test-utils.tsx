@@ -17,7 +17,10 @@ afterEach(() => {
 import { type RenderResult } from "@testing-library/react";
 
 type ProviderProps = { children: React.ReactNode };
+
 type FormRenderResult<T extends FieldValues> = RenderResult & { form: UseFormReturn<T> };
+
+type FormCapture<T extends FieldValues> = { form?: UseFormReturn<T> };
 
 function AllProviders({ children }: ProviderProps) {
   return (
@@ -38,13 +41,13 @@ export function renderWithForm<T extends FieldValues = FieldValues>(
   ui: React.ReactElement,
   formOptions?: UseFormProps<T>,
 ): FormRenderResult<T> {
-  let form: UseFormReturn<T>;
+  const captured: FormCapture<T> = {};
 
   function Wrapper({ children }: ProviderProps) {
     const methods = useForm<T>(formOptions);
 
     useEffect(() => {
-      form = methods;
+      captured.form = methods;
     }, [methods]);
 
     return (
@@ -56,7 +59,11 @@ export function renderWithForm<T extends FieldValues = FieldValues>(
 
   const result = rtlRender(ui, { wrapper: Wrapper });
 
-  return { ...result, form: form! };
+  if (!captured.form) {
+    throw new Error("The form provider did not mount during render.");
+  }
+
+  return { ...result, form: captured.form };
 }
 
 export * from "@testing-library/react";
