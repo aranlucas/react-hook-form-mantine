@@ -45,7 +45,30 @@
     "anti-slop/no-unsafe-dictionary-type": "off",
     "anti-slop/no-widen-then-assert": "off",
     "anti-slop/require-readable-spacing": "off",
-    "anti-slop/require-safety-comment-for-type-assertion": "off"
+    "anti-slop/require-safety-comment-for-type-assertion": "off",
+    "unicorn/filename-case": [
+      "error",
+      {
+        "cases": {
+          "kebabCase": true,
+          "pascalCase": true,
+          "camelCase": true
+        }
+      }
+    ],
+    "import/no-unassigned-import": [
+      "error",
+      {
+        "allow": [
+          "**/*.css",
+          "**/env",
+          "@testing-library/jest-dom/vitest",
+          "@semantic-release/changelog",
+          "@semantic-release/git",
+          "./form-addon/manager"
+        ]
+      }
+    ]
   },
   "ignorePatterns": [
     "example",
@@ -83,5 +106,17 @@
   ],
   "options": {
     "typeAware": true
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "src/test/test-utils.tsx",
+        ".storybook/preview.tsx",
+        ".storybook/form-addon/manager.tsx"
+      ],
+      "rules": {
+        "react/only-export-components": "off"
+      }
+    }
+  ]
 }

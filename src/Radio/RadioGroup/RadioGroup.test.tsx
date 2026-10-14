@@ -4,14 +4,23 @@ import { Radio } from "../Radio";
 
 describe("RadioGroup", () => {
   it("renders with a name", () => {
-    render(<RadioGroup name="test" label="Options" />);
+    render(
+      <RadioGroup name="test" label="Options">
+        {null}
+      </RadioGroup>,
+    );
     expect(screen.getByText("Options")).toBeInTheDocument();
   });
 
   it("displays error message", async () => {
-    const { form } = renderWithForm(<RadioGroup name="test" label="Options" />, {
-      defaultValues: { test: "" },
-    });
+    const { form } = renderWithForm(
+      <RadioGroup name="test" label="Options">
+        {null}
+      </RadioGroup>,
+      {
+        defaultValues: { test: "" },
+      },
+    );
 
     await waitFor(() => {
       form.setError("test", { message: "Required" });

@@ -11,7 +11,7 @@ const meta = preview.meta({
     // Replaced by the picker's color in render.
     color: "#228be6",
   },
-  render: (args) => {
+  render: function AlphaSliderStory(args) {
     const [color, setColor] = useState("#228be6");
 
     return (

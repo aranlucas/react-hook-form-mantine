@@ -73,11 +73,15 @@ export function StoryForm({
           p="lg"
           shadow="xs"
           // A real submit, so validation runs and the first invalid field is focused.
-          onSubmit={methods.handleSubmit((data) => {
-            setSubmitted(data);
-            onSubmit?.(data);
-            action("onSubmit")(data);
-          })}
+          onSubmit={(event) => {
+            methods
+              .handleSubmit((data) => {
+                setSubmitted(data);
+                onSubmit?.(data);
+                action("onSubmit")(data);
+              })(event)
+              .catch(console.error);
+          }}
         >
           <Stack gap="md">{children}</Stack>
           <Divider my="lg" />

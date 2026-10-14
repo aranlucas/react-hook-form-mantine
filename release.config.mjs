@@ -2,7 +2,7 @@ import "@semantic-release/changelog";
 import "@semantic-release/git";
 
 // Keep plugin package usage visible to dependency scanners while semantic-release resolves plugins by name.
-export default {
+const releaseConfig = {
   branches: ["main", "next"],
   plugins: [
     "@semantic-release/commit-analyzer",
@@ -13,3 +13,5 @@ export default {
     "@semantic-release/github",
   ],
 };
+
+export default releaseConfig;

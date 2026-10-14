@@ -1,37 +1,65 @@
-import { type ComponentType, type Ref, createRef } from "react";
+import { type ComponentType, type Ref, type FocusEvent, type ReactElement, createRef } from "react";
 import { vi } from "vitest";
 import * as fields from "../index";
 import { Checkbox, CheckboxGroup, DateInput, Select, Slider, TextInput } from "../index";
 import { act, fireEvent, renderWithForm, screen, userEvent, waitFor } from "./test-utils";
 
-const controls = [
-  { label: "text", Input: TextInput, initial: "", role: "textbox", extra: {} },
-  { label: "select", Input: Select, initial: "", role: "combobox", extra: { data: ["A", "B"] } },
-  { label: "checkbox", Input: Checkbox, initial: false, role: "checkbox", extra: {} },
+type TestValues = { test: string | string[] | number | boolean | null };
+type ControlProps = {
+  name: "test";
+  disabled?: boolean;
+  onBlur?: (event: FocusEvent<HTMLElement>) => void;
+  rules?: { validate: () => string };
+};
+type ControlCase = {
+  label: string;
+  initial: TestValues["test"];
+  role: string;
+  renderInput: (props: ControlProps) => ReactElement;
+};
+type RefFieldProps = { name: string; ref: Ref<HTMLElement> };
+
+const controls: ControlCase[] = [
+  { label: "text", renderInput: (props) => <TextInput {...props} />, initial: "", role: "textbox" },
+  {
+    label: "select",
+    renderInput: (props) => <Select {...props} data={["A", "B"]} />,
+    initial: "",
+    role: "combobox",
+  },
+  {
+    label: "checkbox",
+    renderInput: (props) => <Checkbox {...props} />,
+    initial: false,
+    role: "checkbox",
+  },
   {
     label: "checkbox group",
-    Input: CheckboxGroup,
+    renderInput: (props) => (
+      <CheckboxGroup {...props}>
+        <Checkbox.Item value="a" label="A" />
+      </CheckboxGroup>
+    ),
     initial: [],
     role: "checkbox",
-    extra: { children: <Checkbox.Item value="a" label="A" /> },
   },
-  { label: "slider", Input: Slider, initial: 0, role: "slider", extra: {} },
-  { label: "date", Input: DateInput, initial: null, role: "textbox", extra: {} },
+  { label: "slider", renderInput: (props) => <Slider {...props} />, initial: 0, role: "slider" },
+  {
+    label: "date",
+    renderInput: (props) => <DateInput {...props} />,
+    initial: null,
+    role: "textbox",
+  },
 ];
 
 describe("controller lifecycle contracts", () => {
   it.each(controls)(
     "$label composes custom blur with touched state and validation",
-    async ({ Input, initial, role, extra }) => {
-      const onBlur = vi.fn();
+    async ({ renderInput, initial, role }) => {
+      const onBlur = vi.fn<(event: FocusEvent<HTMLElement>) => void>();
 
       const { form } = renderWithForm(
-        <Input
-          name="test"
-          onBlur={onBlur}
-          rules={{ validate: () => "Invalid value" }}
-          {...extra}
-        />,
+        renderInput({ name: "test", onBlur, rules: { validate: () => "Invalid value" } }),
         { defaultValues: { test: initial }, mode: "onBlur" },
       );
 
@@ -48,10 +76,10 @@ describe("controller lifecycle contracts", () => {
 
   it.each(controls)(
     "$label omits disabled values from submission and restores them when enabled",
-    async ({ Input, initial, extra }) => {
-      const onSubmit = vi.fn();
+    async ({ renderInput, initial }) => {
+      const onSubmit = vi.fn<(data: TestValues) => void>();
 
-      const { form, rerender } = renderWithForm(<Input name="test" disabled {...extra} />, {
+      const { form, rerender } = renderWithForm(renderInput({ name: "test", disabled: true }), {
         defaultValues: { test: initial },
       });
 
@@ -59,7 +87,7 @@ describe("controller lifecycle contracts", () => {
         await form.handleSubmit(onSubmit)();
       });
       expect(onSubmit.mock.calls[0][0].test).toBeUndefined();
-      rerender(<Input name="test" disabled={false} {...extra} />);
+      rerender(renderInput({ name: "test", disabled: false }));
       await act(async () => {
         await form.handleSubmit(onSubmit)();
       });
@@ -93,7 +121,7 @@ describe("controller lifecycle contracts", () => {
   });
 
   it("inherits form-level disabled state when the input does not override it", async () => {
-    const onSubmit = vi.fn();
+    const onSubmit = vi.fn<(data: TestValues) => void>();
 
     const { form } = renderWithForm(<TextInput name="test" />, {
       defaultValues: { test: "saved" },
@@ -133,7 +161,7 @@ describe("controller lifecycle contracts", () => {
       await form.trigger("test", { shouldFocus: true });
     });
     expect(input).toHaveFocus();
-    rerender(<></>);
+    rerender(null);
     expect(form.getValues()).toEqual({});
   });
 
@@ -151,7 +179,7 @@ describe("controller lifecycle contracts", () => {
     const userRef = createRef<HTMLElement>();
     const extra = Object.entries(requiredProps).find(([name]) => name === key)?.[1];
     // SAFETY: every export of the index is a field wrapper that accepts a name and a ref.
-    const Component = Field as ComponentType<{ name: string; ref: Ref<HTMLElement> }>;
+    const Component = Field as ComponentType<RefFieldProps>;
 
     renderWithForm(<Component name="test" ref={userRef} {...extra} />);
     expect(userRef.current).toBeInstanceOf(HTMLElement);

@@ -8,7 +8,7 @@ overrides:
   esbuild: ^0.28.1
   fast-uri: ^3.1.8
 
-pnpmfileChecksum: sha256-SOrkMMGW9akXCt7QoLPuWN/xDR/tyReFiOa/hkUZ3Ng=
+pnpmfileChecksum: sha256-jUKH+pZ6DxETbB9YxYvPIYfiMBCi9LJpRXfn9/7o300=
 
 importers:
 

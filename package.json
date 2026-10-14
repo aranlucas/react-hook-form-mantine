@@ -38,8 +38,8 @@
     "build-storybook": "storybook build",
     "commitlint": "node scripts/commitlint.mjs",
     "coverage": "vitest run --coverage",
-    "format": "oxfmt --check",
-    "format:fix": "oxfmt --write",
+    "format": "oxfmt --check --config oxfmt.config.ts",
+    "format:fix": "oxfmt --write --config oxfmt.config.ts",
     "lint": "oxlint --deny-warnings",
     "lint:fix": "oxlint --fix --deny-warnings",
     "prepare": "husky",
@@ -51,7 +51,7 @@
     "typecheck": "tsc --noEmit && pnpm --dir example typecheck",
     "test:unit": "vitest --project=unit",
     "test:storybook": "vitest --project=storybook",
-    "format:check": "oxfmt --check"
+    "format:check": "oxfmt --check --config oxfmt.config.ts"
   },
   "dependencies": {
     "merge-refs": "^2.0.0"

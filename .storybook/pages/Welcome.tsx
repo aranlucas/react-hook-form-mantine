@@ -28,7 +28,10 @@ const useNavigate = () => {
   return (path: string) => context.channel.emit(NAVIGATE_URL, `?path=${path}`);
 };
 
-const features: { title: string; body: ReactNode; mark: string }[] = [
+type WelcomeTip = { title: string; body: ReactNode };
+type WelcomeFeature = WelcomeTip & { mark: string };
+
+const features: WelcomeFeature[] = [
   {
     mark: "1",
     title: "Every Mantine prop",
@@ -39,8 +42,8 @@ const features: { title: string; body: ReactNode; mark: string }[] = [
     title: "Validation, displayed",
     body: (
       <>
-        Pass <Code>rules</Code> or a resolver; the field error lands in Mantine's <Code>error</Code>{" "}
-        prop.
+        Pass <Code>rules</Code> or a resolver; the field error lands in Mantine&apos;s{" "}
+        <Code>error</Code> prop.
       </>
     ),
   },
@@ -49,7 +52,8 @@ const features: { title: string; body: ReactNode; mark: string }[] = [
     title: "Typed field paths",
     body: (
       <>
-        <Code>name</Code> is checked against your form's values, as with <Code>useController</Code>.
+        <Code>name</Code> is checked against your form&apos;s values, as with{" "}
+        <Code>useController</Code>.
       </>
     ),
   },
@@ -59,13 +63,13 @@ const features: { title: string; body: ReactNode; mark: string }[] = [
     body: (
       <>
         Your <Code>onChange</Code>, <Code>onBlur</Code> and <Code>ref</Code> run alongside the
-        form's, so focus-on-error and touched state keep working.
+        form&apos;s, so focus-on-error and touched state keep working.
       </>
     ),
   },
 ];
 
-const tips: { title: string; body: ReactNode }[] = [
+const tips: WelcomeTip[] = [
   {
     title: "Theme it from the toolbar",
     body: "Switch light and dark, the primary color and the default radius. Every story follows.",

@@ -1,11 +1,5 @@
 import { type RefObject, useEffect, useRef } from "react";
-import {
-  type FieldErrors,
-  type FieldValues,
-  useFormContext,
-  useFormState,
-  useWatch,
-} from "react-hook-form";
+import { type FieldValues, useFormContext, useFormState, useWatch } from "react-hook-form";
 import { addons } from "storybook/preview-api";
 import { EVENTS, type FieldSnapshot, type FormSnapshot } from "./constants";
 
@@ -18,10 +12,10 @@ type FormBridgeProps = {
 };
 
 /** Form data as JSON. Errors drop their DOM `ref`, and files show their name. */
-const json = (value: FieldValues | FieldErrors | FieldValues[string], space?: number) =>
+const json = (value: unknown, space?: number) =>
   JSON.stringify(
     value,
-    (key, item) => {
+    (key, item: unknown) => {
       if (key === "ref") return undefined;
 
       if (item instanceof File) return `File(${item.name})`;
@@ -44,7 +38,7 @@ export function FormBridge({ storyId, mode, submitted, formRef, onReset }: FormB
     value: json(values[name]) || "undefined",
     dirty: Boolean(dirtyFields[name]),
     touched: Boolean(touchedFields[name]),
-    error: errors[name]?.message?.toString(),
+    error: typeof errors[name]?.message === "string" ? errors[name].message : undefined,
   }));
 
   const snapshot: FormSnapshot = {
@@ -63,12 +57,11 @@ export function FormBridge({ storyId, mode, submitted, formRef, onReset }: FormB
   const serialized = JSON.stringify(snapshot);
   const latest = useRef(serialized);
 
-  latest.current = serialized;
-
   // Portable stories (Vitest) run without a manager, so there may be no channel.
   const channel = addons.hasChannel() ? addons.getChannel() : null;
 
   useEffect(() => {
+    latest.current = serialized;
     channel?.emit(EVENTS.STATE, JSON.parse(serialized));
   }, [channel, serialized]);
 
