@@ -7,7 +7,6 @@
     "./node_modules/@aranlucas/oxforge/configs/type-aware.json"
   ],
   "rules": {
-    "oxc/no-accumulating-spread": "error",
     "unicorn/filename-case": [
       "error",
       {
