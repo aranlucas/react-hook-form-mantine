@@ -85,6 +85,7 @@
     "@vitest/ui": "^5.0.3",
     "husky": "^9.1.7",
     "jsdom": "^30.1.2",
+    "lint-staged": "^17.6.0",
     "oxfmt": "^0.73.0",
     "oxlint": "^1.88.0",
     "oxlint-tsgolint": "^7.0.2004",
@@ -108,6 +109,15 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.43"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}": [
+      "oxlint --fix --deny-warnings",
+      "oxfmt --write --config oxfmt.config.ts --no-error-on-unmatched-pattern"
+    ],
+    "*.{json,jsonc,json5,css,scss,md,mdx,yml,yaml,html,toml,vue,svelte,astro,graphql}": [
+      "oxfmt --write --config oxfmt.config.ts --no-error-on-unmatched-pattern"
+    ]
   },
   "packageManager": "pnpm@12.10.1",
   "pnpm": {
