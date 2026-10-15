@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";function t(e,t){let n=t.trim().toLowerCase();if(n===``)return;let r=Object.values(e).filter(e=>!e.disabled&&e.label.trim().toLowerCase()===n);return r.length===1?r[0]:void 0}function n(){return(n=e((()=>{})))()}export{n,t};
