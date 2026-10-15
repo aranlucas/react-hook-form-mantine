@@ -1,25 +1,30 @@
 version: 2
+
+multi-ecosystem-groups:
+  weekly-dependencies:
+    schedule:
+      interval: weekly
+      day: thursday
+      time: "06:00"
+      timezone: America/Los_Angeles
+    open-pull-requests-limit: 1
+
 updates:
   - package-ecosystem: github-actions
     directory: /
+    patterns: ["*"]
+    multi-ecosystem-group: weekly-dependencies
     schedule:
       interval: weekly
       day: thursday
       time: "06:00"
       timezone: America/Los_Angeles
-    open-pull-requests-limit: 5
   - package-ecosystem: npm
     directory: /
-    groups:
-      react-runtime:
-        patterns:
-          - react
-          - react-dom
-          - "@types/react"
-          - "@types/react-dom"
+    patterns: ["*"]
+    multi-ecosystem-group: weekly-dependencies
     schedule:
       interval: weekly
       day: thursday
       time: "06:00"
       timezone: America/Los_Angeles
-    open-pull-requests-limit: 5
