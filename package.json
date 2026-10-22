@@ -36,7 +36,6 @@
   "scripts": {
     "build": "vite build",
     "build-storybook": "storybook build",
-    "commitlint": "node scripts/commitlint.mjs",
     "coverage": "vitest run --coverage",
     "format": "oxfmt --check --config oxfmt.config.ts",
     "format:fix": "oxfmt --write --config oxfmt.config.ts",
@@ -58,10 +57,8 @@
   },
   "devDependencies": {
     "@aranlucas/oxforge": "^0.2.2",
+    "@commitlint/cli": "^21.2.4",
     "@commitlint/config-conventional": "^21.2.4",
-    "@commitlint/format": "^21.2.3",
-    "@commitlint/lint": "^21.2.4",
-    "@commitlint/load": "^21.2.4",
     "@hookform/resolvers": "^6.0.0",
     "@mantine/core": "^9.7.3",
     "@mantine/dates": "^9.7.3",
