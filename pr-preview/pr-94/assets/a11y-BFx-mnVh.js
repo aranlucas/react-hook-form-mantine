@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";var t;function n(){return(n=e((()=>{t={nextMonth:`Next month`,previousMonth:`Previous month`,nextYear:`Next year`,previousYear:`Previous year`,nextDecade:`Next decade`,previousDecade:`Previous decade`}})))()}export{n,t};
