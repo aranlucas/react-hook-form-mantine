@@ -45,7 +45,7 @@
     "prepublishOnly": "pnpm build",
     "semantic-release": "semantic-release",
     "storybook": "portless run storybook dev",
-    "test": "vitest run",
+    "test": "vitest",
     "watch": "vite build --watch",
     "typecheck": "tsc --noEmit && pnpm --dir example typecheck",
     "test:unit": "vitest --project=unit",
