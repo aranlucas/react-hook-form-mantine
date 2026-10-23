@@ -5,16 +5,18 @@ on:
   push:
     branches: [main]
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
 
 permissions:
   contents: read
 
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   ci:
+    if: ${{ github.event.pull_request.draft != true }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -29,6 +31,9 @@ jobs:
           cache: true
           require-lockfile: true
 
+      - name: Install Playwright
+        run: pnpm exec playwright install --with-deps chromium
+
       - parallel:
           - name: Check formatting
             run: pnpm format
@@ -40,7 +45,7 @@ jobs:
             run: pnpm typecheck
 
           - name: Test
-            run: pnpm exec playwright install --with-deps chromium && pnpm test --run
+            run: pnpm test
 
           - name: Build
             run: pnpm build

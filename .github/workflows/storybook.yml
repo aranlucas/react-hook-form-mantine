@@ -7,7 +7,7 @@ name: Storybook
 on:
   pull_request:
     branches: ["main"]
-    types: [opened, synchronize, reopened, closed]
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft, closed]
 
 permissions:
   contents: read
@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   build:
-    if: github.event.action != 'closed'
+    if: github.event.action != 'closed' && github.event.pull_request.draft != true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -40,7 +40,7 @@ jobs:
     # Fork pull requests get a read-only token, so they can't push a preview.
     if: >-
       github.event.pull_request.head.repo.full_name == github.repository &&
-      !cancelled() && (needs.build.result == 'success' || github.event.action == 'closed')
+      !cancelled() && (needs.build.result == 'success' || github.event.action == 'closed') && github.event.pull_request.draft != true
     needs: build
     runs-on: ubuntu-latest
     permissions:
