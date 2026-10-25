@@ -85,6 +85,12 @@ pnpm build
 
 `pnpm test` runs two Vitest projects: `unit` (component tests in jsdom) and `storybook`, which renders every story in headless Chromium and fails on a broken render, a failing `play` function or `.test()`, or an accessibility violation. Run one with `pnpm test:unit` or `pnpm test:storybook`; the first run needs `pnpm exec playwright install chromium`.
 
+### Coverage and redundant tests
+
+Run `pnpm coverage --project=unit` for the jsdom suite, or `pnpm coverage` to include Storybook. Both use the source scope in `vitest.config.ts`; stories, test helpers, and the export barrel are excluded there.
+
+Keep the controller lifecycle and per-control interaction/error tests. Label-based interactions already verify that their controls render and expose the supplied label, and the Slider lifecycle test finds its slider before exercising blur. Separate smoke tests for those same checks are unnecessary. TextInput’s lifecycle regression already types into the field and checks the stored value alongside callbacks, reset, focus, and unregister. Coverage percentages alone are not a reason to remove a distinct assertion.
+
 ## Storybook
 
 `pnpm storybook` serves the component workshop at `https://react-hook-form-mantine.localhost` through [Portless](https://github.com/vercel-labs/portless) (a dev dependency); its first run may ask for `sudo` to bind port 443 and trust a local certificate. `pnpm --dir example dev` serves the Vite example at `https://example.react-hook-form-mantine.localhost`; `pnpm build-storybook` produces the static site. GitHub Pages serves the `gh-pages` branch: main's Storybook at the root, and every same-repository pull request's at `/pr-preview/pr-<number>/`, linked from a comment on the pull request and removed when it closes.
