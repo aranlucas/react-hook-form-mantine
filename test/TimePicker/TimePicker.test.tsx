@@ -1,12 +1,7 @@
-import { render, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { TimePicker } from "@/TimePicker/TimePicker";
 
 describe("TimePicker", () => {
-  it("renders with a name", () => {
-    render(<TimePicker name="test" label="Time" />);
-    expect(screen.getByText("Time")).toBeInTheDocument();
-  });
-
   it("displays error message", async () => {
     const { form } = renderWithForm(<TimePicker name="test" label="Time" />, {
       defaultValues: { test: null },

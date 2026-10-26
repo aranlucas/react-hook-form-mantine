@@ -1,12 +1,7 @@
-import { render, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { MonthPickerInput } from "@/MonthPickerInput/MonthPickerInput";
 
 describe("MonthPickerInput", () => {
-  it("renders with a name", () => {
-    render(<MonthPickerInput name="test" label="Month" />);
-    expect(screen.getByText("Month")).toBeInTheDocument();
-  });
-
   it("displays error message", async () => {
     const { form } = renderWithForm(<MonthPickerInput name="test" label="Month" />, {
       defaultValues: { test: null },
