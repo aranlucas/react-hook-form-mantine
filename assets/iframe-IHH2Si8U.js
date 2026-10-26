@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-DBcig1-g.js";e();
