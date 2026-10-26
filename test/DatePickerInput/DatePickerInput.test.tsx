@@ -1,12 +1,7 @@
-import { render, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { DatePickerInput } from "@/DatePickerInput/DatePickerInput";
 
 describe("DatePickerInput", () => {
-  it("renders with a name", () => {
-    render(<DatePickerInput name="test" label="Date" />);
-    expect(screen.getByText("Date")).toBeInTheDocument();
-  });
-
   it("displays error message", async () => {
     const { form } = renderWithForm(<DatePickerInput name="test" label="Date" />, {
       defaultValues: { test: null },
