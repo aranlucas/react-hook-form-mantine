@@ -1,16 +1,13 @@
-import { render, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { Textarea } from "@/Textarea/Textarea";
 
 describe("Textarea", () => {
-  it("renders with a name", () => {
-    render(<Textarea name="test" label="Bio" />);
-    expect(screen.getByText("Bio")).toBeInTheDocument();
-  });
-
   it("displays error message", async () => {
     const { form } = renderWithForm(<Textarea name="test" label="Bio" />, {
       defaultValues: { test: "" },
     });
+
+    expect(screen.getByText("Bio")).toBeInTheDocument();
 
     await waitFor(() => {
       form.setError("test", { message: "Required" });

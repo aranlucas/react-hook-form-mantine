@@ -1,16 +1,13 @@
-import { render, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { NativeSelect } from "@/NativeSelect/NativeSelect";
 
 describe("NativeSelect", () => {
-  it("renders with a name", () => {
-    render(<NativeSelect name="test" label="Option" data={["A", "B"]} />);
-    expect(screen.getByText("Option")).toBeInTheDocument();
-  });
-
   it("displays error message", async () => {
     const { form } = renderWithForm(<NativeSelect name="test" label="Option" data={["A", "B"]} />, {
       defaultValues: { test: "" },
     });
+
+    expect(screen.getByText("Option")).toBeInTheDocument();
 
     await waitFor(() => {
       form.setError("test", { message: "Required" });

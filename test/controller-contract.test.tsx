@@ -168,8 +168,10 @@ describe("controller lifecycle contracts", () => {
     expect(form.getValues()).toEqual({});
   });
 
-  // ChipGroup only provides context and renders no element of its own to attach a ref to.
-  const refTargets = Object.entries(fields).filter(([key]) => key !== "ChipGroup");
+  // ChipGroup renders no element for a ref; TextInput has both ref-merging tests below.
+  const refTargets = Object.entries(fields).filter(
+    ([key]) => key !== "ChipGroup" && key !== "TextInput",
+  );
 
   const requiredProps = {
     AlphaSlider: { color: "#fff" },

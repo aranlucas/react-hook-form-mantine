@@ -1,16 +1,13 @@
-import { render, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { JsonInput } from "@/JsonInput/JsonInput";
 
 describe("JsonInput", () => {
-  it("renders with a name", () => {
-    render(<JsonInput name="test" label="JSON" />);
-    expect(screen.getByText("JSON")).toBeInTheDocument();
-  });
-
   it("displays error message", async () => {
     const { form } = renderWithForm(<JsonInput name="test" label="JSON" />, {
       defaultValues: { test: "" },
     });
+
+    expect(screen.getByText("JSON")).toBeInTheDocument();
 
     await waitFor(() => {
       form.setError("test", { message: "Invalid" });

@@ -1,17 +1,8 @@
-import { render, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { CheckboxGroup } from "@/Checkbox/CheckBoxGroup/CheckBoxGroup";
 import { Checkbox } from "@/Checkbox/Checkbox";
 
 describe("CheckboxGroup", () => {
-  it("renders with a name", () => {
-    render(
-      <CheckboxGroup name="test" label="Options">
-        {null}
-      </CheckboxGroup>,
-    );
-    expect(screen.getByText("Options")).toBeInTheDocument();
-  });
-
   it("displays error message", async () => {
     const { form } = renderWithForm(
       <CheckboxGroup name="test" label="Options">
@@ -21,6 +12,8 @@ describe("CheckboxGroup", () => {
         defaultValues: { test: [] },
       },
     );
+
+    expect(screen.getByText("Options")).toBeInTheDocument();
 
     await waitFor(() => {
       form.setError("test", { message: "Required" });

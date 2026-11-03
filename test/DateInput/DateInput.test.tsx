@@ -1,16 +1,13 @@
-import { render, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { DateInput } from "@/DateInput/DateInput";
 
 describe("DateInput", () => {
-  it("renders with a name", () => {
-    render(<DateInput name="test" label="Date" />);
-    expect(screen.getByText("Date")).toBeInTheDocument();
-  });
-
   it("displays error message", async () => {
     const { form } = renderWithForm(<DateInput name="test" label="Date" />, {
       defaultValues: { test: null },
     });
+
+    expect(screen.getByText("Date")).toBeInTheDocument();
 
     await waitFor(() => {
       form.setError("test", { message: "Required" });

@@ -22,21 +22,6 @@ type FormRenderResult<T extends FieldValues> = RenderResult & { form: UseFormRet
 
 type FormCapture<T extends FieldValues> = { form?: UseFormReturn<T> };
 
-function AllProviders({ children }: ProviderProps) {
-  return (
-    <MantineProvider env="test">
-      <FormProvider {...useForm()}>{children}</FormProvider>
-    </MantineProvider>
-  );
-}
-
-function customRender(ui: React.ReactElement, options = {}): RenderResult {
-  return rtlRender(ui, {
-    wrapper: AllProviders,
-    ...options,
-  });
-}
-
 export function renderWithForm<T extends FieldValues = FieldValues>(
   ui: React.ReactElement,
   formOptions?: UseFormProps<T>,
@@ -69,5 +54,3 @@ export function renderWithForm<T extends FieldValues = FieldValues>(
 export * from "@testing-library/react";
 
 export { default as userEvent } from "@testing-library/user-event";
-
-export { customRender as render };
