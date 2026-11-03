@@ -3,14 +3,6 @@
 Updated 2026-10-26. Proposed library improvements; package publication and
 consumer upgrades are separate from merging this plan.
 
-## Starting point
-
-At `b56a256dfdd0224562c0198dceb7a0292fd7ba2d`, the [library](README.md)
-already wraps Mantine fields through a shared controller, preserves callback
-lifecycle behavior and supplies real-form Storybook examples, accessibility
-checks and a development MCP endpoint. The next value is less custom adapter
-work in realistic consumer forms.
-
 ## Ordered releases
 
 1. **Complete a dynamic form without custom glue.** Add a focused example for
@@ -39,7 +31,3 @@ work in realistic consumer forms.
 Build priority 1 as a copyable Storybook scenario and try it in two owned forms.
 Record adapter code removed, integration time, unexpected state transitions and
 accessibility failures. Package downloads alone do not measure usefulness.
-
-Use the existing unit/Storybook Vitest projects and native build. Reuse the
-current MCP manifest for discoverability; no separate component-catalog service
-or second controller implementation is needed.
