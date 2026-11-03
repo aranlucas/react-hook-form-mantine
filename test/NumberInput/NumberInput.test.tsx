@@ -1,16 +1,13 @@
-import { render, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { NumberInput } from "@/NumberInput/NumberInput";
 
 describe("NumberInput", () => {
-  it("renders with a name", () => {
-    render(<NumberInput name="test" label="Age" />);
-    expect(screen.getByText("Age")).toBeInTheDocument();
-  });
-
   it("displays error message", async () => {
     const { form } = renderWithForm(<NumberInput name="test" label="Age" />, {
       defaultValues: { test: 0 },
     });
+
+    expect(screen.getByText("Age")).toBeInTheDocument();
 
     await waitFor(() => {
       form.setError("test", { message: "Required" });

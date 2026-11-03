@@ -1,17 +1,8 @@
-import { render, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { RadioGroup } from "@/Radio/RadioGroup/RadioGroup";
 import { Radio } from "@/Radio/Radio";
 
 describe("RadioGroup", () => {
-  it("renders with a name", () => {
-    render(
-      <RadioGroup name="test" label="Options">
-        {null}
-      </RadioGroup>,
-    );
-    expect(screen.getByText("Options")).toBeInTheDocument();
-  });
-
   it("displays error message", async () => {
     const { form } = renderWithForm(
       <RadioGroup name="test" label="Options">
@@ -21,6 +12,8 @@ describe("RadioGroup", () => {
         defaultValues: { test: "" },
       },
     );
+
+    expect(screen.getByText("Options")).toBeInTheDocument();
 
     await waitFor(() => {
       form.setError("test", { message: "Required" });

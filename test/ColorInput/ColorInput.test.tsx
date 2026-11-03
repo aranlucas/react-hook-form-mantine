@@ -1,16 +1,13 @@
-import { render, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { ColorInput } from "@/ColorInput/ColorInput";
 
 describe("ColorInput", () => {
-  it("renders with a name", () => {
-    render(<ColorInput name="test" label="Color" />);
-    expect(screen.getByText("Color")).toBeInTheDocument();
-  });
-
   it("displays error message", async () => {
     const { form } = renderWithForm(<ColorInput name="test" label="Color" />, {
       defaultValues: { test: "" },
     });
+
+    expect(screen.getByText("Color")).toBeInTheDocument();
 
     await waitFor(() => {
       form.setError("test", { message: "Required" });

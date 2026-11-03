@@ -1,16 +1,13 @@
-import { render, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { Switch } from "@/Switch/Switch";
 
 describe("Switch", () => {
-  it("renders with a name", () => {
-    render(<Switch name="test" label="Enable" />);
-    expect(screen.getByText("Enable")).toBeInTheDocument();
-  });
-
   it("displays error message", async () => {
     const { form } = renderWithForm(<Switch name="test" label="Enable" />, {
       defaultValues: { test: false },
     });
+
+    expect(screen.getByText("Enable")).toBeInTheDocument();
 
     await waitFor(() => {
       form.setError("test", { message: "Required" });
