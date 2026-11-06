@@ -59102,14 +59102,12 @@
         {
           "id": "examples-full-form--dark",
           "name": "Dark",
-          "snippet": "const Dark = () => <App />;",
-          "description": "The same form with the color scheme pinned through story globals."
+          "snippet": "const Dark = () => <App />;"
         },
         {
           "id": "examples-full-form--mobile",
           "name": "Mobile",
-          "snippet": "const Mobile = () => <App />;",
-          "description": "The form on a phone-sized viewport."
+          "snippet": "const Mobile = () => <App />;"
         }
       ],
       "import": "import { App } from 'example';"
@@ -59117,6 +59115,6 @@
   },
   "meta": {
     "docgen": "react-component-meta",
-    "durationMs": 3848
+    "durationMs": 3909
   }
 }
