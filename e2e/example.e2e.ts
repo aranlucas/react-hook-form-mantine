@@ -25,7 +25,7 @@ test("validates, submits typed form values, and resets the example", async ({ ap
     .tap();
   await screen.getByRole("combobox", { name: /Frameworks your team uses/ }).press("Escape");
   await screen.getByLabel(/^Password/).fill("example-password");
-  const pin = screen.getByRole("textbox", { name: "Verification code" });
+  const pin = screen.getByRole("group", "Verification code").getByRole("textbox", "PinInput");
 
   await pin.nth(0).fill("1");
   await pin.nth(1).fill("2");
