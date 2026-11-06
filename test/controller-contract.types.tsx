@@ -1,4 +1,4 @@
-import { CheckboxGroup, type CheckboxGroupProps } from "@/index";
+import { CheckboxGroup, FileInput, type CheckboxGroupProps } from "@/index";
 
 type ChoiceValues = { choices: string[] };
 
@@ -17,4 +17,14 @@ export function checkboxGroupTypeContract() {
   };
 
   return <CheckboxGroup {...props} value={["b"]} />;
+}
+
+// Mantine supports both single and multiple file payloads; the adapter must preserve inference.
+export function fileInputTypeContract() {
+  return (
+    <>
+      <FileInput name="file" onChange={(file) => file?.slice()} />
+      <FileInput multiple name="files" onChange={(files) => files.map((file) => file.name)} />
+    </>
+  );
 }

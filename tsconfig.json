@@ -25,6 +25,6 @@
       "@test/*": ["./test/*"]
     }
   },
-  "include": ["src", ".storybook", "*.ts", "test"],
+  "include": ["src", ".storybook", "*.ts", "test", "e2e"],
   "exclude": ["dist", "storybook-static", "example", "node_modules"]
 }
