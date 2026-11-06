@@ -25,12 +25,10 @@ FullForm.test(
   },
 );
 
-/** The same form with the color scheme pinned through story globals. */
 export const Dark = meta.story({
   globals: { colorScheme: "dark" },
 });
 
-/** The form on a phone-sized viewport. */
 export const Mobile = meta.story({
   globals: { viewport: { value: "mobile2", isRotated: false } },
 });

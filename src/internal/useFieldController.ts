@@ -58,11 +58,9 @@ export function useFieldController<T extends FieldValues, P extends FieldHandler
   });
 
   const fieldRef = controller.field.ref;
-  // A user ref would otherwise override field.ref and break setFocus / focus on error.
   // SAFETY: fieldRef is always defined, so mergeRefs returns fieldRef itself or a merged callback.
   const mergedRef = useMemo(() => mergeRefs(fieldRef, ref) as RefCallBack, [fieldRef, ref]);
 
-  // Preserve an explicit UI setting, but do not mask form-level disabled state.
   if (rest.disabled === undefined) {
     delete rest.disabled;
   }
@@ -72,7 +70,6 @@ export function useFieldController<T extends FieldValues, P extends FieldHandler
     field: {
       ...controller.field,
       ref: mergedRef,
-      // The form stores the first argument (a value or change event); the user gets all of them.
       onChange: (...args: Parameters<NonNullable<P["onChange"]>>) => {
         controller.field.onChange(args[0]);
         onChange?.(...args);

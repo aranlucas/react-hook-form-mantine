@@ -1,4 +1,4 @@
-import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { act, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { Checkbox } from "@/Checkbox/Checkbox";
 
 describe("Checkbox", () => {
@@ -9,8 +9,10 @@ describe("Checkbox", () => {
 
     expect(screen.getByText("Accept")).toBeInTheDocument();
 
-    await waitFor(() => {
+    act(() => {
       form.setError("test", { message: "Required" });
+    });
+    await waitFor(() => {
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

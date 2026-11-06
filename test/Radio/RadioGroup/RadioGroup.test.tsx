@@ -1,4 +1,4 @@
-import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { act, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { RadioGroup } from "@/Radio/RadioGroup/RadioGroup";
 import { Radio } from "@/Radio/Radio";
 
@@ -15,8 +15,10 @@ describe("RadioGroup", () => {
 
     expect(screen.getByText("Options")).toBeInTheDocument();
 
-    await waitFor(() => {
+    act(() => {
       form.setError("test", { message: "Required" });
+    });
+    await waitFor(() => {
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

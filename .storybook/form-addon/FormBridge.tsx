@@ -12,7 +12,6 @@ type FormBridgeProps = {
   onReset: () => void;
 };
 
-/** Form data as JSON. Errors drop their DOM `ref`, and files show their name. */
 const json = <Value,>(value: Value, space?: number) =>
   JSON.stringify(
     value,
@@ -30,7 +29,6 @@ const json = <Value,>(value: Value, space?: number) =>
     space,
   );
 
-/** Reports the story's form to the Form panel, and lets the panel reset or submit it. */
 export function FormBridge({ storyId, mode, submitted, formRef, onReset }: FormBridgeProps) {
   const { control } = useFormContext();
   const values = useWatch({ control });

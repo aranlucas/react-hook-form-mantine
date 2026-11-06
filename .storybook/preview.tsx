@@ -166,11 +166,9 @@ const preview = definePreview({
 
   parameters: {
     layout: "fullscreen",
-    // Mantine paints the canvas from the color scheme toolbar.
     backgrounds: { disable: true },
     controls: {
       expanded: true,
-      // Mantine's internal props, such as `__vars`.
       exclude: /^__/,
       matchers: {
         color: /(background|color)$/i,
@@ -183,7 +181,6 @@ const preview = definePreview({
       codePanel: true,
       toc: { headingSelector: "h2, h3", title: "On this page" },
     },
-    // Fail tests on accessibility violations, in the test widget and in CI.
     a11y: { test: "error" },
     options: {
       storySort: {

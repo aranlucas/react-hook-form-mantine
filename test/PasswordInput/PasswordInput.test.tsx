@@ -1,4 +1,4 @@
-import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { act, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { PasswordInput } from "@/PasswordInput/PasswordInput";
 
 describe("PasswordInput", () => {
@@ -7,8 +7,10 @@ describe("PasswordInput", () => {
       defaultValues: { test: "" },
     });
 
-    await waitFor(() => {
+    act(() => {
       form.setError("test", { message: "Required" });
+    });
+    await waitFor(() => {
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

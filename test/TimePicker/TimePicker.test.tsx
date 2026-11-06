@@ -1,4 +1,4 @@
-import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { act, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { TimePicker } from "@/TimePicker/TimePicker";
 
 describe("TimePicker", () => {
@@ -7,8 +7,10 @@ describe("TimePicker", () => {
       defaultValues: { test: null },
     });
 
-    await waitFor(() => {
+    act(() => {
       form.setError("test", { message: "Required" });
+    });
+    await waitFor(() => {
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });
@@ -31,6 +33,6 @@ describe("TimePicker", () => {
     await user.click(minutes);
     await user.type(minutes, "00");
     await user.tab();
-    expect(form.getValues("test")).toBeTruthy();
+    expect(form.getValues("test")).toBe("12:00");
   });
 });

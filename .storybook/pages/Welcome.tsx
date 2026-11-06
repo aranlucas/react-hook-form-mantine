@@ -21,7 +21,6 @@ import { catalog, categories, storyId } from "../catalog";
 
 const gradient = { from: "#ec5990", to: "#228be6", deg: 120 };
 
-/** Moves the manager to another entry, the way docs links do. */
 const useNavigate = () => {
   const context = useContext(DocsContext);
 

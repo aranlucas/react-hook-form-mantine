@@ -1,4 +1,4 @@
-import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { act, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { NativeSelect } from "@/NativeSelect/NativeSelect";
 
 describe("NativeSelect", () => {
@@ -9,8 +9,10 @@ describe("NativeSelect", () => {
 
     expect(screen.getByText("Option")).toBeInTheDocument();
 
-    await waitFor(() => {
+    act(() => {
       form.setError("test", { message: "Required" });
+    });
+    await waitFor(() => {
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

@@ -24,7 +24,6 @@ const pill = {
   background: "#f8f9fa",
 } as const;
 
-/** The autodocs page for every component: what it wraps, how to import it, then its stories. */
 export function DocsPage() {
   const { preparedMeta } = useOf("meta", ["meta"]);
   const entry = entryForTitle(preparedMeta.title);
@@ -72,7 +71,6 @@ import { ${entry.name} } from "react-hook-form-mantine";
 
 const { control } = useForm();
 
-// Every ${mantinePackage} prop works; the form owns the value and the error.
 <${entry.name} name="field" control={control} rules={{ required: "Required" }} />`}
       />
       <Primary />

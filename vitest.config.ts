@@ -14,6 +14,10 @@ export default mergeConfig(
       },
       projects: [
         {
+          extends: "./example/vitest.config.ts",
+          test: { name: "example", root: "./example" },
+        },
+        {
           extends: true,
           test: {
             name: "unit",
