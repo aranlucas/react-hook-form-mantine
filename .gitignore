@@ -6,3 +6,4 @@ storybook-static/
 .env
 package-lock.json
 yarn.lock
+.e2e/
