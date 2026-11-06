@@ -19,7 +19,10 @@ test("validates, submits typed form values, and resets the example", async ({ ap
   // Day 15 exists in every month; match the full day label rather than a relative date.
   await screen.getByRole("button", { name: /^15 / }).tap();
   await screen.getByRole("combobox", { name: /Frameworks your team uses/ }).tap();
-  await screen.getByRole("option", "React").tap();
+  await screen
+    .getByRole("listbox", { name: /Frameworks your team uses/ })
+    .getByRole("option", "React")
+    .tap();
   await screen.getByRole("combobox", { name: /Frameworks your team uses/ }).press("Escape");
   await screen.getByLabel(/^Password/).fill("example-password");
   const pin = screen.getByRole("textbox", { name: "Verification code" });
@@ -34,7 +37,10 @@ test("validates, submits typed form values, and resets the example", async ({ ap
     .getByRole("radio", "React")
     .check();
   await screen.getByRole("combobox", { name: /Framework you know best/ }).tap();
-  await screen.getByRole("option", "Vue").tap();
+  await screen
+    .getByRole("listbox", { name: /Framework you know best/ })
+    .getByRole("option", "Vue")
+    .tap();
   await screen.getByRole("button", "Submit").tap();
 
   const submitted = screen.getByTestId("submitted");
