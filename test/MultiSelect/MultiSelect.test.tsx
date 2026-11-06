@@ -1,4 +1,4 @@
-import { screen, renderWithForm, waitFor } from "@test/test-utils";
+import { act, screen, renderWithForm, waitFor } from "@test/test-utils";
 import { MultiSelect } from "@/MultiSelect/MultiSelect";
 
 describe("MultiSelect", () => {
@@ -9,8 +9,10 @@ describe("MultiSelect", () => {
 
     expect(screen.getByText("Roles")).toBeInTheDocument();
 
-    await waitFor(() => {
+    act(() => {
       form.setError("test", { message: "Required" });
+    });
+    await waitFor(() => {
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

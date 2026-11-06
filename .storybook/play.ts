@@ -8,7 +8,6 @@ type TestContext = {
   userEvent: Pick<ReturnType<typeof userEventType.setup>, "click">;
 };
 
-/** Submits the story's form and expects the field's validation message to be shown. */
 export const submitShowsError =
   (message: string) =>
   async ({ canvas, userEvent }: TestContext) => {

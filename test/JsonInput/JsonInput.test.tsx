@@ -1,4 +1,4 @@
-import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { act, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { JsonInput } from "@/JsonInput/JsonInput";
 
 describe("JsonInput", () => {
@@ -9,8 +9,10 @@ describe("JsonInput", () => {
 
     expect(screen.getByText("JSON")).toBeInTheDocument();
 
-    await waitFor(() => {
+    act(() => {
       form.setError("test", { message: "Invalid" });
+    });
+    await waitFor(() => {
       expect(screen.getByText("Invalid")).toBeInTheDocument();
     });
   });

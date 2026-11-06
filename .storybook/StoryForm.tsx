@@ -23,7 +23,6 @@ type StoryFormProps = StoryFormParameters & {
   children: ReactNode;
 };
 
-/** One line on where the form stands, announced to screen readers as it changes. */
 function FormStatus() {
   const { control } = useFormContext();
   const { errors, isDirty, isSubmitSuccessful } = useFormState({ control });
@@ -46,7 +45,6 @@ function FormStatus() {
   );
 }
 
-/** The form every component story renders in. Its state is in the Form panel. */
 export function StoryForm({
   storyId,
   defaultValues,
@@ -76,7 +74,6 @@ export function StoryForm({
           radius="md"
           p="lg"
           shadow="xs"
-          // A real submit, so validation runs and the first invalid field is focused.
           onSubmit={(event) => {
             methods
               .handleSubmit((data) => {

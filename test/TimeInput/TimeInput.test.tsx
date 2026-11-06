@@ -1,4 +1,4 @@
-import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { act, screen, renderWithForm, waitFor, fireEvent } from "@test/test-utils";
 import { TimeInput } from "@/TimeInput/TimeInput";
 
 describe("TimeInput", () => {
@@ -7,21 +7,21 @@ describe("TimeInput", () => {
       defaultValues: { test: "" },
     });
 
-    await waitFor(() => {
+    act(() => {
       form.setError("test", { message: "Required" });
+    });
+    await waitFor(() => {
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });
 
-  it("updates value on user input", async () => {
-    const user = userEvent.setup();
-
+  it("updates value on user input", () => {
     const { form } = renderWithForm(<TimeInput name="test" label="Label" />, {
       defaultValues: { test: "" },
     });
 
     const input = screen.getByLabelText("Label");
-    await user.type(input, "12:34");
-    expect(form.getValues("test")).toBeTruthy();
+    fireEvent.change(input, { target: { value: "12:34" } });
+    expect(form.getValues("test")).toBe("12:34");
   });
 });

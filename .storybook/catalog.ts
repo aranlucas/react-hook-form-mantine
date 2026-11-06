@@ -270,11 +270,9 @@ export const catalog: Entry[] = [
   },
 ];
 
-/** The catalog entry for a story title such as `Inputs/TextInput`. */
 export const entryForTitle = (title: string) =>
   catalog.find((entry) => title === `${entry.category}/${entry.name}`);
 
-/** The id Storybook derives from a title, e.g. `inputs-textinput`. */
 export const storyId = (entry: Entry) => `${entry.category}-${entry.name}`.toLowerCase();
 
 export const sourceUrl = (entry: Entry) => {

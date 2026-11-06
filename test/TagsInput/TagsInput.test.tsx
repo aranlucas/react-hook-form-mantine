@@ -1,4 +1,4 @@
-import { screen, renderWithForm, waitFor } from "@test/test-utils";
+import { act, screen, renderWithForm, waitFor } from "@test/test-utils";
 import { TagsInput } from "@/TagsInput/TagsInput";
 
 describe("TagsInput", () => {
@@ -9,8 +9,10 @@ describe("TagsInput", () => {
 
     expect(screen.getByText("Tags")).toBeInTheDocument();
 
-    await waitFor(() => {
+    act(() => {
       form.setError("test", { message: "Required" });
+    });
+    await waitFor(() => {
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

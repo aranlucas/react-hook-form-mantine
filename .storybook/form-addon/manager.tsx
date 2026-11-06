@@ -68,7 +68,6 @@ const Json = ({ code }: JsonProps) => (
   </SyntaxHighlighter>
 );
 
-/** The latest form state for the selected story, or null when it has no shared form. */
 const useSnapshot = () => {
   const { storyId } = useStorybookState();
   const [snapshot, setSnapshot] = useState<FormSnapshot | null>(null);
@@ -193,7 +192,6 @@ function FormPanel() {
   );
 }
 
-/** The tab title, with the error count when there is one. */
 function FormTitle() {
   const { snapshot } = useSnapshot();
   const errorCount = snapshot?.fields.filter((field) => field.error).length ?? 0;

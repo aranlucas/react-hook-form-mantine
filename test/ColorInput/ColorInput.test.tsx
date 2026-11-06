@@ -1,4 +1,4 @@
-import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { act, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { ColorInput } from "@/ColorInput/ColorInput";
 
 describe("ColorInput", () => {
@@ -9,8 +9,10 @@ describe("ColorInput", () => {
 
     expect(screen.getByText("Color")).toBeInTheDocument();
 
-    await waitFor(() => {
+    act(() => {
       form.setError("test", { message: "Required" });
+    });
+    await waitFor(() => {
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

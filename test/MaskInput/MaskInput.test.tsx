@@ -1,4 +1,4 @@
-import { screen, renderWithForm, waitFor, fireEvent } from "@test/test-utils";
+import { act, screen, renderWithForm, waitFor, fireEvent } from "@test/test-utils";
 import { MaskInput } from "@/MaskInput/MaskInput";
 
 describe("MaskInput", () => {
@@ -9,8 +9,10 @@ describe("MaskInput", () => {
 
     expect(screen.getByText("Phone")).toBeInTheDocument();
 
-    await waitFor(() => {
+    act(() => {
       form.setError("test", { message: "Required" });
+    });
+    await waitFor(() => {
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });

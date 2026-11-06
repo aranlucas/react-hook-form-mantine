@@ -1,4 +1,4 @@
-import { screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
+import { act, screen, renderWithForm, waitFor, userEvent } from "@test/test-utils";
 import { DateInput } from "@/DateInput/DateInput";
 
 describe("DateInput", () => {
@@ -9,8 +9,10 @@ describe("DateInput", () => {
 
     expect(screen.getByText("Date")).toBeInTheDocument();
 
-    await waitFor(() => {
+    act(() => {
       form.setError("test", { message: "Required" });
+    });
+    await waitFor(() => {
       expect(screen.getByText("Required")).toBeInTheDocument();
     });
   });
@@ -18,12 +20,15 @@ describe("DateInput", () => {
   it("updates value on user input", async () => {
     const user = userEvent.setup();
 
-    const { form } = renderWithForm(<DateInput name="test" label="Label" />, {
-      defaultValues: { test: "" },
-    });
+    const { form } = renderWithForm(
+      <DateInput name="test" label="Label" valueFormat="YYYY-MM-DD" />,
+      {
+        defaultValues: { test: null },
+      },
+    );
 
     const input = screen.getByRole("textbox");
     await user.type(input, "2024-01-15");
-    expect(form.getValues("test")).toBeTruthy();
+    expect(form.getValues("test")).toBe("2024-01-15");
   });
 });
