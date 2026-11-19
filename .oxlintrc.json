@@ -20,14 +20,7 @@
     "import/no-unassigned-import": [
       "error",
       {
-        "allow": [
-          "**/*.css",
-          "**/env",
-          "@testing-library/jest-dom/vitest",
-          "@semantic-release/changelog",
-          "@semantic-release/git",
-          "./form-addon/manager"
-        ]
+        "allow": ["**/*.css", "**/env", "@testing-library/jest-dom/vitest", "./form-addon/manager"]
       }
     ],
     "eslint/no-console": [
