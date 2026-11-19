@@ -31,6 +31,7 @@ jobs:
           # This job holds write tokens, so don't run lifecycle scripts during install.
           pnpm_config_ignore_scripts: "true"
         with:
+          runtime: node@26.13.1 # semantic-release 26 requires Node.js >=26.13
           cache: true
           require-lockfile: true
       - name: Install Playwright Chromium
