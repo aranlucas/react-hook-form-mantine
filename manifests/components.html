@@ -626,7 +626,7 @@
 <main>
   <div class="wrap">
     <div class="note ok" style="margin-bottom: 16px;">
-              Using <code>react-component-meta</code>. Generation took <strong>3.9s</strong>.
+              Using <code>react-component-meta</code>. Generation took <strong>5.5s</strong>.
             </div>
     <h2 class="section-title">Components</h2>
     <div class="grid" role="list">
@@ -1184,7 +1184,7 @@ withLabel?: boolean = true</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Autocomplete</h2>
       <div class="badges">
-        <label for="c-3-combobox-autocomplete-props" class="badge ok as-toggle">79 prop types</label>
+        <label for="c-3-combobox-autocomplete-props" class="badge ok as-toggle">80 prop types</label>
         <label for="c-3-combobox-autocomplete-info" class="badge info as-toggle">1 info</label>
         <label for="c-3-combobox-autocomplete-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -1220,7 +1220,7 @@ withLabel?: boolean = true</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">79 prop types</span>
+              <span class="badge ok">80 prop types</span>
             </div>
             <pre><code>Component: src/Autocomplete/Autocomplete.tsx::Autocomplete</code></pre>
             <pre><code>Props:</code></pre>
@@ -1418,6 +1418,11 @@ lightHidden?: boolean
  * Maximum number of options displayed at a time, `Infinity` by default
  */
 limit?: number
+
+/**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
 
 /**
  * Displays loading indicator in the left or right section
@@ -2554,7 +2559,7 @@ shouldUnregister?: boolean</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ColorInput</h2>
       <div class="badges">
-        <label for="c-8-color-colorinput-props" class="badge ok as-toggle">72 prop types</label>
+        <label for="c-8-color-colorinput-props" class="badge ok as-toggle">73 prop types</label>
         <label for="c-8-color-colorinput-info" class="badge info as-toggle">1 info</label>
         <label for="c-8-color-colorinput-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -2590,7 +2595,7 @@ shouldUnregister?: boolean</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">72 prop types</span>
+              <span class="badge ok">73 prop types</span>
             </div>
             <pre><code>Component: src/ColorInput/ColorInput.tsx::ColorInput</code></pre>
             <pre><code>Props:</code></pre>
@@ -2770,6 +2775,11 @@ leftSectionWidth?: Width&lt;string | number&gt; | undefined
 lightHidden?: boolean
 
 /**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
+
+/**
  * Displays loading indicator in the left or right section
  */
 loading?: boolean = false
@@ -2797,7 +2807,7 @@ onChange?: (value: string) =&gt; void
 onChangeEnd?: (value: string) =&gt; void
 
 /**
- * Determines whether the input should have `cursor: pointer` style. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
+ * Determines whether the input should use the theme cursor type. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
  */
 pointer?: boolean = false
 
@@ -3231,7 +3241,7 @@ withPicker?: boolean = true</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DateInput</h2>
       <div class="badges">
-        <label for="c-10-dates-dateinput-props" class="badge ok as-toggle">137 prop types</label>
+        <label for="c-10-dates-dateinput-props" class="badge ok as-toggle">142 prop types</label>
         <label for="c-10-dates-dateinput-info" class="badge info as-toggle">1 info</label>
         <label for="c-10-dates-dateinput-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -3267,7 +3277,7 @@ withPicker?: boolean = true</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">137 prop types</span>
+              <span class="badge ok">142 prop types</span>
             </div>
             <pre><code>Component: src/DateInput/DateInput.tsx::DateInput</code></pre>
             <pre><code>Props:</code></pre>
@@ -3312,6 +3322,16 @@ __getControlRef?: (rowIndex: number, cellIndex: number, node: HTMLButtonElement)
 __getDayRef?: (rowIndex: number, cellIndex: number, node: HTMLButtonElement) =&gt; void
 
 /**
+ * Passes props down to week controls, receives the first date of the week
+ */
+__getWeekControlProps?: (weekStart: string) =&gt; Partial&lt;MonthWeekControlProps&gt;
+
+/**
+ * Assigns ref of every week control based on its row index, used for arrows navigation
+ */
+__getWeekControlRef?: (rowIndex: number, node: HTMLButtonElement) =&gt; void
+
+/**
  * Called when control is clicked with event and date
  */
 __onControlClick?: (event: MouseEvent&lt;HTMLButtonElement, MouseEvent&gt;, date: string) =&gt; void
@@ -3340,6 +3360,11 @@ __onDayKeyDown?: (event: KeyboardEvent&lt;HTMLButtonElement&gt;, payload: Contro
  * Called when mouse enters day
  */
 __onDayMouseEnter?: (event: MouseEvent&lt;HTMLButtonElement, MouseEvent&gt;, date: string) =&gt; void
+
+/**
+ * Called when any keydown event is registered on week control, used for arrows navigation
+ */
+__onWeekControlKeyDown?: (event: KeyboardEvent&lt;HTMLButtonElement&gt;, payload: { rowIndex: number; date: string; }) =&gt; void
 
 /**
  * Prevents focus shift when buttons are clicked
@@ -3384,6 +3409,11 @@ __updateDateOnYearSelect?: boolean
 __vars?: CssVarsProp | undefined
 
 /**
+ * Renders week numbers as buttons and removes days from the tab order, used in WeekPicker
+ */
+__withWeekControls?: boolean
+
+/**
  * If set, the value can be deselected by deleting everything from the input or by clicking the selected date in the dropdown. By default, `true` if `clearable` prop is set, `false` otherwise.
  */
 allowDeselect?: boolean
@@ -3393,7 +3423,7 @@ allowDeselect?: boolean
  */
 ariaLabels?: CalendarAriaLabels
 
-attributes?: { input?: Record&lt;string, any&gt; | undefined; label?: Record&lt;string, any&gt; | undefined; section?: Record&lt;string, any&gt; | undefined; description?: Record&lt;string, any&gt; | undefined; ... 31 more ...; presetButton?: Record&lt;...&gt; | undefined; }
+attributes?: { input?: Record&lt;string, any&gt; | undefined; label?: Record&lt;string, any&gt; | undefined; section?: Record&lt;string, any&gt; | undefined; description?: Record&lt;string, any&gt; | undefined; ... 32 more ...; presetButton?: Record&lt;...&gt; | undefined; }
 
 /**
  * Class added to the root element, if applicable
@@ -3609,6 +3639,11 @@ level?: &quot;month&quot; | &quot;year&quot; | &quot;decade&quot;
 lightHidden?: boolean
 
 /**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
+
+/**
  * Displays loading indicator in the left or right section
  */
 loading?: boolean = false
@@ -3736,7 +3771,7 @@ onPreviousMonth?: (date: string) =&gt; void
 onPreviousYear?: (date: string) =&gt; void
 
 /**
- * Determines whether the input should have `cursor: pointer` style. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
+ * Determines whether the input should use the theme cursor type. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
  */
 pointer?: boolean = false
 
@@ -3980,7 +4015,7 @@ yearsSelectRange?: [number, number]</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DatePicker</h2>
       <div class="badges">
-        <label for="c-11-dates-datepicker-props" class="badge ok as-toggle">95 prop types</label>
+        <label for="c-11-dates-datepicker-props" class="badge ok as-toggle">99 prop types</label>
         <label for="c-11-dates-datepicker-info" class="badge info as-toggle">1 info</label>
         <label for="c-11-dates-datepicker-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -4016,7 +4051,7 @@ yearsSelectRange?: [number, number]</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">95 prop types</span>
+              <span class="badge ok">99 prop types</span>
             </div>
             <pre><code>Component: src/DatePicker/DatePicker.tsx::DatePicker</code></pre>
             <pre><code>Props:</code></pre>
@@ -4029,6 +4064,16 @@ __getControlRef?: (rowIndex: number, cellIndex: number, node: HTMLButtonElement)
  * Assigns ref of every day based on its position in the table, used for arrows navigation
  */
 __getDayRef?: (rowIndex: number, cellIndex: number, node: HTMLButtonElement) =&gt; void
+
+/**
+ * Passes props down to week controls, receives the first date of the week
+ */
+__getWeekControlProps?: (weekStart: string) =&gt; Partial&lt;MonthWeekControlProps&gt;
+
+/**
+ * Assigns ref of every week control based on its row index, used for arrows navigation
+ */
+__getWeekControlRef?: (rowIndex: number, node: HTMLButtonElement) =&gt; void
 
 /**
  * Called when control is clicked with event and date
@@ -4064,6 +4109,11 @@ __onDayMouseEnter?: (event: MouseEvent&lt;HTMLButtonElement, MouseEvent&gt;, dat
  * If defined, called with preset value, suppresses `onChange` call
  */
 __onPresetSelect?: (preset: string | [string | null, string | null] | null) =&gt; void
+
+/**
+ * Called when any keydown event is registered on week control, used for arrows navigation
+ */
+__onWeekControlKeyDown?: (event: KeyboardEvent&lt;HTMLButtonElement&gt;, payload: { rowIndex: number; date: string; }) =&gt; void
 
 /**
  * Prevents focus shift when buttons are clicked
@@ -4108,6 +4158,11 @@ __updateDateOnYearSelect?: boolean
 __vars?: CssVarsProp | undefined
 
 /**
+ * Renders week numbers as buttons and removes days from the tab order, used in WeekPicker
+ */
+__withWeekControls?: boolean
+
+/**
  * Determines whether user can deselect the date by clicking on selected item, applicable only when type=&quot;default&quot;
  */
 allowDeselect?: boolean
@@ -4122,7 +4177,7 @@ allowSingleDateInRange?: boolean
  */
 ariaLabels?: CalendarAriaLabels
 
-attributes?: { month?: Record&lt;string, any&gt; | undefined; weekday?: Record&lt;string, any&gt; | undefined; weekdaysRow?: Record&lt;string, any&gt; | undefined; monthRow?: Record&lt;string, any&gt; | undefined; ... 21 more ...; datePickerRoot?: Record&lt;...&gt; | undefined; }
+attributes?: { month?: Record&lt;string, any&gt; | undefined; weekday?: Record&lt;string, any&gt; | undefined; weekdaysRow?: Record&lt;string, any&gt; | undefined; monthRow?: Record&lt;string, any&gt; | undefined; ... 22 more ...; datePickerRoot?: Record&lt;...&gt; | undefined; }
 
 /**
  * Class added to the root element, if applicable
@@ -4505,7 +4560,7 @@ import { calendarAriaLabels } from '../../.storybook/a11y';</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DatePickerInput</h2>
       <div class="badges">
-        <label for="c-12-dates-datepickerinput-props" class="badge ok as-toggle">143 prop types</label>
+        <label for="c-12-dates-datepickerinput-props" class="badge ok as-toggle">148 prop types</label>
         <label for="c-12-dates-datepickerinput-info" class="badge info as-toggle">1 info</label>
         <label for="c-12-dates-datepickerinput-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -4541,7 +4596,7 @@ import { calendarAriaLabels } from '../../.storybook/a11y';</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">143 prop types</span>
+              <span class="badge ok">148 prop types</span>
             </div>
             <pre><code>Component: src/DatePickerInput/DatePickerInput.tsx::DatePickerInput</code></pre>
             <pre><code>Props:</code></pre>
@@ -4586,6 +4641,16 @@ __getControlRef?: (rowIndex: number, cellIndex: number, node: HTMLButtonElement)
 __getDayRef?: (rowIndex: number, cellIndex: number, node: HTMLButtonElement) =&gt; void
 
 /**
+ * Passes props down to week controls, receives the first date of the week
+ */
+__getWeekControlProps?: (weekStart: string) =&gt; Partial&lt;MonthWeekControlProps&gt;
+
+/**
+ * Assigns ref of every week control based on its row index, used for arrows navigation
+ */
+__getWeekControlRef?: (rowIndex: number, node: HTMLButtonElement) =&gt; void
+
+/**
  * Called when control is clicked with event and date
  */
 __onControlClick?: (event: MouseEvent&lt;HTMLButtonElement, MouseEvent&gt;, date: string) =&gt; void
@@ -4619,6 +4684,11 @@ __onDayMouseEnter?: (event: MouseEvent&lt;HTMLButtonElement, MouseEvent&gt;, dat
  * If defined, called with preset value, suppresses `onChange` call
  */
 __onPresetSelect?: (preset: string | [string | null, string | null] | null) =&gt; void
+
+/**
+ * Called when any keydown event is registered on week control, used for arrows navigation
+ */
+__onWeekControlKeyDown?: (event: KeyboardEvent&lt;HTMLButtonElement&gt;, payload: { rowIndex: number; date: string; }) =&gt; void
 
 /**
  * Prevents focus shift when buttons are clicked
@@ -4663,6 +4733,11 @@ __updateDateOnYearSelect?: boolean
 __vars?: CssVarsProp | undefined
 
 /**
+ * Renders week numbers as buttons and removes days from the tab order, used in WeekPicker
+ */
+__withWeekControls?: boolean
+
+/**
  * Determines whether user can deselect the date by clicking on selected item, applicable only when type=&quot;default&quot;
  */
 allowDeselect?: boolean
@@ -4677,7 +4752,7 @@ allowSingleDateInRange?: boolean
  */
 ariaLabels?: CalendarAriaLabels
 
-attributes?: { placeholder?: Record&lt;string, any&gt; | undefined; input?: Record&lt;string, any&gt; | undefined; label?: Record&lt;string, any&gt; | undefined; section?: Record&lt;string, any&gt; | undefined; ... 32 more ...; datePickerRoot?: Record&lt;...&gt; | undefined; }
+attributes?: { placeholder?: Record&lt;string, any&gt; | undefined; input?: Record&lt;string, any&gt; | undefined; label?: Record&lt;string, any&gt; | undefined; section?: Record&lt;string, any&gt; | undefined; ... 33 more ...; datePickerRoot?: Record&lt;...&gt; | undefined; }
 
 /**
  * Class added to the root element, if applicable
@@ -4898,6 +4973,11 @@ level?: &quot;month&quot; | &quot;year&quot; | &quot;decade&quot;
 lightHidden?: boolean
 
 /**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
+
+/**
  * Displays loading indicator in the left or right section
  */
 loading?: boolean = false
@@ -5037,7 +5117,7 @@ onYearSelect?: (date: string) =&gt; void
 placeholder?: string
 
 /**
- * Determines whether the input should have `cursor: pointer` style. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
+ * Determines whether the input should use the theme cursor type. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
  */
 pointer?: boolean = false
 
@@ -5281,7 +5361,7 @@ yearsSelectRange?: [number, number]</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DateTimePicker</h2>
       <div class="badges">
-        <label for="c-13-dates-datetimepicker-props" class="badge ok as-toggle">141 prop types</label>
+        <label for="c-13-dates-datetimepicker-props" class="badge ok as-toggle">146 prop types</label>
         <label for="c-13-dates-datetimepicker-info" class="badge info as-toggle">1 info</label>
         <label for="c-13-dates-datetimepicker-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -5317,7 +5397,7 @@ yearsSelectRange?: [number, number]</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">141 prop types</span>
+              <span class="badge ok">146 prop types</span>
             </div>
             <pre><code>Component: src/DateTimePicker/DateTimePicker.tsx::DateTimePicker</code></pre>
             <pre><code>Props:</code></pre>
@@ -5362,6 +5442,16 @@ __getControlRef?: (rowIndex: number, cellIndex: number, node: HTMLButtonElement)
 __getDayRef?: (rowIndex: number, cellIndex: number, node: HTMLButtonElement) =&gt; void
 
 /**
+ * Passes props down to week controls, receives the first date of the week
+ */
+__getWeekControlProps?: (weekStart: string) =&gt; Partial&lt;MonthWeekControlProps&gt;
+
+/**
+ * Assigns ref of every week control based on its row index, used for arrows navigation
+ */
+__getWeekControlRef?: (rowIndex: number, node: HTMLButtonElement) =&gt; void
+
+/**
  * Called when control is clicked with event and date
  */
 __onControlClick?: (event: MouseEvent&lt;HTMLButtonElement, MouseEvent&gt;, date: string) =&gt; void
@@ -5390,6 +5480,11 @@ __onDayKeyDown?: (event: KeyboardEvent&lt;HTMLButtonElement&gt;, payload: Contro
  * Called when mouse enters day
  */
 __onDayMouseEnter?: (event: MouseEvent&lt;HTMLButtonElement, MouseEvent&gt;, date: string) =&gt; void
+
+/**
+ * Called when any keydown event is registered on week control, used for arrows navigation
+ */
+__onWeekControlKeyDown?: (event: KeyboardEvent&lt;HTMLButtonElement&gt;, payload: { rowIndex: number; date: string; }) =&gt; void
 
 /**
  * Prevents focus shift when buttons are clicked
@@ -5434,6 +5529,11 @@ __updateDateOnYearSelect?: boolean
 __vars?: CssVarsProp | undefined
 
 /**
+ * Renders week numbers as buttons and removes days from the tab order, used in WeekPicker
+ */
+__withWeekControls?: boolean
+
+/**
  * Determines whether a single day can be selected as range, applicable only when type=&quot;range&quot;
  */
 allowSingleDateInRange?: undefined
@@ -5443,7 +5543,7 @@ allowSingleDateInRange?: undefined
  */
 ariaLabels?: CalendarAriaLabels
 
-attributes?: { placeholder?: Record&lt;string, any&gt; | undefined; input?: Record&lt;string, any&gt; | undefined; label?: Record&lt;string, any&gt; | undefined; section?: Record&lt;string, any&gt; | undefined; ... 38 more ...; rangeInfo?: Record&lt;...&gt; | undefined; }
+attributes?: { placeholder?: Record&lt;string, any&gt; | undefined; input?: Record&lt;string, any&gt; | undefined; label?: Record&lt;string, any&gt; | undefined; section?: Record&lt;string, any&gt; | undefined; ... 39 more ...; rangeInfo?: Record&lt;...&gt; | undefined; }
 
 /**
  * Class added to the root element, if applicable
@@ -5664,6 +5764,11 @@ level?: &quot;month&quot; | &quot;year&quot; | &quot;decade&quot;
 lightHidden?: boolean
 
 /**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
+
+/**
  * Displays loading indicator in the left or right section
  */
 loading?: boolean = false
@@ -5796,7 +5901,7 @@ onYearSelect?: (date: string) =&gt; void
 placeholder?: string
 
 /**
- * Determines whether the input should have `cursor: pointer` style. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
+ * Determines whether the input should use the theme cursor type. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
  */
 pointer?: boolean = false
 
@@ -6050,7 +6155,7 @@ yearsSelectRange?: [number, number]</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> FileInput</h2>
       <div class="badges">
-        <label for="c-14-inputs-fileinput-props" class="badge ok as-toggle">71 prop types</label>
+        <label for="c-14-inputs-fileinput-props" class="badge ok as-toggle">72 prop types</label>
         <label for="c-14-inputs-fileinput-info" class="badge info as-toggle">1 info</label>
         <label for="c-14-inputs-fileinput-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -6086,7 +6191,7 @@ yearsSelectRange?: [number, number]</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">71 prop types</span>
+              <span class="badge ok">72 prop types</span>
             </div>
             <pre><code>Component: src/FileInput/FileInput.tsx::FileInput</code></pre>
             <pre><code>Props:</code></pre>
@@ -6268,6 +6373,11 @@ leftSectionWidth?: Width&lt;string | number&gt; | undefined
 lightHidden?: boolean
 
 /**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
+
+/**
  * Displays loading indicator in the left or right section
  */
 loading?: boolean = false
@@ -6285,7 +6395,7 @@ mod?: BoxMod | undefined
 /**
  * If set, user can pick more than one file
  */
-multiple?: false = false
+multiple?: Multiple = false
 
 /**
  * Input name attribute
@@ -6295,7 +6405,7 @@ name: string
 /**
  * Called when value changes
  */
-onChange?: (payload: File | null) =&gt; void
+onChange?: (payload: Multiple extends true ? File[] : File | null) =&gt; void
 
 /**
  * Input placeholder
@@ -6303,7 +6413,7 @@ onChange?: (payload: File | null) =&gt; void
 placeholder?: ReactNode
 
 /**
- * Determines whether the input should have `cursor: pointer` style. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
+ * Determines whether the input should use the theme cursor type. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
  */
 pointer?: boolean = false
 
@@ -6668,7 +6778,7 @@ import { Stack } from '@mantine/core';</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> InlineDateTimePicker</h2>
       <div class="badges">
-        <label for="c-16-dates-inlinedatetimepicker-props" class="badge ok as-toggle">104 prop types</label>
+        <label for="c-16-dates-inlinedatetimepicker-props" class="badge ok as-toggle">108 prop types</label>
         <label for="c-16-dates-inlinedatetimepicker-info" class="badge info as-toggle">1 info</label>
         <label for="c-16-dates-inlinedatetimepicker-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -6704,7 +6814,7 @@ import { Stack } from '@mantine/core';</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">104 prop types</span>
+              <span class="badge ok">108 prop types</span>
             </div>
             <pre><code>Component: src/InlineDateTimePicker/InlineDateTimePicker.tsx::InlineDateTimePicker</code></pre>
             <pre><code>Props:</code></pre>
@@ -6717,6 +6827,16 @@ __getControlRef?: (rowIndex: number, cellIndex: number, node: HTMLButtonElement)
  * Assigns ref of every day based on its position in the table, used for arrows navigation
  */
 __getDayRef?: (rowIndex: number, cellIndex: number, node: HTMLButtonElement) =&gt; void
+
+/**
+ * Passes props down to week controls, receives the first date of the week
+ */
+__getWeekControlProps?: (weekStart: string) =&gt; Partial&lt;MonthWeekControlProps&gt;
+
+/**
+ * Assigns ref of every week control based on its row index, used for arrows navigation
+ */
+__getWeekControlRef?: (rowIndex: number, node: HTMLButtonElement) =&gt; void
 
 /**
  * Called when control is clicked with event and date
@@ -6754,6 +6874,11 @@ __onEnter?: () =&gt; void
  * If defined, called with preset value, suppresses `onChange` call
  */
 __onPresetSelect?: (val: any) =&gt; void
+
+/**
+ * Called when any keydown event is registered on week control, used for arrows navigation
+ */
+__onWeekControlKeyDown?: (event: KeyboardEvent&lt;HTMLButtonElement&gt;, payload: { rowIndex: number; date: string; }) =&gt; void
 
 /**
  * Prevents focus shift when buttons are clicked
@@ -6798,6 +6923,11 @@ __updateDateOnYearSelect?: boolean
 __vars?: CssVarsProp | undefined
 
 /**
+ * Renders week numbers as buttons and removes days from the tab order, used in WeekPicker
+ */
+__withWeekControls?: boolean
+
+/**
  * Determines whether user can deselect the date by clicking on selected item, applicable only when type=&quot;default&quot;
  */
 allowDeselect?: boolean
@@ -6812,7 +6942,7 @@ allowSingleDateInRange?: undefined
  */
 ariaLabels?: CalendarAriaLabels
 
-attributes?: { root?: Record&lt;string, any&gt; | undefined; month?: Record&lt;string, any&gt; | undefined; weekday?: Record&lt;string, any&gt; | undefined; weekdaysRow?: Record&lt;string, any&gt; | undefined; ... 28 more ...; rangeInfo?: Record&lt;...&gt; | undefined; }
+attributes?: { root?: Record&lt;string, any&gt; | undefined; month?: Record&lt;string, any&gt; | undefined; weekday?: Record&lt;string, any&gt; | undefined; weekdaysRow?: Record&lt;string, any&gt; | undefined; ... 29 more ...; rangeInfo?: Record&lt;...&gt; | undefined; }
 
 /**
  * Class added to the root element, if applicable
@@ -7417,7 +7547,7 @@ visibleFrom?: MantineBreakpoint | undefined</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> JsonInput</h2>
       <div class="badges">
-        <label for="c-18-inputs-jsoninput-props" class="badge ok as-toggle">70 prop types</label>
+        <label for="c-18-inputs-jsoninput-props" class="badge ok as-toggle">71 prop types</label>
         <label for="c-18-inputs-jsoninput-info" class="badge info as-toggle">1 info</label>
         <label for="c-18-inputs-jsoninput-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -7453,7 +7583,7 @@ visibleFrom?: MantineBreakpoint | undefined</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">70 prop types</span>
+              <span class="badge ok">71 prop types</span>
             </div>
             <pre><code>Component: src/JsonInput/JsonInput.tsx::JsonInput</code></pre>
             <pre><code>Props:</code></pre>
@@ -7630,6 +7760,11 @@ leftSectionWidth?: Width&lt;string | number&gt; | undefined
 lightHidden?: boolean
 
 /**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
+
+/**
  * Displays loading indicator in the left or right section
  */
 loading?: boolean = false
@@ -7662,7 +7797,7 @@ name: string
 onChange?: (value: string) =&gt; void
 
 /**
- * Determines whether the input should have `cursor: pointer` style. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
+ * Determines whether the input should use the theme cursor type. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
  */
 pointer?: boolean = false
 
@@ -7834,7 +7969,7 @@ wrapperProps?: WrapperProps</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> MaskInput</h2>
       <div class="badges">
-        <label for="c-19-inputs-maskinput-props" class="badge ok as-toggle">70 prop types</label>
+        <label for="c-19-inputs-maskinput-props" class="badge ok as-toggle">71 prop types</label>
         <label for="c-19-inputs-maskinput-info" class="badge info as-toggle">1 info</label>
         <label for="c-19-inputs-maskinput-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -7870,7 +8005,7 @@ wrapperProps?: WrapperProps</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">70 prop types</span>
+              <span class="badge ok">71 prop types</span>
             </div>
             <pre><code>Component: src/MaskInput/MaskInput.tsx::MaskInput</code></pre>
             <pre><code>Props:</code></pre>
@@ -8030,6 +8165,11 @@ leftSectionWidth?: Width&lt;string | number&gt; | undefined
 lightHidden?: boolean
 
 /**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
+
+/**
  * Displays loading indicator in the left or right section
  */
 loading?: boolean = false
@@ -8067,7 +8207,7 @@ onChangeRaw?: (rawValue: string, maskedValue: string) =&gt; void
 onComplete?: (maskedValue: string, rawValue: string) =&gt; void
 
 /**
- * Determines whether the input should have `cursor: pointer` style. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
+ * Determines whether the input should use the theme cursor type. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
  */
 pointer?: boolean = false
 
@@ -8650,7 +8790,7 @@ import { calendarAriaLabels } from '../../.storybook/a11y';</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> MonthPickerInput</h2>
       <div class="badges">
-        <label for="c-21-dates-monthpickerinput-props" class="badge ok as-toggle">116 prop types</label>
+        <label for="c-21-dates-monthpickerinput-props" class="badge ok as-toggle">117 prop types</label>
         <label for="c-21-dates-monthpickerinput-info" class="badge info as-toggle">1 info</label>
         <label for="c-21-dates-monthpickerinput-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -8686,7 +8826,7 @@ import { calendarAriaLabels } from '../../.storybook/a11y';</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">116 prop types</span>
+              <span class="badge ok">117 prop types</span>
             </div>
             <pre><code>Component: src/MonthPickerInput/MonthPickerInput.tsx::MonthPickerInput</code></pre>
             <pre><code>Props:</code></pre>
@@ -8978,6 +9118,11 @@ level?: &quot;month&quot; | &quot;year&quot; | &quot;decade&quot;
 lightHidden?: boolean
 
 /**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
+
+/**
  * Displays loading indicator in the left or right section
  */
 loading?: boolean = false
@@ -9080,7 +9225,7 @@ onPreviousYear?: (date: string) =&gt; void
 placeholder?: string
 
 /**
- * Determines whether the input should have `cursor: pointer` style. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
+ * Determines whether the input should use the theme cursor type. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
  */
 pointer?: boolean = false
 
@@ -9289,7 +9434,7 @@ yearsListFormat?: DateLabelFormat | undefined = &quot;YYYY&quot;</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> MultiSelect</h2>
       <div class="badges">
-        <label for="c-22-combobox-multiselect-props" class="badge ok as-toggle">97 prop types</label>
+        <label for="c-22-combobox-multiselect-props" class="badge ok as-toggle">98 prop types</label>
         <label for="c-22-combobox-multiselect-info" class="badge info as-toggle">1 info</label>
         <label for="c-22-combobox-multiselect-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -9325,7 +9470,7 @@ yearsListFormat?: DateLabelFormat | undefined = &quot;YYYY&quot;</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">97 prop types</span>
+              <span class="badge ok">98 prop types</span>
             </div>
             <pre><code>Component: src/MultiSelect/MultiSelect.tsx::MultiSelect</code></pre>
             <pre><code>Props:</code></pre>
@@ -9555,6 +9700,11 @@ lightHidden?: boolean
 limit?: number
 
 /**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
+
+/**
  * Displays loading indicator in the left or right section
  */
 loading?: boolean = false
@@ -9632,7 +9782,7 @@ onSearchChange?: (value: string) =&gt; void
 openOnFocus?: boolean = true
 
 /**
- * Determines whether the input should have `cursor: pointer` style. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
+ * Determines whether the input should use the theme cursor type. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
  */
 pointer?: boolean = false
 
@@ -9847,7 +9997,7 @@ wrapperProps?: WrapperProps</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> NativeSelect</h2>
       <div class="badges">
-        <label for="c-23-combobox-nativeselect-props" class="badge ok as-toggle">57 prop types</label>
+        <label for="c-23-combobox-nativeselect-props" class="badge ok as-toggle">58 prop types</label>
         <label for="c-23-combobox-nativeselect-info" class="badge info as-toggle">1 info</label>
         <label for="c-23-combobox-nativeselect-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -9883,7 +10033,7 @@ wrapperProps?: WrapperProps</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">57 prop types</span>
+              <span class="badge ok">58 prop types</span>
             </div>
             <pre><code>Component: src/NativeSelect/NativeSelect.tsx::NativeSelect</code></pre>
             <pre><code>Props:</code></pre>
@@ -10032,6 +10182,11 @@ leftSectionWidth?: Width&lt;string | number&gt; | undefined
  * Determines whether component should be hidden in light color scheme with `display: none`
  */
 lightHidden?: boolean
+
+/**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
 
 /**
  * Displays loading indicator in the left or right section
@@ -10204,7 +10359,7 @@ wrapperProps?: WrapperProps</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> NumberInput</h2>
       <div class="badges">
-        <label for="c-24-inputs-numberinput-props" class="badge ok as-toggle">86 prop types</label>
+        <label for="c-24-inputs-numberinput-props" class="badge ok as-toggle">87 prop types</label>
         <label for="c-24-inputs-numberinput-info" class="badge info as-toggle">1 info</label>
         <label for="c-24-inputs-numberinput-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -10240,7 +10395,7 @@ wrapperProps?: WrapperProps</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">86 prop types</span>
+              <span class="badge ok">87 prop types</span>
             </div>
             <pre><code>Component: src/NumberInput/NumberInput.tsx::NumberInput</code></pre>
             <pre><code>Props:</code></pre>
@@ -10312,7 +10467,7 @@ attributes?: { input?: Record&lt;string, any&gt; | undefined; label?: Record&lt;
  * - `&#39;strict&#39;`: User cannot type values outside the range
  * - `&#39;none&#39;`: No clamping; `min`/`max` only apply to increment/decrement controls and arrow keys
  */
-clampBehavior?: &quot;none&quot; | &quot;blur&quot; | &quot;strict&quot;
+clampBehavior?: &quot;none&quot; | &quot;strict&quot; | &quot;blur&quot;
 
 /**
  * Class added to the root element, if applicable
@@ -10441,6 +10596,11 @@ leftSectionWidth?: Width&lt;string | number&gt; | undefined
  * Determines whether component should be hidden in light color scheme with `display: none`
  */
 lightHidden?: boolean
+
+/**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
 
 /**
  * Displays loading indicator in the left or right section
@@ -10712,7 +10872,7 @@ wrapperProps?: WrapperProps</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> PasswordInput</h2>
       <div class="badges">
-        <label for="c-25-inputs-passwordinput-props" class="badge ok as-toggle">62 prop types</label>
+        <label for="c-25-inputs-passwordinput-props" class="badge ok as-toggle">63 prop types</label>
         <label for="c-25-inputs-passwordinput-info" class="badge info as-toggle">1 info</label>
         <label for="c-25-inputs-passwordinput-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -10748,7 +10908,7 @@ wrapperProps?: WrapperProps</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">62 prop types</span>
+              <span class="badge ok">63 prop types</span>
             </div>
             <pre><code>Component: src/PasswordInput/PasswordInput.tsx::PasswordInput</code></pre>
             <pre><code>Props:</code></pre>
@@ -10896,6 +11056,11 @@ leftSectionWidth?: Width&lt;string | number&gt; | undefined
  * Determines whether component should be hidden in light color scheme with `display: none`
  */
 lightHidden?: boolean
+
+/**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
 
 /**
  * Displays loading indicator in the left or right section
@@ -12724,7 +12889,7 @@ import { SegmentedControl } from 'react-hook-form-mantine';</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Select</h2>
       <div class="badges">
-        <label for="c-32-combobox-select-props" class="badge ok as-toggle">91 prop types</label>
+        <label for="c-32-combobox-select-props" class="badge ok as-toggle">92 prop types</label>
         <label for="c-32-combobox-select-info" class="badge info as-toggle">1 info</label>
         <label for="c-32-combobox-select-stories" class="badge ok as-toggle">3 stories</label>
         
@@ -12760,7 +12925,7 @@ import { SegmentedControl } from 'react-hook-form-mantine';</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">91 prop types</span>
+              <span class="badge ok">92 prop types</span>
             </div>
             <pre><code>Component: src/Select/Select.tsx::Select</code></pre>
             <pre><code>Props:</code></pre>
@@ -12985,6 +13150,11 @@ lightHidden?: boolean
 limit?: number
 
 /**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
+
+/**
  * Displays loading indicator in the left or right section
  */
 loading?: boolean = false
@@ -13047,7 +13217,7 @@ onSearchChange?: (value: string) =&gt; void
 openOnFocus?: boolean = true
 
 /**
- * Determines whether the input should have `cursor: pointer` style. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
+ * Determines whether the input should use the theme cursor type. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
  */
 pointer?: boolean = false
 
@@ -14126,7 +14296,7 @@ import { Switch } from '../Switch';</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> TagsInput</h2>
       <div class="badges">
-        <label for="c-36-combobox-tagsinput-props" class="badge ok as-toggle">94 prop types</label>
+        <label for="c-36-combobox-tagsinput-props" class="badge ok as-toggle">95 prop types</label>
         <label for="c-36-combobox-tagsinput-info" class="badge info as-toggle">1 info</label>
         <label for="c-36-combobox-tagsinput-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -14162,7 +14332,7 @@ import { Switch } from '../Switch';</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">94 prop types</span>
+              <span class="badge ok">95 prop types</span>
             </div>
             <pre><code>Component: src/TagsInput/TagsInput.tsx::TagsInput</code></pre>
             <pre><code>Props:</code></pre>
@@ -14387,6 +14557,11 @@ lightHidden?: boolean
 limit?: number
 
 /**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
+
+/**
  * Displays loading indicator in the left or right section
  */
 loading?: boolean = false
@@ -14464,7 +14639,7 @@ onSearchChange?: (value: string) =&gt; void
 openOnFocus?: boolean = true
 
 /**
- * Determines whether the input should have `cursor: pointer` style. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
+ * Determines whether the input should use the theme cursor type. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
  */
 pointer?: boolean = false
 
@@ -14663,7 +14838,7 @@ wrapperProps?: WrapperProps</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Textarea</h2>
       <div class="badges">
-        <label for="c-37-inputs-textarea-props" class="badge ok as-toggle">64 prop types</label>
+        <label for="c-37-inputs-textarea-props" class="badge ok as-toggle">65 prop types</label>
         <label for="c-37-inputs-textarea-info" class="badge info as-toggle">1 info</label>
         <label for="c-37-inputs-textarea-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -14699,7 +14874,7 @@ wrapperProps?: WrapperProps</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">64 prop types</span>
+              <span class="badge ok">65 prop types</span>
             </div>
             <pre><code>Component: src/Textarea/Textarea.tsx::Textarea</code></pre>
             <pre><code>Props:</code></pre>
@@ -14861,6 +15036,11 @@ leftSectionWidth?: Width&lt;string | number&gt; | undefined
 lightHidden?: boolean
 
 /**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
+
+/**
  * Displays loading indicator in the left or right section
  */
 loading?: boolean = false
@@ -14888,7 +15068,7 @@ mod?: BoxMod | undefined
 name: string
 
 /**
- * Determines whether the input should have `cursor: pointer` style. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
+ * Determines whether the input should use the theme cursor type. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
  */
 pointer?: boolean = false
 
@@ -15058,7 +15238,7 @@ wrapperProps?: WrapperProps</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> TextInput</h2>
       <div class="badges">
-        <label for="c-38-inputs-textinput-props" class="badge ok as-toggle">57 prop types</label>
+        <label for="c-38-inputs-textinput-props" class="badge ok as-toggle">58 prop types</label>
         <label for="c-38-inputs-textinput-info" class="badge info as-toggle">1 info</label>
         <label for="c-38-inputs-textinput-stories" class="badge ok as-toggle">3 stories</label>
         
@@ -15094,7 +15274,7 @@ wrapperProps?: WrapperProps</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">57 prop types</span>
+              <span class="badge ok">58 prop types</span>
             </div>
             <pre><code>Component: src/TextInput/TextInput.tsx::TextInput</code></pre>
             <pre><code>Props:</code></pre>
@@ -15239,6 +15419,11 @@ leftSectionWidth?: Width&lt;string | number&gt; | undefined
 lightHidden?: boolean
 
 /**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
+
+/**
  * Displays loading indicator in the left or right section
  */
 loading?: boolean = false
@@ -15256,7 +15441,7 @@ mod?: BoxMod | undefined
 name: string
 
 /**
- * Determines whether the input should have `cursor: pointer` style. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
+ * Determines whether the input should use the theme cursor type. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
  */
 pointer?: boolean = false
 
@@ -15428,7 +15613,7 @@ wrapperProps?: WrapperProps</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> TimeInput</h2>
       <div class="badges">
-        <label for="c-39-dates-timeinput-props" class="badge ok as-toggle">60 prop types</label>
+        <label for="c-39-dates-timeinput-props" class="badge ok as-toggle">61 prop types</label>
         <label for="c-39-dates-timeinput-info" class="badge info as-toggle">1 info</label>
         <label for="c-39-dates-timeinput-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -15464,7 +15649,7 @@ wrapperProps?: WrapperProps</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">60 prop types</span>
+              <span class="badge ok">61 prop types</span>
             </div>
             <pre><code>Component: src/TimeInput/TimeInput.tsx::TimeInput</code></pre>
             <pre><code>Props:</code></pre>
@@ -15609,6 +15794,11 @@ leftSectionWidth?: Width&lt;string | number&gt; | undefined
 lightHidden?: boolean
 
 /**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
+
+/**
  * Displays loading indicator in the left or right section
  */
 loading?: boolean = false
@@ -15636,7 +15826,7 @@ mod?: BoxMod | undefined
 name: string
 
 /**
- * Determines whether the input should have `cursor: pointer` style. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
+ * Determines whether the input should use the theme cursor type. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
  */
 pointer?: boolean = false
 
@@ -15790,7 +15980,7 @@ wrapperProps?: WrapperProps</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> TimePicker</h2>
       <div class="badges">
-        <label for="c-40-dates-timepicker-props" class="badge ok as-toggle">57 prop types</label>
+        <label for="c-40-dates-timepicker-props" class="badge ok as-toggle">58 prop types</label>
         <label for="c-40-dates-timepicker-info" class="badge info as-toggle">1 info</label>
         <label for="c-40-dates-timepicker-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -15826,7 +16016,7 @@ wrapperProps?: WrapperProps</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">57 prop types</span>
+              <span class="badge ok">58 prop types</span>
             </div>
             <pre><code>Component: src/TimePicker/TimePicker.tsx::TimePicker</code></pre>
             <pre><code>Props:</code></pre>
@@ -15971,6 +16161,11 @@ leftSectionWidth?: Width&lt;string | number&gt; | undefined
 lightHidden?: boolean
 
 /**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
+
+/**
  * Displays loading indicator in the left or right section
  */
 loading?: boolean = false
@@ -15991,7 +16186,7 @@ mod?: BoxMod | undefined
 name: string
 
 /**
- * Determines whether the input should have `cursor: pointer` style. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
+ * Determines whether the input should use the theme cursor type. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
  */
 pointer?: boolean = false
 
@@ -16136,7 +16331,7 @@ wrapperProps?: WrapperProps</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> TreeSelect</h2>
       <div class="badges">
-        <label for="c-41-combobox-treeselect-props" class="badge ok as-toggle">57 prop types</label>
+        <label for="c-41-combobox-treeselect-props" class="badge ok as-toggle">58 prop types</label>
         <label for="c-41-combobox-treeselect-info" class="badge info as-toggle">1 info</label>
         <label for="c-41-combobox-treeselect-stories" class="badge ok as-toggle">1 story</label>
         
@@ -16172,7 +16367,7 @@ wrapperProps?: WrapperProps</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">57 prop types</span>
+              <span class="badge ok">58 prop types</span>
             </div>
             <pre><code>Component: src/TreeSelect/TreeSelect.tsx::TreeSelect</code></pre>
             <pre><code>Props:</code></pre>
@@ -16317,6 +16512,11 @@ leftSectionWidth?: Width&lt;string | number&gt; | undefined
 lightHidden?: boolean
 
 /**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
+
+/**
  * Displays loading indicator in the left or right section
  */
 loading?: boolean = false
@@ -16334,7 +16534,7 @@ mod?: BoxMod | undefined
 name: string
 
 /**
- * Determines whether the input should have `cursor: pointer` style. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
+ * Determines whether the input should use the theme cursor type. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
  */
 pointer?: boolean = false
 
@@ -16844,7 +17044,7 @@ import { calendarAriaLabels } from '../../.storybook/a11y';</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> YearPickerInput</h2>
       <div class="badges">
-        <label for="c-43-dates-yearpickerinput-props" class="badge ok as-toggle">107 prop types</label>
+        <label for="c-43-dates-yearpickerinput-props" class="badge ok as-toggle">108 prop types</label>
         <label for="c-43-dates-yearpickerinput-info" class="badge info as-toggle">1 info</label>
         <label for="c-43-dates-yearpickerinput-stories" class="badge ok as-toggle">2 stories</label>
         
@@ -16880,7 +17080,7 @@ import { calendarAriaLabels } from '../../.storybook/a11y';</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types <small>(react-component-meta)</small></span>
-              <span class="badge ok">107 prop types</span>
+              <span class="badge ok">108 prop types</span>
             </div>
             <pre><code>Component: src/YearPickerInput/YearPickerInput.tsx::YearPickerInput</code></pre>
             <pre><code>Props:</code></pre>
@@ -17157,6 +17357,11 @@ leftSectionWidth?: Width&lt;string | number&gt; | undefined
 lightHidden?: boolean
 
 /**
+ * Props passed down to the `Loader` component displayed when `loading` prop is set
+ */
+loaderProps?: LoaderProps
+
+/**
  * Displays loading indicator in the left or right section
  */
 loading?: boolean = false
@@ -17234,7 +17439,7 @@ onPreviousDecade?: (date: string) =&gt; void
 placeholder?: string
 
 /**
- * Determines whether the input should have `cursor: pointer` style. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
+ * Determines whether the input should use the theme cursor type. Use when input acts as a button-like trigger (e.g., `component=&quot;button&quot;` for Select/DatePicker).
  */
 pointer?: boolean = false
 
